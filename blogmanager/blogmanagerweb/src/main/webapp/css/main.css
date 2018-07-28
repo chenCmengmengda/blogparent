@@ -1,0 +1,41 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.head{
+    height:100px;
+    background: #2196f3;
+}
+
+.head-content{
+    margin:0 auto;
+    display: flex;
+    width:90%;
+}
+
+.head-right{
+    margin-top: 0;
+    float:right;
+    width:50%;
+    margin-right:0
+}
+
+.head-right ul{
+    float: right;
+    margin-top: 0px;
+}
+
+.head-right ul li{
+    float: left;
+    margin:10px;
+    font-size: 16px;
+}

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="blogmanagerweb:war">
+    <output-path>$PROJECT_DIR$/blogmanager/blogmanagerweb/target</output-path>
+    <root id="archive" name="blog-manager-web.war">
+      <element id="artifact" artifact-name="blogmanagerweb:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/blogcommon/blogcommon.iml" filepath="$PROJECT_DIR$/blogcommon/blogcommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blogmanager/blogmanager.iml" filepath="$PROJECT_DIR$/blogmanager/blogmanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blogmanager/blogmanagermapper/blogmanagermapper.iml" filepath="$PROJECT_DIR$/blogmanager/blogmanagermapper/blogmanagermapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blogmanager/blogmanagerpojo/blogmanagerpojo.iml" filepath="$PROJECT_DIR$/blogmanager/blogmanagerpojo/blogmanagerpojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blogmanager/blogmanagerservice/blogmanagerservice.iml" filepath="$PROJECT_DIR$/blogmanager/blogmanagerservice/blogmanagerservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blogmanager/blogmanagerweb/blogmanagerweb.iml" filepath="$PROJECT_DIR$/blogmanager/blogmanagerweb/blogmanagerweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blogparent.iml" filepath="$PROJECT_DIR$/blogparent.iml" />
+    </modules>
+  </component>
+</project>
