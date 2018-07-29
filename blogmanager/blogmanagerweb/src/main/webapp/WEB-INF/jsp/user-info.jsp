@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<table class="easyui-datagrid" id="userInfo" title="商品列表"
+<table class="easyui-datagrid" id="userInfo" title="用户列表"
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/user/list',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
@@ -21,11 +21,12 @@
         </tr>
     </thead>
 </table>
-<div id="itemEditWindow" class="easyui-window" title="编辑商品" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
+<div id="userEditWindow" class="easyui-window" title="编辑用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/user-edit'" style="width:80%;height:80%;padding:10px;">
+    <div id="userAddWindow" class="easyui-window" title="添加用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/user-add'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
     function getSelectionsIds(){
-        var itemList = $("#itemList");
+        var itemList = $("#userInfo");
         var sels = itemList.datagrid("getSelections");
         var ids = [];
         for(var i in sels){
@@ -39,23 +40,23 @@
         text:'新增',
         iconCls:'icon-add',
         handler:function(){
-
+            $("#userAddWindow").window({}).window('open');
         }
     },{
         text:'编辑',
         iconCls:'icon-edit',
         handler:function(){
             var ids = getSelectionsIds();
-            if(ids.length == 0){
-                $.messager.alert('提示','必须选择一个商品才能编辑!');
+        /*    if(ids.length == 0){
+                $.messager.alert('提示','必须选择一个用户才能编辑!');
                 return ;
             }
             if(ids.indexOf(',') > 0){
-                $.messager.alert('提示','只能选择一个商品!');
+                $.messager.alert('提示','只能选择一个用户!');
                 return ;
             }
-
-            $("#itemEditWindow").window({}).window('open');
+*/
+            $("#userEditWindow").window({}).window('open');
         }
     },{
         text:'删除',
@@ -63,15 +64,15 @@
         handler:function(){
             var ids = getSelectionsIds();
             if(ids.length == 0){
-                $.messager.alert('提示','未选中商品!');
+                $.messager.alert('提示','未选中用户!');
                 return ;
             }
-            $.messager.confirm('确认','确定删除ID为 '+ids+' 的商品吗？',function(r){
+            $.messager.confirm('确认','确定删除ID为 '+ids+' 的用户吗？',function(r){
                 if (r){
                     var params = {"ids":ids};
                     $.post("/rest/item/delete",params, function(data){
                         if(data.status == 200){
-                            $.messager.alert('提示','删除商品成功!',undefined,function(){
+                            $.messager.alert('提示','删除用户成功!',undefined,function(){
                                 $("#itemList").datagrid("reload");
                             });
                         }
