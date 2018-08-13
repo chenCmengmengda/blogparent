@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td>用户密码:</td>
-                <td><input class="easyui-textbox" type="password" name="password" data-options="validType:'length[6,20]'" style="height:100%;width: 280px;"></input></td>
+                <td><input class="easyui-textbox" type="password" name="password" data-options="readonly:true" style="height:100%;width: 280px;"></input></td>
             </tr>
             <tr>
                 <td>性别:</td>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td>生日:</td>
-                <td><input class="easyui-datebox" type="text" name="birthday" data-options="precision:0,required:true" /></td>
+                <td><input class="easyui-datebox" type="text" name="birthday" data-options="precision:0,required:true,formatter:Blog.formatDateTime" /></td>
             </tr>
             <tr>
                 <td>邮箱:</td>
@@ -39,7 +39,7 @@
             <tr>
                 <td>联系电话:</td>
                 <td>
-                    <input class="easyui-textbox" type="text" name="email" data-options="validType:'length[1,30]'" />
+                    <input class="easyui-textbox" type="text" name="phone" data-options="validType:'length[1,30]'" />
                 </td>
             </tr>
         </table>
@@ -54,5 +54,18 @@
             $.messager.alert('提示','表单还未填写完成!');
             return ;
         }
+        $('#userEditForm').form('submit',{
+            url:'/user/update',
+
+            success:function(data){
+                var data = eval('(' + data + ')');//转化为json对象
+                if(data.status==200){
+                    $.messager.alert('消息','修改成功');
+
+                    return;
+                }
+                $.messager.alert('消息','添加失败');
+            }
+        });
     }
 </script>

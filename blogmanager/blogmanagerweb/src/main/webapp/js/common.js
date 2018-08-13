@@ -15,7 +15,7 @@ Date.prototype.format = function(format){
         "q+":Math.floor((this.getMonth()+3)/3),//quarter
         "S+":this.getMilliseconds()//millisecond
     };
-    if(/y+/.test(format)){
+    if(/(y+)/.test(format)){
         format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4-RegExp.$1.length));
     }
     for(var k in o){
@@ -35,6 +35,18 @@ var bl=Blog={
         uploadJson : '/pic/upload',
         //上传类型，分别为image、flash、media、file
         dir : "image"
+    },
+    // 格式化时间
+    formatDateTime : function(val,row){
+        var now = new Date(val);
+        return now.format("yyyy-MM-dd");
+    },
+    // 格式化连接
+    formatUrl : function(val,row){
+        if(val){
+            return "<a href='"+val+"' target='_blank'>查看</a>";
+        }
+        return "";
     },
     //创建编辑器
     createEditor : function(select){
@@ -83,4 +95,29 @@ var bl=Blog={
             });
         });
     },
+    //异步ajax
+    ajax:function(url,param,callback){
+        $.ajax({
+            url:url,
+            data:param,
+            type:'POST',
+            dataType:'json',
+            success:function(data){
+                callback(data);
+            }
+        });
+    },
+    //同步ajax
+    ajaxAsync:function(url,param,callback){
+        $.ajax({
+            url:url,
+            data:param,
+            type:'POST',
+            async : false,
+            dataType:'json',
+            success:function(data){
+                callback(data);
+            }
+        });
+    }
 }

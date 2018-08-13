@@ -60,7 +60,7 @@
                 var data = eval('(' + data + ')');//转化为json对象
                 if(data.status==200){
                     $.messager.alert('消息','添加成功');
-                    blogList.datagrid("reload");
+
                     return;
                 }
                 $.messager.alert('消息','添加失败');

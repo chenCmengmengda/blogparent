@@ -15,19 +15,19 @@
             <th data-options="field:'nickname',width:200">用户昵称</th>
             <th data-options="field:'password',width:100">用户密码</th>
             <th data-options="field:'sex',width:100">性别</th>
-            <th data-options="field:'birthday',width:100">出生日期</th>
+            <th data-options="field:'birthday',width:100,formatter:Blog.formatDateTime">出生日期</th>
             <th data-options="field:'email',width:70,align:'right'">邮箱</th>
             <th data-options="field:'phone',width:70,align:'right'">联系电话</th>
         </tr>
     </thead>
 </table>
-<div id="userEditWindow" class="easyui-window" title="编辑用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/user-edit'" style="width:80%;height:80%;padding:10px;">
-    <div id="userAddWindow" class="easyui-window" title="添加用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/user-add'" style="width:80%;height:80%;padding:10px;">
+<div id="userEditWindow" class="easyui-window" title="编辑用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/user-edit'" style="width:80%;height:80%;padding:10px;"></div>
+<div id="userAddWindow" class="easyui-window" title="添加用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/user-add'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
     function getSelectionsIds(){
-        var itemList = $("#userInfo");
-        var sels = itemList.datagrid("getSelections");
+        var userList = $("#userInfo");
+        var sels = userList.datagrid("getSelections");
         var ids = [];
         for(var i in sels){
             ids.push(sels[i].id);
@@ -47,7 +47,7 @@
         iconCls:'icon-edit',
         handler:function(){
             var ids = getSelectionsIds();
-        /*    if(ids.length == 0){
+            if(ids.length == 0){
                 $.messager.alert('提示','必须选择一个用户才能编辑!');
                 return ;
             }
@@ -55,8 +55,17 @@
                 $.messager.alert('提示','只能选择一个用户!');
                 return ;
             }
-*/
-            $("#userEditWindow").window({}).window('open');
+
+            $("#userEditWindow").window({
+                onLoad :function() {
+                    //回显数据
+                    var data = $("#userInfo").datagrid("getSelections")[0];
+                    //日期格式化
+                    data.birthday=new Date(data.birthday).format("yyyy-MM-dd");
+                    $("#userEditForm").form("load", data);
+
+                }
+            }).window('open');
         }
     },{
         text:'删除',
@@ -70,10 +79,10 @@
             $.messager.confirm('确认','确定删除ID为 '+ids+' 的用户吗？',function(r){
                 if (r){
                     var params = {"ids":ids};
-                    $.post("/rest/item/delete",params, function(data){
+                    $.post("/user/delete",params, function(data){
                         if(data.status == 200){
                             $.messager.alert('提示','删除用户成功!',undefined,function(){
-                                $("#itemList").datagrid("reload");
+                                $("#userInfo").datagrid("reload");
                             });
                         }
                     });
@@ -82,3 +91,4 @@
         }
     }];
 </script>
+
