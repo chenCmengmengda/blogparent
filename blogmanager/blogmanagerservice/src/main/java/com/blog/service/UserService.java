@@ -4,6 +4,8 @@ import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbUser;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -15,4 +17,6 @@ public interface UserService {
     EUDataGridResult userList(int page, int rows);
     Result updateUser(TbUser user);
     Result deleteUser(Long id);
+    Result userLogin(String username , String password, HttpServletRequest request,
+                        HttpServletResponse response);
 }

@@ -56,8 +56,8 @@
             <h1 style="float:left;width:50%">陈C个人博客的后台管理系统</h1>
             <div class="head-right">
                 <ul>
-                    <li><a href="#">欢迎:陈C</a></li>
-                    <li><a href="login.jsp" >退出登陆</a></li>
+                    <li><a href="#">欢迎:${username}</a></li>
+                    <li><a href="/page/login" >退出登陆</a></li>
                 </ul>
             </div>
         </div>
