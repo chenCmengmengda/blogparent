@@ -2,6 +2,8 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/blogmanager/blogmanagerweb" />
+    <file type="web" url="file://$PROJECT_DIR$/blogportal" />
+    <file type="web" url="file://$PROJECT_DIR$/blogrest" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -10,6 +12,7 @@
         <option value="$PROJECT_DIR$/blogcommon/pom.xml" />
         <option value="$PROJECT_DIR$/blogmanager/pom.xml" />
         <option value="$PROJECT_DIR$/blogmanager/blogmanagerweb/pom.xml" />
+        <option value="$PROJECT_DIR$/blogportal/pom.xml" />
       </list>
     </option>
   </component>

@@ -11,6 +11,8 @@
         <module name="blogmanagerpojo" />
         <module name="blogmanagerservice" />
         <module name="blogmanagerweb" />
+        <module name="blogportal" />
+        <module name="blogrest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +23,8 @@
       <module name="blogmanagerservice" target="1.7" />
       <module name="blogmanagerweb" target="1.7" />
       <module name="blogparent" target="1.7" />
+      <module name="blogportal" target="1.7" />
+      <module name="blogrest" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -8,6 +8,8 @@
     <file url="file://$PROJECT_DIR$/blogmanager/blogmanagerpojo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blogmanager/blogmanagerservice" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blogmanager/blogmanagerweb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blogportal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blogrest" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

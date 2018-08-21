@@ -9,6 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/blogmanager/blogmanagerservice/blogmanagerservice.iml" filepath="$PROJECT_DIR$/blogmanager/blogmanagerservice/blogmanagerservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/blogmanager/blogmanagerweb/blogmanagerweb.iml" filepath="$PROJECT_DIR$/blogmanager/blogmanagerweb/blogmanagerweb.iml" />
       <module fileurl="file://$PROJECT_DIR$/blogparent.iml" filepath="$PROJECT_DIR$/blogparent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blogportal/blogportal.iml" filepath="$PROJECT_DIR$/blogportal/blogportal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blogrest/blogrest.iml" filepath="$PROJECT_DIR$/blogrest/blogrest.iml" />
     </modules>
   </component>
 </project>

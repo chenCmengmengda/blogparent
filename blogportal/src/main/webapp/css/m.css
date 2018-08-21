@@ -1,0 +1,48 @@
+@charset "gb2312";
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+header{ width:96%; margin:auto}
+}
+@media screen and (min-width: 960px) and (max-width: 1023px) {
+header,article{ width:96%; margin:auto}
+.picbox ul{    width: 23%;}
+.picshowlist{ display:none}
+.tuijian,.guanzhu{ width:270px; }
+}
+@media screen and (min-width: 768px) and (max-width: 959px) {
+header,article{ width:96%; margin:auto}
+.picbox ul{    width: 23%;}
+.picshowlist{ display:none}
+.pagelist a { padding: 2px 3px;}
+}
+ @media only screen and (min-width: 480px) and (max-width: 767px) {
+header,article{ width:96%; margin:auto}
+.logo{  width:100%;text-align:center}
+nav{display:none}
+.mnav{ display:block}
+.l_box{ display:none}
+.r_box,.infosbox,.picsbox{ width:100%}
+.pagelist a { padding: 2px 3px;}
+.picbox ul{    width: 22%;}
+.picbox ul li i{ margin:5px}
+.picinfo{ display:none}
+.picshowlist{ display:none}
+.lmname,.view{ display:none}
+}
+@media only screen and (max-width: 479px) {
+header,article{ width:96%; margin:auto}
+.logo{ width:100%}
+.logo img{   margin:auto}
+nav{display:none}
+.mnav{ display:block}
+.l_box{ display:none}
+.r_box,.infosbox,.picsbox{ width:100%}
+.pagelist a { padding: 2px 3px; margin:0}
+.picbox ul{    width: 22%;}
+.piclistshow ul li{ height:100px; padding:0}
+.piclistshow .picimg{ height:100px}
+.picbox ul li i{ margin:2px}
+.picinfo{ display:none}
+.picshowlist,.pictxt{ display:none}
+.lmname,.view{ display:none}
+.r_box li i{ float:none; margin:0 auto 20px; width:100%; max-height:150px}
+}
