@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class ListDataResult {
     private long total;
+    private long page;//当前页
     private long pages;
     private List<?> rows;
     public long getTotal() {
@@ -29,5 +30,12 @@ public class ListDataResult {
 
     public void setPages(long pages) {
         this.pages = pages;
+    }
+    public long getPage() {
+        return page;
+    }
+
+    public void setPage(long page) {
+        this.page = page;
     }
 }

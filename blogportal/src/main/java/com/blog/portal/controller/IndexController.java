@@ -25,9 +25,9 @@ public class IndexController {
     @RequestMapping("/index")
     public String showIndex(@RequestParam(defaultValue = "1") Integer page ,
                             @RequestParam(defaultValue = "10") Integer rows,Model model){
-        ListDataResult result=blogService.getBlogList(page,rows);
-        model.addAttribute("blogListResult",result);
-        model.addAttribute("page",page);
+    //    ListDataResult result=blogService.getBlogList(page,rows);
+    //    model.addAttribute("blogListResult",result);
+    //    model.addAttribute("page",page);
         return "index";
     }
 

@@ -54,4 +54,9 @@
         <!-- 伪静态化 -->
         <url-pattern>*.action</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>blog-portal</servlet-name>
+        <!-- 伪静态化 -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 </web-app>

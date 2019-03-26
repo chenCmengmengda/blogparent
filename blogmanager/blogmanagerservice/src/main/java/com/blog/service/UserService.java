@@ -19,4 +19,5 @@ public interface UserService {
     Result deleteUser(Long id);
     Result userLogin(String username , String password, HttpServletRequest request,
                         HttpServletResponse response);
+    Result editPassword(TbUser user,String rePassword);
 }

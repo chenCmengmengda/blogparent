@@ -5,7 +5,7 @@ import com.blog.common.pojo.Result;
 import com.blog.mapper.TbBlogMapper;
 import com.blog.pojo.TbBlog;
 import com.blog.pojo.TbBlogExample;
-import com.blog.rest.mapper.TbBlogCustomMapper;
+import com.blog.mapper.TbBlogCustomMapper;
 import com.blog.pojo.TbBlogCustom;
 import com.blog.rest.service.BlogService;
 import com.github.pagehelper.PageHelper;
@@ -34,6 +34,7 @@ public class BlogServiceImpl implements BlogService{
         PageHelper.startPage(page,rows);
         List<TbBlog> list=blogMapper.selectByExampleWithBLOBs(example);
         ListDataResult result=new ListDataResult();
+        result.setPage(page);
         result.setRows(list);
         //取总博客数
         PageInfo<TbBlog> pageInfo=new PageInfo<>(list);

@@ -66,7 +66,7 @@
         <div id="menu" class="easyui-accordion" data-options="fit:false,border:false">
             <div title="博客管理" data-options="iconCls:'icon-item'" style="padding: 10px">
                 <a href="javascript:openTab('写博客','blog-write','icon-write')" class="easyui-linkbutton"
-                   data-options="plain:true,iconCls:'icon-writeblog' " style="width: 150px">写博客</a>
+                   data-options="plain:true,iconCls:'icon-write' " style="width: 150px">写博客</a>
                 <a href="javascript:openTab('用户信息','user-info','icon-man')" class="easyui-linkbutton"
                    data-options="plain:true,iconCls:'icon-man'" style="width: 150px">用户信息</a>
                 <a href="javascript:openTab('已发博客','blog-list','icon-text')" class="easyui-linkbutton"
@@ -77,6 +77,8 @@
                    data-options="plain:true,iconCls:'icon-review'" style="width: 150px">用户评论</a>
                 <a href="javascript:openTab('评论回复','reply','icon-write')" class="easyui-linkbutton"
                    data-options="plain:true,iconCls:'icon-review'" style="width: 150px">评论回复</a>
+                <a href="javascript:openTab('博客相册','blog-photolist','icon-write')" class="easyui-linkbutton"
+                   data-options="plain:true,iconCls:'icon-review'" style="width: 150px">博客相册</a>
             </div>
             <div title="系统管理" data-options="selected:true,iconCls:'icon-system'" style="padding:10px">
                 <a href="/" class="easyui-linkbutton"
@@ -100,7 +102,7 @@
         </div>
     </div>
     <div region="south" style="height: 25px;padding: 5px" align="center">
-    Copyright © 2018-2025 陈C的SSM博客系统 版权所有
+    Copyright © 赣ICP备18013122号 2018 陈C的SSM博客系统 版权所有
     </div>
 
 </body>

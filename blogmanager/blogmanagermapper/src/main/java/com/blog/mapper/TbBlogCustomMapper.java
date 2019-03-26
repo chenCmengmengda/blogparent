@@ -1,4 +1,4 @@
-package com.blog.rest.mapper;
+package com.blog.mapper;
 
 import com.blog.pojo.TbBlogCustom;
 

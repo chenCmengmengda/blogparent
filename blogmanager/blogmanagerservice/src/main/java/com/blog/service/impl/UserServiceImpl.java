@@ -5,6 +5,7 @@ import com.blog.common.pojo.Result;
 import com.blog.common.util.CookieUtils;
 import com.blog.common.util.HttpClientUtil;
 import com.blog.common.util.IDUtils;
+import com.blog.mapper.TbUserCustomMapper;
 import com.blog.mapper.TbUserMapper;
 import com.blog.pojo.TbUser;
 import com.blog.pojo.TbUserExample;
@@ -18,6 +19,7 @@ import org.springframework.util.DigestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -29,6 +31,8 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     TbUserMapper userMapper;
+    @Autowired
+    TbUserCustomMapper userCustomMapper;
 
 
     /**
@@ -105,9 +109,26 @@ public class UserServiceImpl implements UserService{
         if (!DigestUtils.md5DigestAsHex(password.getBytes()).equals(user.getPassword())) {
             return Result.build(400, "用户名或密码错误");
         }
-        CookieUtils.setCookie(request,response,"username",nickname);
+        HttpSession session=request.getSession();
+        session.setAttribute("username",nickname);
+     //   CookieUtils.setCookie(request,response,"username",nickname);
         //返回token
         return Result.build(200,"/");
+    }
+
+    /**
+     * 修改用户密码
+     * @param user
+     * @return
+     */
+    public Result editPassword(TbUser user,String rePassword){
+        //两次密码不正确
+        if(!user.getPassword().equals(rePassword)){
+            return new Result(400,"ok",null);
+        }
+        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+        userCustomMapper.editPassword(user);
+        return Result.ok();
     }
 
 }

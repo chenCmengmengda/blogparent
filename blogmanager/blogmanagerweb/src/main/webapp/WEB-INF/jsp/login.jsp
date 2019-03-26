@@ -27,6 +27,7 @@
             url:"/user/login",
             success:function(data){
                 var data = eval('(' + data + ')');
+            //    alert(data.msg);
                 if(data.status ==400){
                     $.message.alert("提示","用户名或密码错误");
                     return;

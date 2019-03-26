@@ -1,6 +1,4 @@
  @charset "gb2312";
-.l_box { width: 30%; float: left }
-.r_box { width: 68%; float: right }
 .l_box h2 { color: #333; font-size: 14px; line-height: 30px; padding-left: 20px; background: #fff }
 .l_box div { background: rgba(255,255,255,0.5); margin-bottom: 20px; overflow: hidden }
 .l_box div ul { padding: 10px; overflow: hidden }
@@ -8,7 +6,7 @@
 .about_me p { line-height: 24px; font-size: 14px }
 .about_me i { width: 120px; float: left; clear: left; margin-right: 10px; height: 90px; overflow: hidden }
 .wdxc li { width: 32%; overflow: hidden; float: left; height: 80px; margin-bottom: 2px; margin-right: 2px }
-.wdxc li img { height: 100%; min-height: 80px; -webkit-transition: all 0.5s; -moz-transition: all 0.5s; transition: all 0.5s; }
+.wdxc li img {width: 100%; height:100%; -webkit-transition: all 0.5s; -moz-transition: all 0.5s; transition: all 0.5s; }
 .wdxc li img:hover { transform: scale(1.05) }
 .fenlei li { margin-bottom: 10px; margin-left: 10px }
 .tuijian li { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; margin-bottom: 5px; background: url(../images/li.png) left center no-repeat; padding-left: 20px }
@@ -17,7 +15,7 @@
 .l_box .search { border: 1px solid #000; background: #000; border-radius: 0 5px 5px 0; position: relative; }
 .search input.input_submit { border: 0; background: 0; color: #fff; outline: none; position: absolute; top: 10px; right: 8% }
 .search input.input_text { border: 0; line-height: 36px; height: 36px; width: 72%; padding-left: 10px; outline: none }
-.r_box li { background: rgba(255,255,255,0.8); padding: 15px; overflow: hidden; color: #797b7c; margin-bottom: 15px }
+.r_box li { background: rgba(255,255,255,0.8); padding: 15px; overflow: hidden; color: #797b7c; margin-bottom: 20px }
 .r_box li h3 { font-size: 16px; line-height: 25px; text-shadow: #FFF 1px 1px 1px }
 .r_box li h3 a { color: #222 }
 .r_box li h3 a:hover { color: #000; text-decoration: underline }
@@ -27,13 +25,13 @@
 .r_box li:hover img { transform: scale(1.05) }
 .r_box li:hover h3 a { color: #19585d; }
 .pagelist { text-align: center; color: #666; width: 100%; clear: both; margin: 20px 0; padding-top: 20px }
-.pagelist a { color: #666; margin: 0 2px; border: 1px solid #fff; padding: 5px 10px; background: #FFF }
+.pagelist a { color: #666; margin: 0 2px 5px 2px; display: inline-block; border: 1px solid #fff; padding: 5px 10px; background: #FFF }
 .pagelist a:hover { color: #19585d; }
 .pagelist > b { border: 1px solid #000; padding: 5px 10px; }
 a.curPage { color: #19585d; font-weight: bold; }
 /*about*/
-.about{ padding: 20px; background: rgba(255,255,255,0.8);}
-.about img{ max-width:500px; margin:20px 0; width:100%}
+.about { padding: 20px; background: rgba(255,255,255,0.8); margin-bottom: 20px; }
+.about img { max-width: 500px; margin: 20px 0; width: 100% }
 .cloud ul a { line-height: 24px; height: 24px; display: block; background: #999; float: left; padding: 3px 11px; margin: 10px 10px 0 0; border-radius: 8px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; color: #FFF }
 .cloud ul a:nth-child(8n-7) { background: #8A9B0F }
 .cloud ul a:nth-child(8n-6) { background: #EB6841 }
@@ -46,13 +44,60 @@ a.curPage { color: #19585d; font-weight: bold; }
 .cloud ul a:first-child { background: #036564 }
 .cloud ul a:last-child { background: #3299BB }
 .cloud ul a:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
-.picbox { width: 100%; overflow: hidden;  }
-.picbox ul { overflow: hidden; width: 24%; float: left; margin-right:10px }
+.picbox { width: 100%; overflow: hidden; }
+.picbox ul { overflow: hidden; width: 24%; float: left; margin-right: 10px }
 .picbox ul li { display: block; background: #FFF; margin: 0 0 20px 0; border: 1px #d9d9d9 solid; }
 .picbox ul li i { margin: 10px; height: auto; overflow: hidden; display: block; }
 .picbox ul li img { width: 100%; }
-.picinfo h3 { border-bottom: #ccc 1px solid; padding: 20px 0; margin: 0 20px }
-.picinfo span { padding: 20px; display: block; color: #666 }
-.picbox ul li a:hover{ color:#19585d}
-
-
+.picinfo h3 { border-bottom: #ccc 1px solid; padding: 10px 0; margin: 0 20px; font-size: 16px }
+.picinfo span { padding: 10px 20px; display: block; color: #666; }
+.picbox ul li a:hover { color: #19585d }
+.tags a { background: #F4650E; padding: 3px 8px; margin: 0 5px 0 0; color: #fff; }
+.tags { margin: 10px 0; }
+.infosbox img { max-width: 100%; height: auto; width: 100% }
+.share { padding: 20px; }
+.nextinfo { line-height: 24px; width: 100%; overflow: hidden; margin: 20px 0 }/*上一篇下一篇*/
+.nextinfo p { padding: 4px 10px; border-radius: 5px; }
+.nextinfo a:hover { color: #000; text-decoration: underline }
+/*文章评论*/
+.news_pl { margin: 10px 0 20px 0; width: 100%; overflow: hidden; }
+.news_pl h2 { border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; padding-left: 10px; color: #000 }
+.diggit { width: 160px; margin: auto; background: #E2523A; color: #fff; box-shadow: 1px 2px 6px 0px rgba(0,0,0,.2); border-radius: 3px; line-height: 40px; text-align: center; }
+.diggit a { color: #fff; }
+#diggnum { margin: 5px; }
+/*gbook*/
+.gbook { background: #FFF; overflow: hidden; margin-bottom: 20px }
+.gbox { padding: 20px; overflow: hidden; }
+.gbox p { margin-bottom: 10px }
+p.fbtime { color: #000; }
+.fbtime span { float: right; color: #999; font-size: 12px;    width: 70px;
+    overflow: hidden;
+    white-space: nowrap; }
+p.fbinfo { margin: 10px 0; }
+.fb ul { margin: 10px 10px; padding: 10px 10px 10px 70px; border-bottom: #ececec 1px solid; }
+.fb:nth-child(8n-7) ul { background: url(../images/tx10.jpg) no-repeat top 20px left 10px; }
+.fb:nth-child(8n-6) ul { background: url(../images/tx9.jpg) no-repeat top 20px left 10px; }
+.fb:nth-child(8n-5) ul { background: url(../images/tx8.jpg) no-repeat top 20px left 10px; }
+.fb:nth-child(8n-4) ul { background: url(../images/tx7.jpg) no-repeat top 20px left 10px; }
+.fb:nth-child(8n-3) ul { background: url(../images/tx6.jpg) no-repeat top 20px left 10px; }
+.fb:nth-child(8n-2) ul { background: url(../images/tx5.jpg) no-repeat top 20px left 10px; }
+.fb:nth-child(8n-1) ul { background: url(../images/tx4.jpg) no-repeat top 20px left 10px; }
+.fb:nth-child(8n) ul { background: url(../images/tx3.jpg) no-repeat top 20px left 10px; }
+.fb:first-child ul { background: url(../images/tx2.jpg) no-repeat top 20px left 10px; }
+.fb:last-child ul { background: url(../images/tx1.jpg) no-repeat top 20px left 10px; }
+.hf ul { padding: 10px 20px; background: #f9f9f9; }
+.hf { margin: 0 20px; padding-bottom: 20px; border-bottom: #dedddd 1px dashed; }
+textarea#lytext { width: 100%; }
+.gbox input[type="submit"] { display: block; background: #040404; color: #fff; border: 0; line-height: 30px; padding: 0 20px; border-radius: 5px; float: right; }
+.ecomment { border: #dedcdc 1px solid; padding: 10px; margin-bottom: 10px; }
+span.ecommentauthor { color: #b5b5b5; font-size: 14px; margin-bottom: 5px; display: block; }
+.saying { line-height: 30px; color: #a9a6a6; }
+.saying span { float: right }
+.saying span a { color: #de1513; }
+img#plKeyImg { display: inline-block; }
+.yname { margin: 10px 10px 10px 0 }
+.yname span, .yzm span { padding-right: 10px; }
+.yzm { margin: 0 10px 10px 0 }
+#plpost input[type="submit"] { display: block; background: #303030; color: #fff; border: 0; line-height: 30px; padding: 0 20px; border-radius: 5px; float: right; }
+textarea#saytext { width: 100%; }
+#plpost { margin: 0 20px }

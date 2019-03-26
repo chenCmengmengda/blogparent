@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 
 /**
- * 淘淘商城自定义响应结构
+ * 自定义响应结构
+ * 200正常
+ * 400错误
  */
 public class Result {
 

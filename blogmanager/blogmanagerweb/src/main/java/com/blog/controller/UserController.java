@@ -6,6 +6,7 @@ import com.blog.pojo.TbUser;
 import com.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,14 +72,23 @@ public class UserController {
 
     @RequestMapping(value="/login",method= RequestMethod.POST)
     @ResponseBody
-    public Result userLogin(String username,String password,HttpServletRequest request,
-                      HttpServletResponse response) throws IOException {
+    public Result userLogin(Model model, String username, String password, HttpServletRequest request,
+                            HttpServletResponse response) throws IOException {
         Result result = userService.userLogin(username, password,request,response);
         if(result.getStatus()!=400) {
             //储存用户名
-            request.setAttribute("username",username);
-
+        //    request.setAttribute("username",username);
+            model.addAttribute("username",username);
         }
+        return result;
+    }
+
+    @RequestMapping("/editpassword")
+    @ResponseBody
+    public Result editPassword(TbUser user,String repassword){
+        Result result=userService.editPassword(user,repassword);
+        System.out.println(user.getPassword());
+        System.out.println(repassword);
         return result;
     }
 }
