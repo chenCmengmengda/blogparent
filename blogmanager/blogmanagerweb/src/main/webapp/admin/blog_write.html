@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+<link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugins/angularjs/angular.min.js"></script>
+
+<!-- 分页组件 -->
+<script src="../plugins/angularjs/pagination.js"></script>
+<link rel="stylesheet" href="../plugins/angularjs/pagination.css" >
+<!-- 分页组件结束 -->
+<!-- kindeditor插件 -->
+<link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<script src="../js/common.js"></script>
+
+<script src="../js/base_pagination.js"></script>
+<script src="../js/service/blogService.js"></script>
+<script src="../js/controller/blogController.js"></script>
+
+<script type="text/javascript">
+    var blogAddEditor ;
+    //页面初始化完毕后执行此方法
+    $(function(){
+        //创建富文本编辑器
+        blogAddEditor = Blog.createEditor("#blogAddForm [name=desc]");
+        //初始化类目选择和图片上传器
+        Blog.init({fun:function(node){
+
+            }});
+    });
+
+</script>
+
+<div style="padding:10px 10px 10px 10px" ng-app="blogWrite" ng-controller="blogWrite">
+    <form id="blogAddForm" class="blogForm" method="post">
+        <table cellpadding="5">
+            <tr>
+                <td>文章标题:</td>
+                <td><input class="form-control" type="text" name="title" data-options="required:true" style="width: 280px;" ng-model="entity.title"></td>
+            </tr>
+            <tr>
+                <td>博客正文:</td>
+                <td>
+                    <textarea style="width:800px;height:300px;visibility:hidden;" name="desc" ng-model="entity.desc"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div style="padding:5px">
+        <a  class="btn btn-success" ng-click="blogAdd()">提交</a>
+        <a href="javascript:void(0)" class="btn btn-success" >重置</a>
+    </div>
+
+</div>
+

@@ -71,8 +71,6 @@
                    data-options="plain:true,iconCls:'icon-man'" style="width: 150px">用户信息</a>
                 <a href="javascript:openTab('已发博客','blog-list','icon-text')" class="easyui-linkbutton"
                    data-options="plain:true,iconCls:'icon-review'" style="width: 150px">已发博客</a>
-                <a href="javascript:openTab('博客详细','blog-desc','icon-write')" class="easyui-linkbutton"
-                   data-options="plain:true,iconCls:'icon-review'" style="width: 150px">博客详情</a>
                 <a href="javascript:openTab('用户评论','user-comment','icon-write')" class="easyui-linkbutton"
                    data-options="plain:true,iconCls:'icon-review'" style="width: 150px">用户评论</a>
                 <a href="javascript:openTab('评论回复','reply','icon-write')" class="easyui-linkbutton"

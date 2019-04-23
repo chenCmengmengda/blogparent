@@ -1,0 +1,265 @@
+<link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+<link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugins/angularjs/angular.min.js"></script>
+<!-- 日历组件 -->
+<link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+<script src="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<!-- 分页组件 -->
+<script src="../plugins/angularjs/pagination.js"></script>
+<link rel="stylesheet" href="../plugins/angularjs/pagination.css" >
+<!-- 分页组件结束  -->
+<script src="../js/common.js"></script>
+<script src="../js/base_pagination.js"></script>
+<script src="../js/service/userService.js"></script>
+<script src="../js/controller/userController.js"></script>
+<script>
+
+
+    $(function () {
+
+        $('#datetimepicker').datetimepicker({
+            format: 'yyyy-mm-dd',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,//选择日期后立即关闭
+            todayHighlight: 1,
+            startView: 2,//2 or 'month' 为月视图（为默认值）
+            minView: 2,
+            forceParse: 0,
+            pickerPosition:'top-right',//日期插件弹出的位置
+            language:  'zh-CN',
+        });
+    });
+
+
+</script>
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="user" ng-controller="userController" >
+<!-- .box-body -->
+<div class="box-header with-border">
+    <h3 class="box-title">用户列表</h3>
+</div>
+
+<div class="box-body">
+
+    <!-- 数据表格 -->
+    <div class="table-box">
+
+        <!--工具栏-->
+        <div class="pull-left">
+            <div class="form-group form-inline">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#addModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
+                    <button type="button" class="btn btn-default" title="删除" data-toggle="modal" data-target="#delModal"><i class="fa fa-trash-o"></i> 删除</button>
+                    <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                </div>
+            </div>
+        </div>
+        <div class="box-tools pull-right">
+            <div class="has-feedback">
+
+            </div>
+        </div>
+        <!--工具栏/-->
+
+        <!--数据列表-->
+        <table id="dataList" style="width:100%;" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+            <tr>
+                <th class="" style="padding-right:0px">
+                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                </th>
+                <th class="sorting_asc">用户ID</th>
+                <th class="sorting">用户名</th>
+                <th class="sorting">密码</th>
+                <th class="sorting">性别</th>
+                <th class="sorting">生日</th>
+                <th class="text-center">邮箱</th>
+                <th class="text-center">电话</th>
+                <th class="text-center">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="entity in list">
+                <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
+                <td>{{entity.id}}</td>
+                <td>{{entity.nickname}}</td>
+                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.password}}</td>
+                <td>{{entity.sex}}</td>
+                <td>{{entity.birthday | date: "yyyy-MM-dd"}}</td>
+                <td>{{entity.email}}</td>
+                <td>{{entity.phone}}</td>
+                <td class="text-center">
+                    <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOne(entity.id)" >修改</button>
+                    <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#descModal"  ng-click="findOne(entity.id)" >详情</button>
+                    <button type="button" class="btn bg-olive btn-xs"  ng-click="goAddRole(entity.id)"  >添加角色</button>
+                    <button type="button" class="btn bg-olive btn-xs"  ng-click="goFindRole(entity.id)">权限信息</button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        <!--数据列表/-->
+        <!-- 分页 -->
+        <tm-pagination conf="paginationConf"></tm-pagination>
+
+
+    </div>
+    <!-- 数据表格 /-->
+
+
+
+
+</div>
+<!-- /.box-body -->
+<!-- 编辑窗口 -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="top:auto">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 >用户信息添加</h3>
+            </div>
+            <div class="modal-body" >
+                <table class="table table-bordered table-striped"  width="800px">
+                    <!--<input type="hidden" name="createTime" ng-model="emtity.createTime" />-->
+                    <tr>
+                        <td>用户名</td>
+                        <td><input  class="form-control" placeholder="用户名" ng-model="entity.nickname" >  </td>
+                    </tr>
+                    <tr>
+                        <td>密码</td>
+                        <td><input  class="form-control" type="password" placeholder="密码" ng-model="entity.password" ></td>
+                    </tr>
+                    <tr>
+                        <td>确认密码</td>
+                        <td>
+                            <select class="form-control" ng-model="entity.sex">
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>生日</td>
+                        <td>
+                            <div class='input-group date' id='datetimepicker'>
+                                <input type='text' class="form-control" ng-model="entity.birthday" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>邮箱</td>
+                        <td><input  class="form-control" type="email" placeholder="邮箱" ng-model="entity.email" ></td>
+                    </tr>
+                    <tr>
+                        <td>电话</td>
+                        <td><input  class="form-control" placeholder="电话" ng-model="entity.phone" ></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="userAdd()">保存</button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">用户信息编辑</h3>
+            </div>
+            <div class="modal-body" >
+                <table class="table table-bordered table-striped"  width="800px">
+                    <!--<input type="hidden" name="createTime" ng-model="emtity.createTime" />-->
+                    <tr>
+                        <td>用户名</td>
+                        <td><input  class="form-control" placeholder="用户名" ng-model="entity.title" >  </td>
+                    </tr>
+                    <tr>
+                        <td>密码</td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="update()">保存</button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="descModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1000px;top:35px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 >用户详细</h3>
+            </div>
+            <div class="modal-body"  >
+
+            </div>
+            <div class="modal-footer">
+                <table class="table table-bordered table-striped"  width="800px">
+                    <!--<input type="hidden" name="createTime" ng-model="emtity.createTime" />-->
+                    <tr>
+                        <td>用户名</td>
+                        <td>{{entity.nickname}}</td>
+                    </tr>
+                    <tr>
+                        <td>性别</td>
+                        <td>{{entity.sex}}</td>
+                    </tr>
+                    <tr>
+                        <td>生日</td>
+                        <td>{{entity.birthday | date: "yyyy-MM-dd" }}</td>
+                    </tr>
+                    <tr>
+                        <td>邮箱</td>
+                        <td>{{entity.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>电话</td>
+                        <td>{{entity.phone}}</td>
+                    </tr>
+                </table>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;top:35px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 >提示</h3>
+            </div>
+            <div class="modal-body"  >
+                你真的要删除吗？
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" ng-click="dele()">确定</button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

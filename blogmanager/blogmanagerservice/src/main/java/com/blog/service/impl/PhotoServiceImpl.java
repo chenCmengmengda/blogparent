@@ -12,15 +12,17 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class PhotoServiceImpl implements PhotoService {
 
     @Autowired
-    TbPhotolistMapper photolistMapper;
+    private TbPhotolistMapper photolistMapper;
 
 
     /**
@@ -30,7 +32,8 @@ public class PhotoServiceImpl implements PhotoService {
      * @param rows 每页所取行数
      * @return easyUI表格格式对象
      */
-    public EUDataGridResult photoList(int page,int rows){
+    @Override
+    public EUDataGridResult getPhotoList(int page,int rows){
         TbPhotolistExample example=new TbPhotolistExample();
         //分页处理
         PageHelper.startPage(page,rows);//设置固定8行
@@ -45,7 +48,8 @@ public class PhotoServiceImpl implements PhotoService {
 
     }
 
-    public Result photoAdd(TbPhotolist photolist){
+    @Override
+    public Result addPhoto(TbPhotolist photolist){
         Long photolistId= IDUtils.genItemId();
         photolist.setPhotoId(photolistId);
         //添加时间

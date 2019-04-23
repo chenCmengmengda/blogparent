@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.TbRoleMapperCustom">
+
+    <select id="findOtherPermissions" parameterType="long" resultType="com.blog.pojo.TbPermission">
+        select * from tb_permission where id not in (select permissionId from tb_role_permission where roleId=#{roleId})
+    </select>
+    <insert id="addPermissionToRole" >
+        insert into tb_role_permission(roleId,permissionId) values(#{roleId},#{permissionId})
+    </insert>
+    <select id="findRoleByUserId" parameterType="long" resultMap="getRoleByUserId">
+        select * from tb_role where id in
+        (select roleId from tb_user_role where userId=#{userId})
+    </select>
+    <resultMap id="getRoleByUserId" type="com.blog.pojo.TbRoleCustom">
+        <id column="id" property="id"></id>
+        <result column="rolename" property="rolename"></result>
+        <result column="roledesc" property="roledesc"></result>
+        <collection column="id" property="permissionList" javaType="java.util.List" select="com.blog.mapper.TbPermissionMapperCustom.findPermissionByRoleId"></collection>
+    </resultMap>
+    <select id="findRolePermissionById" parameterType="long" resultMap="getRolePermissionById">
+      select * from tb_role where id=#{roleId}
+    </select>
+    <resultMap id="getRolePermissionById" type="com.blog.pojo.TbRoleCustom">
+        <id column="id" property="id"></id>
+        <result column="rolename" property="rolename"></result>
+        <result column="roledesc" property="roledesc"></result>
+        <collection column="id" property="permissionList" javaType="java.util.List" select="com.blog.mapper.TbPermissionMapperCustom.findPermissionByRoleId"></collection>
+    </resultMap>
+
+</mapper>

@@ -24,16 +24,17 @@
             return ;
         }
         $('#frmLogin').form('submit',{
-            url:"/user/login",
+            url:"/user/login.do",
             success:function(data){
-                var data = eval('(' + data + ')');
+            /*    var data = eval('(' + data + ')');
             //    alert(data.msg);
                 if(data.status ==400){
                     $.message.alert("提示","用户名或密码错误");
                     return;
                 }
 
-                window.location.href=data.msg;
+                window.location.href=data.msg;*/
+                window.location.href="/";
             }
 
         });

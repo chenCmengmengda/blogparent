@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <security:global-method-security pre-post-annotations="enabled" jsr250-annotations="enabled" secured-annotations="enabled"></security:global-method-security>
+    <!-- 配置不拦截的资源 -->
+    <security:http pattern="/page/login" security="none"/>
+    <security:http pattern="/login.html" security="none"/>
+    <security:http pattern="/loginFailer.do" security="none"/>
+    <security:http pattern="/403.do" security="none"/>
+    <security:http pattern="/403.html" security="none"/>
+    <security:http pattern="/403" security="none"/>
+    <security:http pattern="/css/**" security="none"/>
+    <security:http pattern="/img/**" security="none"/>
+    <security:http pattern="/js/**" security="none"/>
+    <security:http pattern="/plugins/**" security="none"/>
+    <!--
+    	配置具体的规则
+    	auto-config="true"	不用自己编写登录的页面，框架提供默认登录页面
+    	use-expressions="false"	是否使用SPEL表达式（没学习过）
+    -->
+    <security:http auto-config="true" use-expressions="false" >
+        <!-- 配置具体的拦截的规则 pattern="请求路径的规则" access="访问系统的人，必须有ROLE_USER的角色" -->
+        <security:intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_USER"/>
+        <security:access-denied-handler ref="myAccessDeniedHandler" />
+
+
+        <!-- 定义跳转的具体的页面 -->
+        <security:form-login
+                login-page="/login.html"
+                login-processing-url="/user/login.do"
+                default-target-url="/loginSuccess.do"
+                authentication-failure-url="/loginFailer.do"></security:form-login>
+                <!--authentication-success-forward-url="/pages/main.jsp"-->
+
+
+        <!-- 关闭跨域请求 -->
+        <security:csrf disabled="true"/>
+        <!-- 退出 -->
+        <security:logout invalidate-session="true" logout-url="/logout.do" logout-success-url="/login.html" />
+        <security:headers>
+            <security:frame-options policy="SAMEORIGIN"/>
+        </security:headers>
+    </security:http>
+
+    <!-- 切换成数据库中的用户名和密码 -->
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userService">
+            <!-- 配置加密的方式 -->
+            <security:password-encoder ref="passwordEncoder"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!-- 配置加密类 -->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+    <!-- 自定义权限不足处理程序 -->
+    <bean id="myAccessDeniedHandler" class="com.blog.controller.accessdenied.MyAccessDeniedHandler">
+
+    </bean>
+    <!-- 提供了入门的方式，在内存中存入用户名和密码
+    <security:authentication-manager>
+    	<security:authentication-provider>
+    		<security:user-service>
+    			<security:user name="admin" password="{noop}admin" authorities="ROLE_USER"/>
+    		</security:user-service>
+    	</security:authentication-provider>
+    </security:authentication-manager>
+    -->
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+

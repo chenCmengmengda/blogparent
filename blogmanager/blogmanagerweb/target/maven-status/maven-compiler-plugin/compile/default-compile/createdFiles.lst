@@ -1,8 +1,14 @@
+com\blog\controller\SyslogController.class
 com\blog\controller\converter\CustomDateConverter.class
 com\blog\controller\PictureController.class
+com\blog\controller\LogAop.class
 com\blog\controller\PhotoController.class
+com\blog\controller\RoleController.class
 com\blog\controller\IndexController.class
 com\blog\controller\UserController.class
+com\blog\controller\TbUserObj.class
 com\blog\controller\PageController.class
+com\blog\controller\PermissionController.class
 com\blog\controller\BlogController.class
+com\blog\controller\accessdenied\MyAccessDeniedHandler.class
 com\blog\interceptor\LoginInterceptor.class

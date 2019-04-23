@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.TbPermissionMapperCustom">
+    <select id="findPermissionByRoleId" parameterType="long" resultType="com.blog.pojo.TbPermission">
+      select * from tb_permission where id in
+      (select permissionId from tb_role_permission where roleId=#{roleId} )
+    </select>
+</mapper>

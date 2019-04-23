@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.TbUserMapperCustom">
+    <update id="editPassword" parameterType="com.blog.pojo.TbUser" >
+        update tb_user set password=#{password} where nickname=#{nickname}
+        <!--注意：结果字段名与属性名保持一致，区分大小写-->
+    </update>
+    <select id="findOtherRoles" parameterType="long" resultType="com.blog.pojo.TbRole">
+        select * from tb_role where id not in (select roleId from tb_user_role where userId=#{userId})
+    </select>
+    <insert id="addRoleToUser" >
+        insert into tb_user_role(userId,roleId) values(#{userId},#{roleId})
+    </insert>
+    <select id="findUserRolePermissionById" parameterType="long" resultMap="getUserRolePermission">
+        select * from tb_user where id=#{id}
+    </select>
+    <resultMap id="getUserRolePermission" type="com.blog.pojo.TbUserCustom">
+        <id column="id" property="id"></id>
+        <result column="nickname" property="nickname"></result>
+        <result column="password" property="password"></result>
+        <result column="sex" property="sex"></result>
+        <result column="birthday" property="birthday"></result>
+        <result column="email" property="email"></result>
+        <result column="phone" property="phone"></result>
+        <collection property="roleCustomList" column="id" javaType="java.util.List" select="com.blog.mapper.TbRoleMapperCustom.findRoleByUserId"></collection>
+    </resultMap>
+</mapper>

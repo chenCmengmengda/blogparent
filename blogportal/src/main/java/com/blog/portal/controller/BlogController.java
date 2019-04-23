@@ -27,12 +27,12 @@ public class BlogController {
     private BlogService blogService;
 
     @RequestMapping("/{id}")
-    public String getBlogListById(@PathVariable Long id, Model model){
+    @ResponseBody
+    public TbBlogCustom getBlogListById(@PathVariable Long id){
         List<TbBlogCustom> list=blogService.getBlogListById(id);
-        System.out.println(id);
-        model.addAttribute("blog",list);
 
-        return "info";
+
+        return list.get(0);
     }
 
     @RequestMapping("/list")

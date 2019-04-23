@@ -18,7 +18,7 @@ public class PictureController {
     @Autowired
     private PictureService pictureService;
 
-    @RequestMapping("/pic/upload")
+    @RequestMapping("/pic/upload.do")
     @ResponseBody
     public String upload(MultipartFile uploadFile) {
         Map result = pictureService.uploadPicture(uploadFile);

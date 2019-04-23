@@ -55,7 +55,7 @@ var bl=Blog={
         //指定上传文件参数名称
         filePostName  : "uploadFile",
         //指定上传文件请求的url。
-        uploadJson : '/pic/upload',
+        uploadJson : '/pic/upload.do',
         //上传类型，分别为image、flash、media、file
         dir : "image"
     },
@@ -166,4 +166,8 @@ var bl=Blog={
             }
         });
     }
+}
+
+function getUrlKey(name){
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null
 }

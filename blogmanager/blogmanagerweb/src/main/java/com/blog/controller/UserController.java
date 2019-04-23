@@ -3,10 +3,13 @@ package com.blog.controller;
 import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbUser;
+import com.blog.pojo.TbUserCustom;
 import com.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +23,7 @@ import java.io.IOException;
  */
 @Controller
 @RequestMapping("/user")
+@Secured("ROLE_ADMIN")
 public class UserController {
 
     @Autowired
@@ -30,9 +34,9 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping("/add")
+    @RequestMapping("/add.do")
     @ResponseBody
-    public Result userAdd(TbUser user){
+    public Result userAdd(@RequestBody TbUser user){
         System.out.println(user.getNickname()+":"+user.getBirthday());
         Result result=userService.addUser(user);
         return result;
@@ -44,7 +48,7 @@ public class UserController {
      * @param rows
      * @return
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list.do")
     @ResponseBody
     public EUDataGridResult getUserList(Integer page, Integer rows){
         EUDataGridResult result=userService.userList(page,rows);
@@ -69,7 +73,7 @@ public class UserController {
         Result result=userService.deleteUser(ids);
         return result;
     }
-
+/*
     @RequestMapping(value="/login",method= RequestMethod.POST)
     @ResponseBody
     public Result userLogin(Model model, String username, String password, HttpServletRequest request,
@@ -82,7 +86,8 @@ public class UserController {
         }
         return result;
     }
-
+*/
+/*
     @RequestMapping("/editpassword")
     @ResponseBody
     public Result editPassword(TbUser user,String repassword){
@@ -90,5 +95,69 @@ public class UserController {
         System.out.println(user.getPassword());
         System.out.println(repassword);
         return result;
+    }
+    */
+
+    @RequestMapping("/editpassword.do")
+    @ResponseBody
+    public Result editPassword(@RequestBody TbUserObj userObj){
+
+        Result result=userService.editPassword(userObj.getUser(),userObj.getRepassword());
+
+        return Result.ok();
+    }
+
+    /**
+     *
+     * @param id userId
+     * @return
+     */
+    @RequestMapping("/findOne.do")
+    @ResponseBody
+    public Result findOne(Long id){
+        Result result=userService.findOne(id);
+        return result;
+    }
+
+    @RequestMapping("/findOtherRoles.do")
+    @ResponseBody
+    public EUDataGridResult findOtherRoles(Long id){
+        EUDataGridResult result=userService.findOtherRoles(id);
+        return result;
+    }
+
+    @RequestMapping("addRoleToUser.do")
+    @ResponseBody
+    public Result addRoleToUser(Long userId, Long[] roleIds){
+        Result result=userService.addRoleToUser(userId,roleIds);
+        return result;
+    }
+
+    @RequestMapping("/findUserRolePermissionById.do")
+    @ResponseBody
+    public TbUserCustom findUserRolePermissionById(Long userId){
+        TbUserCustom userCustom=userService.findUserRolePermissionById(userId);
+        return userCustom;
+    }
+}
+
+class TbUserObj{
+    TbUser user;
+    String repassword;
+
+    public TbUser getUser() {
+        return user;
+    }
+
+    public void setUser(TbUser user) {
+        this.user = user;
+    }
+
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
     }
 }

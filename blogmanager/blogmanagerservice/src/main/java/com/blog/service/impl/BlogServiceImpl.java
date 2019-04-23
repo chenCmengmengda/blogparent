@@ -3,9 +3,11 @@ package com.blog.service.impl;
 import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.common.util.IDUtils;
+import com.blog.mapper.TbBlogCustomMapper;
 import com.blog.mapper.TbBlogDescMapper;
 import com.blog.mapper.TbBlogMapper;
 import com.blog.pojo.TbBlog;
+import com.blog.pojo.TbBlogCustom;
 import com.blog.pojo.TbBlogDesc;
 import com.blog.pojo.TbBlogExample;
 import com.blog.service.BlogService;
@@ -28,6 +30,8 @@ public class BlogServiceImpl implements BlogService{
     TbBlogMapper blogMapper;
     @Autowired
     TbBlogDescMapper blogDescMapper;
+    @Autowired
+    TbBlogCustomMapper blogCustomMapper;
 
     @Override
     public Result createBlog(TbBlog blog, String desc) throws Exception {
@@ -179,6 +183,25 @@ public class BlogServiceImpl implements BlogService{
         blogDesc.setUpdateTime(date);
         blogDescMapper.updateByPrimaryKeyWithBLOBs(blogDesc);
         return Result.ok();
+    }
+
+    @Override
+    public TbBlogCustom findOne(long id){
+        List <TbBlogCustom> blogCustom=blogCustomMapper.getBlogListById(id);
+         return blogCustom.get(0);
+    }
+
+    /**
+     * 删除
+     * @param ids
+     * @return
+     */
+    @Override
+    public Result deleteBlog(Long[] ids){
+        for(Long id:ids){
+            blogMapper.deleteByPrimaryKey(id);
+        }
+        return  Result.ok();
     }
 
 }

@@ -3,6 +3,7 @@ package com.blog.service;
 import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbBlog;
+import com.blog.pojo.TbBlogCustom;
 import com.blog.pojo.TbBlogDesc;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface BlogService {
     EUDataGridResult blogList(int page,int rows);
     Result readBlog(Long id);
     Result editBlog(TbBlog blog, String desc) throws Exception;
+    TbBlogCustom findOne(long id);
+    Result deleteBlog(Long[] ids);
 
 }

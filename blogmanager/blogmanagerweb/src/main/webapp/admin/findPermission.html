@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+<link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugins/angularjs/angular.min.js"></script>
+<!-- 日历组件 -->
+<link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+<script src="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<!-- 分页组件 -->
+<script src="../plugins/angularjs/pagination.js"></script>
+<link rel="stylesheet" href="../plugins/angularjs/pagination.css" >
+<!-- 分页组件结束  -->
+<!-- 树表格 -->
+<script src="/plugins/treeTable/jquery.treetable.js"></script>
+<link rel="stylesheet" href="../plugins/treeTable/jquery.treetable.css">
+<link rel="stylesheet" href="../plugins/treeTable/jquery.treetable.theme.default.css">
+<!-- 树表格结束 -->
+<script src="../js/common.js"></script>
+<script src="../js/base_pagination.js"></script>
+<script src="../js/service/findPermissionService.js"></script>
+<script src="../js/controller/findPermissionController.js"></script>
+
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="findPermission" ng-controller="findPermissionController" ng-init="findPermission()">
+<!--ng-app="findRole" ng-controller="findRoleController" ng-init="findRole()"-->
+
+<div class="box-body">
+
+
+
+    <!-- 内容区域 -->
+
+
+    <!-- 内容头部 -->
+    <section class="content-header">
+        <h1>
+            用户管理
+            <small>用户详情</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a ><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a >用户管理</a></li>
+            <li class="active">用户详情</li>
+        </ol>
+    </section>
+    <!-- 内容头部 /-->
+
+    <!-- 正文区域 -->
+    <section class="content">
+
+        <div class="box-body">
+
+            <!--树表格-->
+            <div class="tab-pane" id="tab-treetable" >
+                <table my-treetable id="collapse-table" class="table table-bordered table-hover dataTable">
+                    <thead>
+                    <tr>
+
+                        <th>名称</th>
+                        <th>描述</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tr data-tt-id="0">
+                        <td colspan="2">{{list.rolename}}</td>
+                    </tr>
+                    <tbody ng-repeat="entity in list.permissionList ">
+
+                    <tr data-tt-id="{{$index+1}}" data-tt-parent-id="0">
+                        <td>{{entity.permissionname}}</td>
+                        <td>{{entity.url}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#delModal" ng-click="getId(entity.id)"  >删除</button>
+                        </td>
+                    </tr>
+
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            <!--树表格/-->
+
+        </div>
+
+    </section>
+    <!-- 正文区域 /-->
+
+</div>
+<!-- @@close -->
+<!-- 内容区域 /-->
+<script>
+    $(document).ready(function () {
+
+        /*table tree*//*
+        $("#collapse-table").treetable({
+            expandable: true
+        });*/
+
+    });
+</script>
+
+</body>
+
+
+

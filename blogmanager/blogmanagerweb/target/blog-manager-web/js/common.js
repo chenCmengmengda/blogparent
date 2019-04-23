@@ -1,4 +1,27 @@
 /**
+ * jquery插件
+ * 表单数据封装为json对象
+ */
+(function($){
+    $.fn.serializeJson=function(){
+        var serializeObj={};
+        var array=this.serializeArray();
+        var str=this.serialize();
+        $(array).each(function(){
+            if(serializeObj[this.name]){
+                if($.isArray(serializeObj[this.name])){
+                    serializeObj[this.name].push(this.value);
+                }else{
+                    serializeObj[this.name]=[serializeObj[this.name],this.value];
+                }
+            }else{
+                serializeObj[this.name]=this.value;
+            }
+        });
+        return serializeObj;
+    };
+})(jQuery);
+/**
  * 对Date的扩展，将 Date 转化为指定格式的String
  * 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
  * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
@@ -32,7 +55,7 @@ var bl=Blog={
         //指定上传文件参数名称
         filePostName  : "uploadFile",
         //指定上传文件请求的url。
-        uploadJson : '/pic/upload',
+        uploadJson : '/pic/upload.do',
         //上传类型，分别为image、flash、media、file
         dir : "image"
     },
@@ -55,6 +78,7 @@ var bl=Blog={
     init : function(data){
         // 初始化图片上传组件
         this.initPicUpload(data);
+        this.initOnePicUpload();
     },
     // 初始化图片上传组件
     initPicUpload : function(data){
@@ -95,6 +119,28 @@ var bl=Blog={
             });
         });
     },
+    /**
+     * 初始化单图片上传组件 <br/>
+     * 选择器为：.onePicUpload <br/>
+     * 上传完成后会设置input内容以及在input后面追加<img>
+     */
+    initOnePicUpload : function(){
+        $(".onePicUpload").click(function(){
+            var _self = $(this);
+            KindEditor.editor(bl.kingEditorParams).loadPlugin('image', function() {
+                this.plugin.imageDialog({
+                    showRemote : false,
+                    clickFn : function(url, title, width, height, border, align) {
+                        var input = _self.siblings("input");
+                        input.parent().find("img").remove();
+                        input.val(url);
+                        input.after("<a href='"+url+"' target='_blank'><img src='"+url+"' width='80' height='50'/></a>");
+                        this.hideDialog();
+                    }
+                });
+            });
+        });
+    },
     //异步ajax
     ajax:function(url,param,callback){
         $.ajax({
@@ -120,4 +166,8 @@ var bl=Blog={
             }
         });
     }
+}
+
+function getUrlKey(name){
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null
 }

@@ -5,6 +5,6 @@ import com.blog.common.pojo.Result;
 import com.blog.pojo.TbPhotolist;
 
 public interface PhotoService {
-    EUDataGridResult photoList(int page,int rows);
-    Result photoAdd(TbPhotolist photolist);
+    EUDataGridResult getPhotoList(int page,int rows);
+    Result addPhoto(TbPhotolist photolist);
 }

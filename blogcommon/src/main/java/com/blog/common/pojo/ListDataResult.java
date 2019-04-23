@@ -7,9 +7,10 @@ import java.util.List;
  * Created by 陈_C on 2018/8/19.
  */
 public class ListDataResult {
-    private long total;
+    private long total;//总记录数
     private long page;//当前页
-    private long pages;
+    private long pages;//总页数
+
     private List<?> rows;
     public long getTotal() {
         return total;

@@ -1,6 +1,13 @@
-com\blog\mapper\TbUserCustomMapper.class
-com\blog\mapper\TbUserMapper.class
+com\blog\mapper\TbPermissionMapper.class
+com\blog\mapper\TbRoleMapper.class
+com\blog\mapper\TbUserMapperCustom.class
+com\blog\mapper\TbRoleMapperCustom.class
 com\blog\mapper\TbPhotolistMapper.class
+com\blog\mapper\TbUserRoleMapper.class
+com\blog\mapper\TbRolePermissionMapper.class
+com\blog\mapper\TbPermissionMapperCustom.class
+com\blog\mapper\SyslogMapper.class
+com\blog\mapper\TbUserMapper.class
 com\blog\mapper\TbBlogMapper.class
 com\blog\mapper\TbBlogCustomMapper.class
 com\blog\mapper\TbBlogDescMapper.class

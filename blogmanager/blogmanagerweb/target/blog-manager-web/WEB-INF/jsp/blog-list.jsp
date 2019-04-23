@@ -25,6 +25,7 @@
 <div id="blogEditWindow" class="easyui-window" title="编辑博客" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/blog-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script type="text/javascript">
+    //选择列表，获取id
     function getSelectionsIds(){
         var blogList = $("#blogList");
         var sels = blogList.datagrid("getSelections");

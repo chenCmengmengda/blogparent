@@ -1,0 +1,14 @@
+var login=angular.module('login',[]);
+var app=angular.module('blog',['pagination']);
+var blogWriteApp=angular.module('blogWrite',[]);
+var userApp=angular.module('user',['pagination']);
+var indexApp=angular.module('indexApp',["ngRoute"]);
+var photoApp=angular.module('photoApp',['pagination']);
+var editpasswordApp=angular.module('editpasswordApp',[]);
+var logApp=angular.module('logApp',['pagination']);
+var roleApp=angular.module('roleApp',['pagination']);
+var roleToUser=angular.module('roleToUser',[]);
+var permissionApp=angular.module('permissionApp',['pagination']);
+var permissionToRole=angular.module('permissionToRole',[]);
+var findRole=angular.module('findRole',[]);
+var findPermission=angular.module('findPermission',[]);

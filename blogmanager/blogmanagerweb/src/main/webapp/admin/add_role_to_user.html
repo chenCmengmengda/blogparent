@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+<link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugins/angularjs/angular.min.js"></script>
+<!-- 分页组件 -->
+<script src="../plugins/angularjs/pagination.js"></script>
+<link rel="stylesheet" href="../plugins/angularjs/pagination.css" >
+
+<!-- kindeditor插件 -->
+<link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<script src="../js/common.js"></script>
+
+<script src="../js/base_pagination.js"></script>
+<script src="../js/service/roleToUserService.js"></script>
+<script src="../js/controller/roleToUserController.js"></script>
+<body class="hold-transition skin-red sidebar-mini" ng-app="roleToUser" ng-controller="roleToUserController" ng-init="findOtherRoles()">
+
+<div class="box-body">
+<!-- 内容区域 -->
+
+
+    <!-- 内容头部 -->
+    <section class="content-header">
+        <h1>
+            用户管理 <small>添加角色表单</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a ><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a>用户管理</a></li>
+            <li class="active">添加角色表单</li>
+        </ol>
+    </section>
+    <!-- 内容头部 /-->
+
+    <form>
+        <!-- 正文区域 -->
+        <section class="content">
+
+            <input type="hidden" name="userId" value="${user.id}">
+
+            <table id="dataList"
+                   class="table table-bordered table-striped table-hover dataTable">
+                <thead>
+                <tr>
+                    <th class="" style="padding-right: 0px">
+                        <input id="selall" type="checkbox" class="icheckbox_square-blue"></th>
+                    <th class="sorting_asc">ID</th>
+                    <th class="sorting">角色名称</th>
+                    <th class="sorting">角色描述</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="entity in list">
+                    <td>
+
+                        <input name="ids" type="checkbox" ng-click="updateSelection($event,entity.id)" >
+
+                    </td>
+                    <td>{{entity.id}}</td>
+                    <td>{{entity.rolename}}</td>
+                    <td>{{entity.roledesc}}</td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+            <!--订单信息/--> <!--工具栏-->
+            <div class="box-tools text-center">
+                <button type="submit" class="btn bg-maroon" data-toggle="modal" data-target="#addModal">保存</button>
+                <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+            </div>
+            <!--工具栏/--> </section>
+        <!-- 正文区域 /-->
+    </form>
+
+
+<!-- 内容区域 /-->
+
+</div>
+<!-- box-body结束 -->
+<!-- 窗口 -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;top:35px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 >提示</h3>
+            </div>
+            <div class="modal-body"  >
+                你真的要添加吗？
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" ng-click="addRoleToUser()">确定</button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

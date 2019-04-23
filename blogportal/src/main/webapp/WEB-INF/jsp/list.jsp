@@ -15,7 +15,7 @@
   <!--[if lt IE 9]-->
   <script src="js/modernizr.js"></script>
   <!--[endif]-->
-  <script src="/js/vue.js"></script>
+  <script src="/js/vue/vue.js"></script>
   <script src="/js/public.js"></script>
   <script type="text/javascript">
       $(function(){

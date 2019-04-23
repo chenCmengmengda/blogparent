@@ -30,7 +30,7 @@
         var sels = blogList.datagrid("getSelections");
         var ids = [];
         for(var i in sels){
-            ids.push(sels[i].id);
+            ids.push(sels[i].photoId);
         }
         ids = ids.join(",");
         return ids;

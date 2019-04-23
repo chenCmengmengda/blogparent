@@ -1,5 +1,8 @@
+com\blog\rest\service\impl\PhotoServiceImpl.class
 com\blog\rest\dao\JedisClient.class
+com\blog\rest\controller\PhotoController.class
 com\blog\rest\dao\impl\JedisClientCluster.class
+com\blog\rest\service\PhotoService.class
 com\blog\rest\service\impl\BlogServiceImpl.class
 com\blog\rest\controller\BlogController.class
 com\blog\rest\service\BlogService.class
