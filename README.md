@@ -20,6 +20,8 @@
 1.sql文件在blogparent->src->resources
 导入mysql
 
+blogmanager-web,blogportal,blogrest这三个工程的src->resources下都有数据库连接配置文件db.properties，连接数据库修改里面的配置信息即可
+
 2.上传图片需要配置ftp图片服务器地址，用户名，密码
 在blogmanager下的blogmanagerweb->src->resources中的resource.properties
 修改ftp相应配置
