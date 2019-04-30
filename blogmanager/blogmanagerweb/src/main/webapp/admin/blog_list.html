@@ -70,6 +70,7 @@
                 <th class="sorting_asc">博客ID</th>
                 <th class="sorting">博客标题</th>
                 <th class="sorting">摘要</th>
+                <th class="sorting">封面图片</th>
                 <th class="sorting">创建时间</th>
                 <th class="sorting">更新时间</th>
                 <th class="text-center">操作</th>
@@ -79,8 +80,9 @@
             <tr ng-repeat="entity in list">
                 <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
                 <td>{{entity.id}}</td>
-                <td>{{entity.title}}</td>
-                <td>{{entity.summary}}</td>
+                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.title}}</td>
+                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.summary}}</td>
+                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.imageUrl}}</td>
                 <td>{{entity.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
                 <td>{{entity.updateTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
                 <td class="text-center">
@@ -119,6 +121,11 @@
                         <td>标题</td>
                         <td><input  class="form-control" placeholder="博客标题" ng-model="entity.title" >  </td>
                     </tr>
+                    <td>封面上传:</td>
+                    <td>
+                        <button  class="btn btn-success onePicUpload"  placeholder="相册标题" >上传图片 </button>
+                        <input type="hidden" name="imageUrl" ng-model="entity.imageUrl"/>
+                    </td>
                     <tr>
                         <td>内容</td>
                         <td>
@@ -136,11 +143,11 @@
 </div>
 
 <div class="modal fade" id="descModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:1000px;top:35px;">
+    <div class="modal-dialog" style="width:1200px;top:auto;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 >博客详细</h3>
+                <h3 >{{entity.title}}</h3>
             </div>
             <div class="modal-body" ng-bind-html="entity.blogDesc | to_trusted" >
 

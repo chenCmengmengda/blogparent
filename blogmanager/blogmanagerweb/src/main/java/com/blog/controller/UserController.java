@@ -4,6 +4,7 @@ import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbUser;
 import com.blog.pojo.TbUserCustom;
+import com.blog.pojo.TbUserRoleKey;
 import com.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -126,7 +127,7 @@ public class UserController {
         return result;
     }
 
-    @RequestMapping("addRoleToUser.do")
+    @RequestMapping("/addRoleToUser.do")
     @ResponseBody
     public Result addRoleToUser(Long userId, Long[] roleIds){
         Result result=userService.addRoleToUser(userId,roleIds);
@@ -138,6 +139,13 @@ public class UserController {
     public TbUserCustom findUserRolePermissionById(Long userId){
         TbUserCustom userCustom=userService.findUserRolePermissionById(userId);
         return userCustom;
+    }
+
+    @RequestMapping("/deleteRoleToUser.do")
+    @ResponseBody
+    public Result deleteRoleToUser(@RequestBody TbUserRoleKey userRoleKey){
+        Result result=userService.deleteRoleToUser(userRoleKey);
+        return result;
     }
 }
 

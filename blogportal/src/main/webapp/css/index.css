@@ -56,10 +56,10 @@ a.curPage { color: #19585d; font-weight: bold; }
 .tags { margin: 10px 0; }
 .infosbox img { max-width: 100%; height: auto; width: 100% }
 .share { padding: 20px; }
-.nextinfo { line-height: 24px; width: 100%; overflow: hidden; margin: 20px 0 }/*ÉÏÒ»ÆªÏÂÒ»Æª*/
+.nextinfo { line-height: 24px; width: 100%; overflow: hidden; margin: 20px 0 }/*ï¿½ï¿½Ò»Æªï¿½ï¿½Ò»Æª*/
 .nextinfo p { padding: 4px 10px; border-radius: 5px; }
 .nextinfo a:hover { color: #000; text-decoration: underline }
-/*ÎÄÕÂÆÀÂÛ*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .news_pl { margin: 10px 0 20px 0; width: 100%; overflow: hidden; }
 .news_pl h2 { border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; padding-left: 10px; color: #000 }
 .diggit { width: 160px; margin: auto; background: #E2523A; color: #fff; box-shadow: 1px 2px 6px 0px rgba(0,0,0,.2); border-radius: 3px; line-height: 40px; text-align: center; }
@@ -89,7 +89,8 @@ p.fbinfo { margin: 10px 0; }
 .hf { margin: 0 20px; padding-bottom: 20px; border-bottom: #dedddd 1px dashed; }
 textarea#lytext { width: 100%; }
 .gbox input[type="submit"] { display: block; background: #040404; color: #fff; border: 0; line-height: 30px; padding: 0 20px; border-radius: 5px; float: right; }
-.ecomment { border: #dedcdc 1px solid; padding: 10px; margin-bottom: 10px; }
+ .gbox .submit { display: block; background: #040404; color: #fff; border: 0; line-height: 30px; padding: 0 20px; border-radius: 5px; float: right; }
+ .ecomment { border: #dedcdc 1px solid; padding: 10px; margin-bottom: 10px; }
 span.ecommentauthor { color: #b5b5b5; font-size: 14px; margin-bottom: 5px; display: block; }
 .saying { line-height: 30px; color: #a9a6a6; }
 .saying span { float: right }

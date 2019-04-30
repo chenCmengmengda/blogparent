@@ -59,7 +59,7 @@
   <!--[endif]-->
 
 </head>
-<body>
+<body >
 <header class="header-navigation" id="header">
   <nav><div class="logo"><a href="/">萌萌陈C酱个人博客</a></div>
     <h2 id="mnavh"><span class="navicon"></span></h2>
@@ -96,7 +96,7 @@
       </ul>
     </div>
     <div class="search">
-      <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+      <form  method="post" name="searchform" id="searchform">
         <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
         <input name="show" value="title" type="hidden">
         <input name="tempid" value="1" type="hidden">
@@ -139,7 +139,7 @@
       </ul>
     </div>
   </aside>
-  <main id="blogList" class="r_box">
+  <main id="blogList"  class="r_box">
     <li v-for="blog in blogList.rows">
       <i><a href="/"><img src="/images/4.jpg"></a></i>
       <h3>

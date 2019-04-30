@@ -1,9 +1,12 @@
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\controller\PhotoController.java
+E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\service\impl\MessageServiceImpl.java
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\service\PhotoService.java
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\dao\impl\JedisClientCluster.java
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\service\BlogService.java
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\service\impl\PhotoServiceImpl.java
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\controller\BlogController.java
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\dao\JedisClient.java
+E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\controller\MessageController.java
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\dao\impl\JedisClientSingle.java
 E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\service\impl\BlogServiceImpl.java
+E:\program Files\idea_project\blogparent2\blogrest\src\main\java\com\blog\rest\service\MessageService.java

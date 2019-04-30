@@ -5,10 +5,8 @@ import com.blog.common.pojo.Result;
 import com.blog.common.util.IDUtils;
 import com.blog.mapper.TbRoleMapper;
 import com.blog.mapper.TbRoleMapperCustom;
-import com.blog.pojo.TbPermission;
-import com.blog.pojo.TbRole;
-import com.blog.pojo.TbRoleCustom;
-import com.blog.pojo.TbRoleExample;
+import com.blog.mapper.TbRolePermissionMapper;
+import com.blog.pojo.*;
 import com.blog.service.RoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -24,6 +22,8 @@ public class RoleServiceImpl implements RoleService {
     TbRoleMapper roleMapper;
     @Autowired
     TbRoleMapperCustom roleMapperCustom;
+    @Autowired
+    TbRolePermissionMapper rolePermissionMapper;
 
     @Override
     public EUDataGridResult gerRoleList(Integer page, Integer rows) {
@@ -78,5 +78,11 @@ public class RoleServiceImpl implements RoleService {
     public TbRoleCustom findRolePermissionById(Long id){
         TbRoleCustom roleCustom=roleMapperCustom.findRolePermissionById(id);
         return roleCustom;
+    }
+
+    @Override
+    public Result deletePermissionToRole(TbRolePermissionKey rolePermissionKey){
+        rolePermissionMapper.deleteByPrimaryKey(rolePermissionKey);
+        return Result.ok();
     }
 }

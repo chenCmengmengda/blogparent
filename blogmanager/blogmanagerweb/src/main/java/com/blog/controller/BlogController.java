@@ -35,6 +35,7 @@ public class BlogController {
     public Result createBlog(@RequestBody TbBlogCustom blogCustom) throws Exception{
         TbBlog blog=new TbBlog();
         blog.setTitle(blogCustom.getTitle());
+        blog.setImageUrl(blogCustom.getImageUrl());
         Result result=blogService.createBlog(blog,blogCustom.getBlogDesc());
 
         return result;
@@ -74,6 +75,7 @@ public class BlogController {
         TbBlog blog=new TbBlog();
         blog.setTitle(blogCustom.getTitle());
         blog.setId(blogCustom.getId());
+        blog.setImageUrl(blogCustom.getImageUrl());
         blog.setCreateTime(blogCustom.getCreateTime());
         
         Result result=blogService.editBlog(blog,blogCustom.getBlogDesc());
@@ -82,7 +84,8 @@ public class BlogController {
 
     @RequestMapping("/findOne.do")
     @ResponseBody
-    public TbBlogCustom findOne(long id){
+    public TbBlogCustom findOne(Long id){
+
         return blogService.findOne(id);
     }
 

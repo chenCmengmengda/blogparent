@@ -12,3 +12,4 @@ var permissionApp=angular.module('permissionApp',['pagination']);
 var permissionToRole=angular.module('permissionToRole',[]);
 var findRole=angular.module('findRole',[]);
 var findPermission=angular.module('findPermission',[]);
+var messageApp=angular.module('message',['pagination']);

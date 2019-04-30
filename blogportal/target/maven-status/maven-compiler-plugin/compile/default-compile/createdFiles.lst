@@ -1,7 +1,10 @@
-com\blog\portal\service\PhotoService.class
-com\blog\portal\service\impl\BlogServiceImpl.class
+com\blog\portal\service\impl\MessageServiceImpl.class
+com\blog\portal\service\MessageService.class
 com\blog\portal\controller\IndexController.class
 com\blog\portal\controller\BlogController.class
+com\blog\portal\service\PhotoService.class
+com\blog\portal\service\impl\BlogServiceImpl.class
+com\blog\portal\controller\MessageController.class
 com\blog\portal\service\impl\PhotoServiceImpl.class
 com\blog\portal\controller\PhotoController.class
 com\blog\portal\service\BlogService.class

@@ -1,13 +1,13 @@
 package com.blog.pojo;
 
-
-
 import java.util.Date;
 
 public class TbBlog {
     private Long id;
 
     private String title;
+
+    private String imageUrl;
 
     private Date createTime;
 
@@ -29,6 +29,14 @@ public class TbBlog {
 
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
     }
 
     public Date getCreateTime() {

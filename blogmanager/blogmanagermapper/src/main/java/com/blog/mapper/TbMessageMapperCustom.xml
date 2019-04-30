@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.TbMessageMapperCustom">
+    <update id="addForeignKey" parameterType="long" >
+        update tb_message set myreply_id=#{myreplyId} where id=#{messageId}
+    </update>
+    <select id="findAll" resultMap="getMessageCustomList">
+        select * from tb_message
+    </select>
+    <resultMap id="getMessageCustomList" type="com.blog.pojo.TbMessageCustom">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="email" property="email"></result>
+        <result column="message" property="message"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="myreply_id" property="myreplyId"></result>
+        <association column="myreply_id" property="myreply" javaType="com.blog.pojo.TbMyreply" select="com.blog.mapper.TbMyreplyMapper.selectByPrimaryKey"></association>
+    </resultMap>
+    <select id="findOne" resultMap="getMessageCustomOne">
+        select * from tb_message where id=#{messageId}
+    </select>
+    <resultMap id="getMessageCustomOne" type="com.blog.pojo.TbMessageCustom">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="email" property="email"></result>
+        <result column="message" property="message"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="myreply_id" property="myreplyId"></result>
+        <association column="myreply_id" property="myreply" javaType="com.blog.pojo.TbMyreply" select="com.blog.mapper.TbMyreplyMapper.selectByPrimaryKey"></association>
+    </resultMap>
+</mapper>

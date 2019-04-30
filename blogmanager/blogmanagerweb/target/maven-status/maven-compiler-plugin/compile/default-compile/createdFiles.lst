@@ -10,5 +10,6 @@ com\blog\controller\TbUserObj.class
 com\blog\controller\PageController.class
 com\blog\controller\PermissionController.class
 com\blog\controller\BlogController.class
+com\blog\controller\MessageController.class
 com\blog\controller\accessdenied\MyAccessDeniedHandler.class
 com\blog\interceptor\LoginInterceptor.class

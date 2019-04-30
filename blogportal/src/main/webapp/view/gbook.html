@@ -6,6 +6,7 @@
   <meta name="keywords" content="个人博客,杨青个人博客,个人博客模板,杨青" />
   <meta name="description" content="陈C个人博客个人。" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#" />
   <link href="/css/base.css" rel="stylesheet">
   <link href="/css/index.css" rel="stylesheet">
   <link href="/css/m.css" rel="stylesheet">
@@ -15,8 +16,18 @@
   <!--[if lt IE 9]-->
   <script src="/js/modernizr.js"></script>
   <!--[endif]-->
+  <!-- vue -->
+  <script src="/js/common.js"></script>
+  <script src="/js/vue/vue.js"></script>
+  <script src="/js/public.js"></script>
+  <script src="/js/vue/axios-0.18.0.js"></script>
+  <!-- vue分页 -->
+  <link rel="stylesheet" href="/js/vue/vue-pagination.css">
+  <script src="/js/vue/vue-pagination.js"></script>
+  <!--vue结束 -->
+
 </head>
-<body>
+<body >
 <header class="header-navigation" id="header">
   <nav><div class="logo"><a href="/">陈C个人博客</a></div>
     <h2 id="mnavh"><span class="navicon"></span></h2>
@@ -78,54 +89,35 @@
     </div>
   </aside>
   <main class="r_box">
-    <div class="gbook">
-      <div class="fb">
-        <ul>
-          <p class="fbtime"><span> 2018-07-21 </span> 夜月归途</p>
-          <p class="fbinfo">从青姐朋友圈分享的文章《我为什么要做个人网站》过来的，自习看了下你的网站非常不错，看的出来你一直在坚持!</p>
-        </ul>
-      </div>
-      <div class="hf">
-        <ul>
-          <p class="zzhf"><font color="#FF0000">站长回复:</font>感谢捧场啊！看了你的网站，有两个月没更新了哦~</p>
-        </ul>
-      </div>
-      <div class="fb">
-        <ul>
-          <p class="fbtime"><span> 2018-07-10 </span> 周宏</p>
-          <p class="fbinfo">读《从今日起，我永久卸载今日头条》有感。正如作者所说，这个APP抓住了很多人性的特点，在简单、重复、爽这三点上做到了极致。但是我认为永久卸载这个想法比较荒诞，任何东西你只要有自控力，就能将它为我所用。曾经一度我也是刷头条根本停不下来</p>
-        </ul>
-      </div>
-      <div class="hf">
-        <ul>
-          <p class="zzhf"><font color="#FF0000">站长回复:</font>嗯，我也是自制力有限，删除头条就是矫枉过正而已，这个因人而异，不强求他人，也不想标题党。</p>
-        </ul>
-      </div>
-      <div class="fb">
-        <ul>
-          <p class="fbtime"><span> 2018-07-09 </span> 文颖</p>
-          <p class="fbinfo">加油吖</p>
-        </ul>
-      </div>
-      <div class="hf">
-        <ul>
-          <p class="zzhf"><font color="#FF0000">站长回复:</font>感谢第一条留言的支持！：）</p>
-        </ul>
-      </div>
+    <div class="gbook" id="userMessage">
+      <template v-for="message in messageList.rows">
+        <div class="fb">
+          <ul>
+            <p class="fbtime"><span style="width:auto"> {{message.createTime | dataFormat }} </span> {{message.username}}</p>
+            <p class="fbinfo">{{message.message}}</p>
+          </ul>
+        </div>
+        <div class="hf" v-if="message.myreplyId != null">
+          <ul>
+            <p class="zzhf"><font color="#FF0000">站长回复:</font>{{message.myreply.message}}</p>
+          </ul>
+        </div>
+      </template>
+      <vue-nav :cur="cur" :all="all" class="pagelist" :callback="callback"></vue-nav>
       <div class="gbox">
-        <form action="" method="post" name="form1" id="form1">
+        <form name="form1" id="form1">
           <p> <strong>来说点儿什么吧...</strong></p>
-          <p><span> 您的姓名:</span>
-            <input name="name" type="text" id="name">
+          <p><span> 您的昵称:</span>
+            <input name="name" autocomplete="off" type="text" v-model="userMessage.username" id="name">
             *</p>
           <p><span>联系邮箱:</span>
-            <input name="email" type="text" id="email">
+            <input name="email" autocomplete="off" type="text" v-model="userMessage.email" id="email">
             *</p>
           <p><span class="tnr">留言内容:</span>
-            <textarea name="lytext" cols="60" rows="12" id="lytext"></textarea>
+            <textarea name="lytext" cols="60" v-model="userMessage.message" rows="12" id="lytext"></textarea>
           </p>
           <p>
-            <input type="submit" name="Submit3" value="提交">
+            <input type="button" v-on:click="addMessage" class="submit" name="Submit3" value="提交">
             <input name="enews" type="hidden" id="enews" value="AddGbook">
           </p>
         </form>
@@ -137,5 +129,7 @@
   <p>Design by <a href="#" target="_blank">陈C个人博客</a> <a href="/">Copyright © 赣ICP备18013122号</a></p>
 </footer>
 <a href="#" class="cd-top">Top</a>
+
+<script src="/js/controller/messageController.js"></script>
 </body>
 </html>

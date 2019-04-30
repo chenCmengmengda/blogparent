@@ -1,7 +1,10 @@
 E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\controller\IndexController.java
+E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\service\impl\MessageServiceImpl.java
 E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\controller\BlogController.java
 E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\service\impl\BlogServiceImpl.java
 E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\service\BlogService.java
+E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\service\MessageService.java
+E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\controller\MessageController.java
 E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\controller\PhotoController.java
 E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\service\impl\PhotoServiceImpl.java
 E:\program Files\idea_project\blogparent2\blogportal\src\main\java\com\blog\portal\service\PhotoService.java

@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.blog.pojo.TbBlog">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, create_time, update_time
+    id, title, image_url, create_time, update_time
   </sql>
   <sql id="Blob_Column_List">
     summary
@@ -123,10 +124,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.blog.pojo.TbBlog">
-    insert into tb_blog (id, title, create_time, 
-      update_time, summary)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{summary,jdbcType=LONGVARCHAR})
+    insert into tb_blog (id, title, image_url, 
+      create_time, update_time, summary
+      )
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{summary,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.blog.pojo.TbBlog">
     insert into tb_blog
@@ -136,6 +139,9 @@
       </if>
       <if test="title != null">
         title,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
       </if>
       <if test="createTime != null">
         create_time,
@@ -153,6 +159,9 @@
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -180,6 +189,9 @@
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
+      <if test="record.imageUrl != null">
+        image_url = #{record.imageUrl,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -198,6 +210,7 @@
     update tb_blog
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
+      image_url = #{record.imageUrl,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       summary = #{record.summary,jdbcType=LONGVARCHAR}
@@ -209,6 +222,7 @@
     update tb_blog
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
+      image_url = #{record.imageUrl,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -220,6 +234,9 @@
     <set>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -236,6 +253,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blog.pojo.TbBlog">
     update tb_blog
     set title = #{title,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       summary = #{summary,jdbcType=LONGVARCHAR}
@@ -244,6 +262,7 @@
   <update id="updateByPrimaryKey" parameterType="com.blog.pojo.TbBlog">
     update tb_blog
     set title = #{title,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

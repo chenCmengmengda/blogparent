@@ -32,7 +32,7 @@ public class LogAop {
     private Method method;//访问的方法
 
     //前置通知  主要是获取开始时间，执行的类是哪一个，执行的是哪一个方法
-    @Before("execution(* com.blog.controller.*.*(..))")
+    @Before("execution(* com.blog.controller.*.*(..)) && !execution(* com.blog.controller.PictureController.*(..))")
     public void doBefore(JoinPoint jp) throws NoSuchMethodException {
         visitTime = new Date();//当前时间就是开始访问的时间
         clazz = jp.getTarget().getClass(); //具体要访问的类
@@ -40,7 +40,7 @@ public class LogAop {
         Object[] args = jp.getArgs();//获取访问的方法的参数
 
         //获取具体执行的方法的Method对象
-        if (args == null || args.length == 0) {
+        if (args == null || args.length == 0 ) {
             method = clazz.getMethod(methodName); //只能获取无参数的方法
         } else {
             Class[] classArgs = new Class[args.length];
@@ -52,7 +52,7 @@ public class LogAop {
     }
 
     //后置通知
-    @After("execution(* com.blog.controller.*.*(..))")
+    @After("execution(* com.blog.controller.*.*(..)) && !execution(* com.blog.controller.PictureController.*(..))")
     public void doAfter(JoinPoint jp) throws Exception {
         long time = new Date().getTime() - visitTime.getTime(); //获取访问的时长
 

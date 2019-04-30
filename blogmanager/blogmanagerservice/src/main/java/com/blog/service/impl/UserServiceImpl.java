@@ -5,6 +5,7 @@ import com.blog.common.pojo.Result;
 import com.blog.common.util.IDUtils;
 import com.blog.mapper.TbUserMapperCustom;
 import com.blog.mapper.TbUserMapper;
+import com.blog.mapper.TbUserRoleMapper;
 import com.blog.pojo.*;
 import com.blog.service.UserService;
 import com.github.pagehelper.PageHelper;
@@ -35,6 +36,8 @@ public class UserServiceImpl implements UserService{
     TbUserMapper userMapper;
     @Autowired
     TbUserMapperCustom userMapperCustom;
+    @Autowired
+    TbUserRoleMapper userRoleMapper;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -190,6 +193,12 @@ public class UserServiceImpl implements UserService{
     public TbUserCustom findUserRolePermissionById(Long userId){
         TbUserCustom userCustom=userMapperCustom.findUserRolePermissionById(userId);
         return userCustom;
+    }
+
+    @Override
+    public Result deleteRoleToUser(TbUserRoleKey userRoleKey){
+       userRoleMapper.deleteByPrimaryKey(userRoleKey);
+        return Result.ok();
     }
 
 }

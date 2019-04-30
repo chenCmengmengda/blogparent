@@ -44,6 +44,7 @@ app.controller('blogController' ,function($scope,blogService){
     }
 
     $scope.update=function(){
+        $scope.entity.imageUrl=$("input[name='imageUrl']").val();
         $scope.entity.blogDesc=blogEditEditor.html();
         blogService.update($scope.entity).success(
             function (response) {
@@ -100,6 +101,7 @@ app.filter(
 */
 blogWriteApp.controller('blogWrite',function($scope,blogWriteService){
     $scope.blogAdd=function(){
+        $scope.entity.imageUrl=$("input[name='imageUrl']").val();
         $scope.entity.blogDesc=blogAddEditor.html();
         if($scope.entity==null || $scope.entity.blogDesc==''){
             alert("内容不能为空");

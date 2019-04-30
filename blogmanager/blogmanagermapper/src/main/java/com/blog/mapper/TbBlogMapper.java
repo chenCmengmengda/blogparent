@@ -1,9 +1,8 @@
 package com.blog.mapper;
 
-import java.util.List;
-
 import com.blog.pojo.TbBlog;
 import com.blog.pojo.TbBlogExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TbBlogMapper {

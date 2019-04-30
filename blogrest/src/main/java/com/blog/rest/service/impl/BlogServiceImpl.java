@@ -1,7 +1,6 @@
 package com.blog.rest.service.impl;
 
 import com.blog.common.pojo.ListDataResult;
-import com.blog.common.pojo.Result;
 import com.blog.mapper.TbBlogMapper;
 import com.blog.pojo.TbBlog;
 import com.blog.pojo.TbBlogExample;

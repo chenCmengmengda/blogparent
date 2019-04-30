@@ -4,6 +4,7 @@ import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbRole;
 import com.blog.pojo.TbRoleCustom;
+import com.blog.pojo.TbRolePermissionKey;
 import com.blog.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,6 +63,13 @@ public class RoleController {
     public TbRoleCustom findRolePermissionById(Long id){
         TbRoleCustom roleCustom=roleService.findRolePermissionById(id);
         return roleCustom;
+    }
+
+    @RequestMapping("/deletePermissionToRole.do")
+    @ResponseBody
+    public Result deletePermissionToRole(TbRolePermissionKey rolePermissionKey){
+        Result result=roleService.deletePermissionToRole(rolePermissionKey);
+        return result;
     }
 
 

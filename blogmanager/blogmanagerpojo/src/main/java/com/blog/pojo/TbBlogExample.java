@@ -235,6 +235,76 @@ public class TbBlogExample {
             return (Criteria) this;
         }
 
+        public Criteria andImageUrlIsNull() {
+            addCriterion("image_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlIsNotNull() {
+            addCriterion("image_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlEqualTo(String value) {
+            addCriterion("image_url =", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlNotEqualTo(String value) {
+            addCriterion("image_url <>", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlGreaterThan(String value) {
+            addCriterion("image_url >", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("image_url >=", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlLessThan(String value) {
+            addCriterion("image_url <", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlLessThanOrEqualTo(String value) {
+            addCriterion("image_url <=", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlLike(String value) {
+            addCriterion("image_url like", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlNotLike(String value) {
+            addCriterion("image_url not like", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlIn(List<String> values) {
+            addCriterion("image_url in", values, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlNotIn(List<String> values) {
+            addCriterion("image_url not in", values, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlBetween(String value1, String value2) {
+            addCriterion("image_url between", value1, value2, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlNotBetween(String value1, String value2) {
+            addCriterion("image_url not between", value1, value2, "imageUrl");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;

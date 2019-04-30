@@ -4,6 +4,7 @@ import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbUser;
 import com.blog.pojo.TbUserCustom;
+import com.blog.pojo.TbUserRoleKey;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,4 +30,5 @@ public interface UserService  extends UserDetailsService {
     EUDataGridResult findOtherRoles(Long id);
     Result addRoleToUser(Long userId, Long[] roleIds);
     TbUserCustom findUserRolePermissionById(Long userId);
+    Result deleteRoleToUser(TbUserRoleKey userRoleKey);
 }

@@ -43,6 +43,13 @@
                 <td><input class="form-control" type="text" name="title" data-options="required:true" style="width: 280px;" ng-model="entity.title"></td>
             </tr>
             <tr>
+                <td>封面上传:</td>
+                <td>
+                    <button  class="btn btn-success onePicUpload"  placeholder="相册标题" >上传图片 </button>
+                    <input type="hidden" name="imageUrl" ng-model="entity.imageUrl"/>
+                </td>
+            </tr>
+            <tr>
                 <td>博客正文:</td>
                 <td>
                     <textarea style="width:800px;height:300px;visibility:hidden;" name="desc" ng-model="entity.desc"></textarea>

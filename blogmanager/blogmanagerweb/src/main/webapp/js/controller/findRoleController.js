@@ -1,6 +1,6 @@
 
 findRole.controller('findRoleController',
-    function($scope,$timeout,$location,findRoleService){
+    function($scope,$timeout,$window,$location,findRoleService){
 
 
     $scope.id={};
@@ -20,6 +20,22 @@ findRole.controller('findRoleController',
                 expandable: true
             });
         },100);
+    }
+
+    $scope.userRoleKey={};
+    $scope.getId=function(roleId){
+        $scope.userRoleKey.userid=$scope.id;
+        $scope.userRoleKey.roleid=roleId;
+    }
+
+    $scope.deleRoleToUser=function(){
+        findRoleService.deleRoleToUser($scope.userRoleKey).success(
+            function(response){
+                if(response.status==200){
+                    $window.location.reload();
+                }
+            }
+        );
     }
 
 

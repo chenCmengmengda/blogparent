@@ -1,5 +1,5 @@
 findPermission.controller('findPermissionController',
-    function($scope,$timeout,$location,findPermissionService){
+    function($scope,$timeout,$location,$window,findPermissionService){
         $scope.id={};
         $scope.findPermission=function(){
             $scope.id=$location.search().id;
@@ -17,6 +17,22 @@ findPermission.controller('findPermissionController',
                     expandable: true
                 });
             },100);
+        }
+
+        $scope.rolePermissionKey={};
+        $scope.getId=function(permissionId){
+            $scope.rolePermissionKey.roleid=$scope.id;
+            $scope.rolePermissionKey.permissionid=permissionId;
+        }
+
+        $scope.delePermissionToRole=function(){
+            findPermissionService.delePermissionToRole($scope.rolePermissionKey).success(
+                function(response){
+                    if(response.status==200){
+                        $window.location.reload();
+                    }
+                }
+            );
         }
 
 }).config([ '$locationProvider', function($locationProvider) {
