@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog.mapper.TbUserCustomMapper">
-    <update id="editPassword" parameterType="com.blog.pojo.TbUser" >
-        update tb_user set password=#{password} where nickname=#{nickname}
-        <!--注意：结果字段名与属性名保持一致，区分大小写-->
-    </update>
-</mapper>

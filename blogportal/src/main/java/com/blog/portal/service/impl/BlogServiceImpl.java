@@ -25,6 +25,10 @@ public class BlogServiceImpl implements BlogService{
     private String BLOG_INFO_URL;
     @Value("${BLOG_DESC_URL}")
     private String BLOG_DESC_URL;
+    @Value("${BLOG_ADD_LIKE_URL}")
+    private  String BLOG_ADD_LIKE_URL;
+    @Value("${BLOG_GET_LIKE_URL}")
+    private  String BLOG_GET_LIKE_URL;
 
     /**
      * 获得博客列表
@@ -45,5 +49,20 @@ public class BlogServiceImpl implements BlogService{
         System.out.println(json);
         List<TbBlogCustom> list= JsonUtils.jsonToList(json,TbBlogCustom.class);
         return list;
+    }
+
+    @Override
+    public Result setBlogLike(Long blogId) {
+        String json= HttpClientUtil.doGet(REST_BASE_URL+BLOG_ADD_LIKE_URL+"?id="+blogId);
+        Result result=JsonUtils.jsonToPojo(json,Result.class);
+        return result;
+    }
+
+    @Override
+    public Result getBlogLike(Long blogId) {
+        String json= HttpClientUtil.doGet(REST_BASE_URL+BLOG_GET_LIKE_URL+"?id="+blogId);
+        System.out.println(json);
+        Result result=JsonUtils.jsonToPojo(json,Result.class);
+        return result;
     }
 }

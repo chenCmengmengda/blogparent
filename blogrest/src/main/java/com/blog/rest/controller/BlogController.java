@@ -37,4 +37,18 @@ public class BlogController {
         return list;
     }
 
+    @RequestMapping("/addBlogLike")
+    @ResponseBody
+    public Result setBlogLike(Long id){
+        Result result=blogService.setBlogLike((id));
+        return result;
+    }
+
+    @RequestMapping("/getBlogLike")
+    @ResponseBody
+    public Result getBlogLike(Long id) {
+        Result result=blogService.getBlogLike(id);
+        return result;
+    }
+
 }

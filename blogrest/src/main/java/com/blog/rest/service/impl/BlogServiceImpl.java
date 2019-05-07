@@ -1,17 +1,24 @@
 package com.blog.rest.service.impl;
 
 import com.blog.common.pojo.ListDataResult;
+import com.blog.common.pojo.Result;
 import com.blog.mapper.TbBlogMapper;
 import com.blog.pojo.TbBlog;
 import com.blog.pojo.TbBlogExample;
 import com.blog.mapper.TbBlogCustomMapper;
 import com.blog.pojo.TbBlogCustom;
+import com.blog.rest.dao.JedisClient;
 import com.blog.rest.service.BlogService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +31,10 @@ public class BlogServiceImpl implements BlogService{
     private TbBlogMapper blogMapper;
     @Autowired
     private TbBlogCustomMapper blogCustomMapper;
+    @Autowired
+    private JedisClient jedisClient;
+    @Value("${REDIS_BLOG_LIKE_KEY}")
+    private String REDIS_BLOG_LIKE_KEY;
 
     @Override
     public ListDataResult getBlogList(Integer page, Integer rows){
@@ -32,6 +43,25 @@ public class BlogServiceImpl implements BlogService{
         //分页处理
         PageHelper.startPage(page,rows);
         List<TbBlog> list=blogMapper.selectByExampleWithBLOBs(example);
+        //根据日期排序
+        Collections.sort(list,new Comparator<TbBlog>(){
+            @Override
+            public int compare(TbBlog o1, TbBlog o2) {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+                Date dt1 = o1.getCreateTime();
+                Date dt2 = o2.getCreateTime();
+                if (dt1.getTime() < dt2.getTime()) {
+                    return 1;
+                } else if (dt1.getTime() > dt2.getTime()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+
+
+            }
+        });
         ListDataResult result=new ListDataResult();
         result.setPage(page);
         result.setRows(list);
@@ -47,5 +77,22 @@ public class BlogServiceImpl implements BlogService{
     public List<TbBlogCustom> getBlogListById(Long id){
         List<TbBlogCustom> list=blogCustomMapper.getBlogListById(id);
         return list;
+    }
+
+    @Override
+    public Result setBlogLike(Long blogId) {
+        jedisClient.incr(REDIS_BLOG_LIKE_KEY+":"+blogId);
+
+        return Result.ok();
+    }
+
+    @Override
+    public Result getBlogLike(Long blogId) {
+        String blogLike=jedisClient.get(REDIS_BLOG_LIKE_KEY+":"+blogId);
+        if(blogLike==null){
+            jedisClient.set(REDIS_BLOG_LIKE_KEY+":"+blogId,"0");
+            blogLike="0";
+        }
+        return Result.ok(blogLike);
     }
 }

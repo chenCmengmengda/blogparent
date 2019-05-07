@@ -34,11 +34,9 @@
     <ul id="starlist">
       <li><a href="index.html">网站首页</a></li>
       <li><a href="share.html">我的相册</a></li>
-      <li><a href="list.html">我的日记</a></li>
       <li><a href="about.html">关于我</a></li>
       <li><a href="gbook.html">留言</a></li>
       <li><a href="info.html">内容页</a></li>
-      <li><a href="infopic.html">内容页</a></li>
     </ul>
   </nav>
 </header>
@@ -65,7 +63,7 @@
     </div>
     <div class="search">
       <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+        <input name="keyboard" id="keyboard" autocomplete="off" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
         <input name="show" value="title" type="hidden">
         <input name="tempid" value="1" type="hidden">
         <input name="tbname" value="news" type="hidden">

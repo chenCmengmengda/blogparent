@@ -4,6 +4,7 @@ import com.blog.common.pojo.ListDataResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbBlog;
 import com.blog.pojo.TbBlogCustom;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ import java.util.List;
 public interface BlogService {
     ListDataResult getBlogList(Integer page, Integer rows);
     List<TbBlogCustom> getBlogListById(Long id);
+    Result setBlogLike(Long blogId);
+    Result getBlogLike(Long blogId);
 }

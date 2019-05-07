@@ -201,6 +201,9 @@ public class BlogServiceImpl implements BlogService{
         for(Long id:ids){
             blogMapper.deleteByPrimaryKey(id);
         }
+        for(Long id:ids){
+            blogDescMapper.deleteByPrimaryKey(id);
+        }
         return  Result.ok();
     }
 

@@ -66,15 +66,13 @@
     <ul id="starlist">
       <li><a href="/view/index.html">网站首页</a></li>
       <li><a href="/view/share.html">我的相册</a></li>
-      <li><a href="/view/list.html">我的日记</a></li>
       <li><a href="/view/about.html">关于我</a></li>
       <li><a href="/view/gbook.html">留言</a></li>
       <li><a href="/view/info.html">内容页</a></li>
-      <li><a href="/view/infopic.html">内容页</a></li>
     </ul>
   </nav>
 </header>
-<article>
+<article id="blogList">
   <aside class="l_box">
     <div class="about_me">
       <h2>关于我</h2>
@@ -97,11 +95,11 @@
     </div>
     <div class="search">
       <form  method="post" name="searchform" id="searchform">
-        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+        <input name="keyboard" id="keyboard" autocomplete="off" v-model="query" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
         <input name="show" value="title" type="hidden">
         <input name="tempid" value="1" type="hidden">
         <input name="tbname" value="news" type="hidden">
-        <input name="Submit" class="input_submit" value="搜索" type="submit">
+        <input name="Submit" class="input_submit" value="搜索" v-on:click="search(query,1)" type="button">
       </form>
     </div>
     <div class="fenlei">
@@ -139,9 +137,9 @@
       </ul>
     </div>
   </aside>
-  <main id="blogList"  class="r_box">
-    <li v-for="blog in blogList.rows">
-      <i><a href="/"><img src="/images/4.jpg"></a></i>
+  <main   class="r_box">
+    <li v-for="blog in blogList">
+      <i><a href="/"><img v-bind:src="blog.imageUrl"></a></i>
       <h3>
         <a :href="'/view/info.html?id='+blog.id">{{ blog.title }}</a>
         <!--<router-link :to="{ name: 'user'}">-->
@@ -162,6 +160,7 @@
 <a href="#" class="cd-top">Top</a>
 
 <script>
+    var q;
     var vue=new Vue({
 
         el:"#blogList",
@@ -169,7 +168,8 @@
             blogList :[],
             cur: 1,
             all: 8,
-            msg: ''
+            msg: '',
+            query:'',
         },
         components:{
             'vue-nav': Vnav
@@ -177,18 +177,33 @@
         methods:{
             callback(data) {
                 this.cur = data
-                this.findPage(this.cur,10);
+                if(q==null || q=='') {
+                    this.findPage(this.cur, 10);
+                } else{
+                    this.search(q,this.cur);
+                }
             },
             findPage:function(page, rows){
                 var _this = this;
                 axios.get("/blog/list?page="+page+"&rows="+rows).then(function (response) {
-                    _this.blogList= response.data;
+                    _this.blogList= response.data.rows;
                     _this.all=response.data.pages;
                     console.log(_this.blogList);
                 }).catch(function (err) {
                     console.log(err);
                 });
             },
+            search:function(query,page){
+
+                var _this = this;
+                axios.get("/search?q="+query+"&page="+page).then(function (response) {
+                    _this.blogList= response.data.blogList;
+                    _this.all=response.data.pageCount;
+                    console.log(_this.blogList);
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }
 
         },
         created(){

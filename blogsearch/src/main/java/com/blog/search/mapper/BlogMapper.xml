@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog.rest.mapper.TbBlogCustomMapper">
-    <select id="getBlogListById" parameterType="long" resultType="com.blog.pojo.TbBlogCustom">
-        SELECT
-        a.id,
+<mapper namespace="com.blog.search.mapper.BlogMapper">
+    <select id="getBlogList" resultType="com.blog.search.pojo.Blog">
+        SELECT a.id,
         a.title,
+        a.image_url imageUrl,
         a.summary,
         a.create_time createTime,
         a.update_time updateTime,
         b.blog_desc blogDesc
         FROM
         tb_blog a
-        LEFT JOIN tb_blog_desc b ON a.id = b.blog_id WHERE a.id=#{id}
+        LEFT JOIN tb_blog_desc b ON a.id = b.blog_id
     </select>
+
 </mapper>

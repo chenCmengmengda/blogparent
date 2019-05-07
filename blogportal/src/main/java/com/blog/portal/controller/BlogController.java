@@ -1,6 +1,7 @@
 package com.blog.portal.controller;
 
 import com.blog.common.pojo.ListDataResult;
+import com.blog.common.pojo.Result;
 import com.blog.pojo.TbBlogCustom;
 import com.blog.portal.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,20 @@ public class BlogController {
         ListDataResult result=blogService.getBlogList(page,rows);
         return result;
 
+    }
+
+    @RequestMapping("/addBlogLike")
+    @ResponseBody
+    public Result setBlogLike(Long id){
+        Result result=blogService.setBlogLike((id));
+        return result;
+    }
+
+    @RequestMapping("/getBlogLike")
+    @ResponseBody
+    public Result getBlogLike(Long id) {
+        Result result=blogService.getBlogLike(id);
+        return result;
     }
 
 

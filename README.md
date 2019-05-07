@@ -28,6 +28,12 @@ blogmanager-web,blogportal,blogrest这三个工程的src->resources下都有数�
 
 在此之前需要准备nginx+ftp的图片服务器
 
+3.点赞功能需要准备redis服务器,在blog-rest工程中resource目录下jedis.xml中配置，
+redis的key管理可以配置在resource.properties
+
+4.搜索功能需要准备solr服务器,在blog-search工程中resource目录下solr.xml和
+resource.properties中配置
+
 ### 许可：
 GPL v3
 

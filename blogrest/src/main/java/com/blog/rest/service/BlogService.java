@@ -12,4 +12,6 @@ import java.util.List;
 public interface BlogService {
     ListDataResult getBlogList(Integer page, Integer rows);
     List<TbBlogCustom> getBlogListById(Long id);
+    Result setBlogLike(Long blogId);
+    Result getBlogLike(Long blogId);
 }

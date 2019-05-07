@@ -30,11 +30,9 @@
     <ul id="starlist">
       <li><a href="index.html">网站首页</a></li>
       <li><a href="share.html">我的相册</a></li>
-      <li><a href="list.html">我的日记</a></li>
       <li><a href="about.html">关于我</a></li>
       <li><a href="gbook.html">留言</a></li>
       <li><a href="info.html">内容页</a></li>
-      <li><a href="infopic.html">内容页</a></li>
     </ul>
   </nav>
 </header>
@@ -42,7 +40,7 @@
   <aside class="l_box">
     <div class="search">
       <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+        <input name="keyboard" id="keyboard" autocomplete="off" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
         <input name="show" value="title" type="hidden">
         <input name="tempid" value="1" type="hidden">
         <input name="tbname" value="news" type="hidden">
@@ -116,7 +114,7 @@
           &nbsp; </div>
       </div>
       <div class="share">
-        <p class="diggit"><a href="#"> 很赞哦！ </a>(<b id="diggnum">13</b>)</p>
+        <p class="diggit"><a style="cursor: pointer;" v-on:click="addBlogLike"> 很赞哦！ </a>(<b id="diggnum">{{blogLike}}</b>)</p>
       </div>
       <div class="nextinfo">
         <p>上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></p>
@@ -142,18 +140,7 @@
             </ul>
           </div>
 
-          <script>
-              function CheckPl(obj)
-              {
-                  if(obj.saytext.value=="")
-                  {
-                      alert("您没什么话要说吗？");
-                      obj.saytext.focus();
-                      return false;
-                  }
-                  return true;
-              }
-          </script>
+
           <form  method="post" name="saypl" id="saypl" onsubmit="return CheckPl(document.saypl)">
             <div id="plpost">
               <p class="saying"><span><a >共有2条评论</a></span>来说两句吧...</p>
