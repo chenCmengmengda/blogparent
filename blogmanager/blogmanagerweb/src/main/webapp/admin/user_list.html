@@ -76,26 +76,26 @@
                 <th class="" style="padding-right:0px">
                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                 </th>
-                <th class="sorting_asc">用户ID</th>
+                <th class="sorting_asc hidden-xs">用户ID</th>
                 <th class="sorting">用户名</th>
-                <th class="sorting">密码</th>
+                <th class="sorting hidden-xs">密码</th>
                 <th class="sorting">性别</th>
-                <th class="sorting">生日</th>
-                <th class="text-center">邮箱</th>
-                <th class="text-center">电话</th>
+                <th class="sorting hidden-xs">生日</th>
+                <th class="text-center hidden-xs">邮箱</th>
+                <th class="text-center hidden-xs">电话</th>
                 <th class="text-center">操作</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="entity in list">
                 <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
-                <td>{{entity.id}}</td>
+                <td class="hidden-xs">{{entity.id}}</td>
                 <td>{{entity.nickname}}</td>
-                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.password}}</td>
+                <td class="hidden-xs" style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.password}}</td>
                 <td>{{entity.sex}}</td>
-                <td>{{entity.birthday | date: "yyyy-MM-dd"}}</td>
-                <td>{{entity.email}}</td>
-                <td>{{entity.phone}}</td>
+                <td class="hidden-xs">{{entity.birthday | date: "yyyy-MM-dd"}}</td>
+                <td class="hidden-xs">{{entity.email}}</td>
+                <td class="hidden-xs">{{entity.phone}}</td>
                 <td class="text-center">
                     <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOne(entity.id)" >修改</button>
                     <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#descModal"  ng-click="findOne(entity.id)" >详情</button>

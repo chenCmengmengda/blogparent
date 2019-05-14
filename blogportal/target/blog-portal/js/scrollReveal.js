@@ -89,6 +89,7 @@ window.scrollReveal = (function (window) {
   //  Check DOM for the data-scrollReveal attribute
   //  and initialize all found elements.
       this.elems = Array.prototype.slice.call(this.docElem.querySelectorAll('[data-scroll-reveal]'));
+
       this.elems.forEach(function (el, i) {
 
     //  Capture original style attribute

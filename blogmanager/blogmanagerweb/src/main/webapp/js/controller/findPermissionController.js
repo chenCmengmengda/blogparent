@@ -1,5 +1,7 @@
 findPermission.controller('findPermissionController',
     function($scope,$timeout,$location,$window,findPermissionService){
+
+
         $scope.id={};
         $scope.findPermission=function(){
             $scope.id=$location.search().id;
@@ -11,12 +13,12 @@ findPermission.controller('findPermissionController',
 
                 }
             );
-
+            /*
             $timeout(function(){
                 $("#collapse-table").treetable({
                     expandable: true
                 });
-            },100);
+            },100);*/
         }
 
         $scope.rolePermissionKey={};
@@ -42,4 +44,4 @@ findPermission.controller('findPermissionController',
         //是否需要加入base标签，这里设置为false，设置为true时，需在html的head配置<base href="" />标签
         requireBase : false
     });
-} ]);;
+} ])

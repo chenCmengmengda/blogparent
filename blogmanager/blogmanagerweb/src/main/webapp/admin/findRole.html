@@ -20,6 +20,7 @@
 <script src="/plugins/treeTable/jquery.treetable.js"></script>
 <link rel="stylesheet" href="../plugins/treeTable/jquery.treetable.css">
 <link rel="stylesheet" href="../plugins/treeTable/jquery.treetable.theme.default.css">
+<script src="/plugins/treeTable/angular-treetable.js"></script>
 <!-- 树表格结束 -->
 <script src="../js/common.js"></script>
 <script src="../js/base_pagination.js"></script>
@@ -70,10 +71,10 @@
                     <tr data-tt-id="0">
                         <td colspan="2">{{list.nickname}}</td>
                     </tr>
-                    <tbody ng-repeat="entity in list.roleCustomList ">
+                    <tbody ng-repeat="entity in list.roleCustomList " on-finish-render-filters>
 
                     <!--ng-repeat="entity in list.roleCustomList "-->
-                    <tr data-tt-id="{{$index+1}}" data-tt-parent-id="0">
+                    <tr  data-tt-id="{{$index+1}}" data-tt-parent-id="0">
                         <td>{{entity.rolename}}</td>
                         <td>{{entity.roledesc}}</td>
                         <td class="text-center">

@@ -1,7 +1,7 @@
 
+
 findRole.controller('findRoleController',
     function($scope,$timeout,$window,$location,findRoleService){
-
 
     $scope.id={};
     $scope.findRole=function(){
@@ -14,12 +14,12 @@ findRole.controller('findRoleController',
 
             }
         );
-
+/*
         $timeout(function(){
             $("#collapse-table").treetable({
                 expandable: true
             });
-        },100);
+        },100);*/
     }
 
     $scope.userRoleKey={};
@@ -47,4 +47,3 @@ findRole.controller('findRoleController',
         requireBase : false
     });
 } ]);
-

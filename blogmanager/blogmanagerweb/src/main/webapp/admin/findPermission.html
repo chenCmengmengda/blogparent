@@ -20,6 +20,7 @@
 <script src="/plugins/treeTable/jquery.treetable.js"></script>
 <link rel="stylesheet" href="../plugins/treeTable/jquery.treetable.css">
 <link rel="stylesheet" href="../plugins/treeTable/jquery.treetable.theme.default.css">
+<script src="/plugins/treeTable/angular-treetable.js"></script>
 <!-- 树表格结束 -->
 <script src="../js/common.js"></script>
 <script src="../js/base_pagination.js"></script>
@@ -70,7 +71,7 @@
                     <tr data-tt-id="0">
                         <td colspan="2">{{list.rolename}}</td>
                     </tr>
-                    <tbody ng-repeat="entity in list.permissionList ">
+                    <tbody ng-repeat="entity in list.permissionList " on-finish-render-filters>
 
                     <tr data-tt-id="{{$index+1}}" data-tt-parent-id="0">
                         <td>{{entity.permissionname}}</td>

@@ -6,7 +6,7 @@
 
     <display-name>blog-manager</display-name>
     <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
+        <welcome-file>welcome.html</welcome-file>
 
     </welcome-file-list>
 

@@ -67,7 +67,7 @@ public final class CookieUtils {
         if (cookieList == null || cookieName == null) {
             return null;
         }
-        String retValue = null;
+        String retValue= null;
         try {
             for (int i = 0; i < cookieList.length; i++) {
                 if (cookieList[i].getName().equals(cookieName)) {

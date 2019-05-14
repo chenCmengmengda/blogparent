@@ -1,7 +1,7 @@
 @charset "gb2312";
 /* css */
 * { margin: 0; padding: 0 }
-body { font: 15px "Microsoft YaHei", Arial, Helvetica, sans-serif; color: #555; background:url(../images/menu_bg.png) repeat-x #efefef; line-height: 1.5; }
+body { font: 15px "Microsoft YaHei", Arial, Helvetica, sans-serif; color: #555; background: #efefef; line-height: 1.5; }
 img { border: 0; display: block }
 ul, li { list-style: none; }
 a { text-decoration: none; color: #555 }
@@ -10,22 +10,32 @@ a:hover { text-decoration: none; color: #000; }
 .blank { height: 20px; overflow: hidden; width: 100%; margin: auto; clear: both }
 .f_l { float: left }
 .f_r { float: right }
-article { width: 1000px; margin: auto; overflow: hidden }
+article { width: 1000px; margin: 80px auto 0; overflow: hidden; zoom: 1; }
+aside { width: 30%; float: left; overflow: hidden; display: block; position: relative; z-index: 1 }
+main { overflow: hidden; width: 68%; float: right; display: block; }
 .container { width: 1000px; margin: auto }
-/* header */
-header { width: 100%; overflow: hidden; }
-.logo { width: 1000px; margin: auto; font-size: 26px; padding: 70px 0 20px 0; -webkit-text-shadow: 1px 1px 1px rgba(255,255,255,.2); -moz-text-shadow: 1px 1px 1px rgba(255,255,255,.2); text-shadow: 1px 1px 1px rgba(255,255,255,.2); }
-.logo a { color: #222 }
-nav{ width: 1000px; margin: auto; overflow: hidden; padding: 0 0 20px 0 }
-nav li { display: inline-block; float: left; padding-right:30px;text-align: center; overflow: hidden; line-height: 30px; }
-nav li a { color: #000; }
-a#selected,nav li a:hover { font-weight:bold  }
-.mnav{ width:100%; background:#000; line-height:40px; height:40px; text-align:center;  position:fixed; bottom:0; display:none; z-index:9999999}
-.mnav li{ display:inline; padding:0 5px}
-.mnav li a{ color:#FFF}
+nav { width: 1000px; margin: auto }
+.logo { float: left; font-size: 22px }
+#mnavh { display: none; width: 30px; height: 40px; float: right; text-align: center; padding: 0 5px }
+#starlist { float: right; }
+#starlist li { float: left; display: block; padding: 0 0 0 40px; font-size: 16px }
+.navicon { display: block; position: relative; width: 30px; height: 5px; background-color: #000; margin-top: 20px }
+.navicon:before, .navicon:after { content: ''; display: block; width: 30px; height: 5px; position: absolute; background: #000; -webkit-transition-property: margin, -webkit-transform; transition-property: margin, -webkit-transform; transition-property: margin, transform; transition-property: margin, transform, -webkit-transform; -webkit-transition-duration: 300ms; transition-duration: 300ms; }
+.navicon:before { margin-top: -10px; }
+.navicon:after { margin-top: 10px; }
+.open .navicon { background: none }
+.open .navicon:before { margin-top: 0; -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+.open .navicon:after { margin-top: 0; -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
+.open .navicon:before, .open .navicon:after { content: ''; display: block; width: 30px; height: 5px; position: absolute; background: #000; }
+#starlist #selected { color: #f65a8a; }
+.header-navigation { position: fixed; top: 0; width: 100%; height: 60px; line-height: 60px; background: rgba(255,255,255,.9); text-align: center; border-bottom: 1px solid #ddd; box-shadow: 0 1px 1px rgba(0,0,0,.04); z-index: 9999; }
+/* Slide transitions */
+.slideUp { -webkit-transform: translateY(-100px); -ms-transform: translateY(-100px); -o-transform: translateY(-100px); transform: translateY(-100px); -webkit-transition: transform .5s ease-out; -o-transition: transform .5s ease-out; transition: transform .5s ease-out; }
+.slideDown { -webkit-transform: translateY(0); -ms-transform: translateY(0); -o-transform: translateY(0); transform: translateY(0); -webkit-transition: transform .5s ease-out; -o-transition: transform .5s ease-out; transition: transform .5s ease-out; }
+/*footer*/
+footer { width: 100%; color: #a5a4a4; text-align: center; padding: 20px 0; clear: both; text-shadow: #fff 1px 0 2px, #fff 0 1px 2px, #fff -1px 0 2px, #fff 0 -1px 2px; }
+footer a { color: #a5a4a4; }
+/*cd-top*/
 /*cd-top*/
 .cd-top { display: inline-block; height: 40px; width: 40px; position: fixed; bottom: 40px; right: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); overflow: hidden; text-indent: 100%; white-space: nowrap; background: rgba(0, 0, 0, 0.8) url(../images/top.png) no-repeat center; visibility: hidden; opacity: 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; }
 .cd-top.cd-is-visible { visibility: visible; opacity: 1; }
-/*footer*/
-footer { width: 100%; color: #a5a4a4; text-align: center; padding: 20px 0; clear: both; text-shadow: #fff 1px 0 2px, #fff 0 1px 2px, #fff -1px 0 2px, #fff 0 -1px 2px; }
-footer a { color: #a5a4a4 ; }

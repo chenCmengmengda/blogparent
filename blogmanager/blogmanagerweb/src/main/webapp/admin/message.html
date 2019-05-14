@@ -54,11 +54,11 @@
                 <th class="" style="padding-right:0px">
                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                 </th>
-                <th class="sorting_asc">ID</th>
+                <th class="sorting_asc hidden-xs" >ID</th>
                 <th class="sorting">用户名</th>
-                <th class="sorting">邮箱</th>
-                <th class="sorting">留言信息</th>
-                <th class="sorting">留言时间</th>
+                <th class="sorting hidden-xs">邮箱</th>
+                <th class="sorting hidden-xs">留言信息</th>
+                <th class="sorting ">留言时间</th>
                 <th class="text-center">是否已回复</th>
                 <th class="text-center">操作</th>
             </tr>
@@ -66,11 +66,11 @@
             <tbody>
             <tr ng-repeat="entity in list">
                 <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
-                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.id}}</td>
+                <td class="hidden-xs" style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.id}}</td>
                 <td>{{entity.username}}</td>
-                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.email}}</td>
+                <td class="hidden-xs" style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.email}}</td>
                 <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.message}}</td>
-                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
+                <td class="hidden-xs" style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
                 <td ng-if="entity.myreplyId != null">{{'是'}}</td>
                 <td ng-if="entity.myreplyId == null">{{'否'}}</td>
                 <td class="text-center">

@@ -20,6 +20,7 @@
 	href="/plugins/adminLTE/css/AdminLTE.css">
 <link rel="stylesheet"
 	href="/plugins/iCheck/square/blue.css">
+	<link rel="stylesheet" href="/css/login.css">
 	<!--<script src="/plugins/angularjs/angular.min.js"></script>-->
 	<!--<script src="/js/base_pagination.js"></script>-->
 	<!--<script src="/js/service/loginService.js"></script>-->
@@ -47,9 +48,13 @@
 
 
 <body class="hold-transition login-page" ng-app="login" ng-controller="loginController">
-	<div class="login-box">
+<header class="login-header">
+<div class="login-box">
 		<div class="login-logo">
-			<a href="all-admin-index.html"><b>个人博客</b>后台管理系统</a>
+			<img src="/img/tx.jpg" width="150" alt="Noisky logo" class="panel-cover__logo logo">
+		</div>
+		<div class="login-logo">
+			<a href="/login.html"><b>个人博客</b>后台管理系统</a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
@@ -80,13 +85,16 @@
 				</div>
 			</form>
 
-			<a href="#">忘记密码</a><br>
+			<a href="#">忘记密码</a>&nbsp
+			<a href="/">开场动画</a><br>
 
 
 		</div>
 		<!-- /.login-box-body -->
+	<div class="panel-cover--overlay cover-slate"></div>
 	</div>
 	<!-- /.login-box -->
+</header>
 
 	<!-- jQuery 2.2.3 -->
 	<!-- Bootstrap 3.3.6 -->

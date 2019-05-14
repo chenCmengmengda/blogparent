@@ -42,25 +42,25 @@
                 <th class="" style="padding-right:0px">
                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                 </th>
-                <th class="sorting_asc">ID</th>
+                <th class="sorting_asc hidden-xs">ID</th>
                 <th class="sorting">访问时间</th>
                 <th class="sorting">访问用户</th>
-                <th class="sorting">访问IP</th>
+                <th class="sorting hidden-xs">访问IP</th>
                 <th class="sorting">资源URL</th>
-                <th class="sorting">执行时间</th>
-                <th class="sorting">访问方法</th>
+                <th class="sorting hidden-xs">执行时间</th>
+                <th class="sorting hidden-xs">访问方法</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="entity in list">
-                <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
-                <td>{{entity.id}}</td>
+                <td ><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
+                <td class="hidden-xs">{{entity.id}}</td>
                 <td>{{entity.visittime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
                 <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.username}}</td>
-                <td>{{entity.ip}}</td>
+                <td class="hidden-xs">{{entity.ip}}</td>
                 <td>{{entity.url }}</td>
-                <td>{{entity.executiontime}}</td>
-                <td>{{entity.method}}</td>
+                <td class="hidden-xs">{{entity.executiontime}}</td>
+                <td class="hidden-xs">{{entity.method}}</td>
 
             </tr>
 

@@ -11,10 +11,12 @@
     <!-- 配置不拦截的资源 -->
     <security:http pattern="/page/login" security="none"/>
     <security:http pattern="/login.html" security="none"/>
+    <security:http pattern="/welcome.html" security="none"/>
     <security:http pattern="/loginFailer.do" security="none"/>
     <security:http pattern="/403.do" security="none"/>
     <security:http pattern="/403.html" security="none"/>
     <security:http pattern="/403" security="none"/>
+    <security:http pattern="/404.html" security="none"/>
     <security:http pattern="/css/**" security="none"/>
     <security:http pattern="/img/**" security="none"/>
     <security:http pattern="/js/**" security="none"/>
@@ -32,7 +34,7 @@
 
         <!-- 定义跳转的具体的页面 -->
         <security:form-login
-                login-page="/login.html"
+                login-page="/welcome.html"
                 login-processing-url="/user/login.do"
                 default-target-url="/loginSuccess.do"
                 authentication-failure-url="/loginFailer.do"></security:form-login>

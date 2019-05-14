@@ -50,9 +50,9 @@
                 <tr>
                     <th class="" style="padding-right: 0px">
                         <input id="selall" type="checkbox" class="icheckbox_square-blue"></th>
-                    <th class="sorting_asc">ID</th>
+                    <th class="sorting_asc hidden-xs" >ID</th>
                     <th class="sorting">权限名称</th>
-                    <th class="sorting">资源路径</th>
+                    <th class="sorting hidden-xs" >资源路径</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,9 +63,9 @@
                         <input name="ids" type="checkbox" ng-click="updateSelection($event,entity.id)" >
 
                     </td>
-                    <td>{{entity.id}}</td>
+                    <td class="hidden-xs">{{entity.id}}</td>
                     <td>{{entity.permissionname}}</td>
-                    <td>{{entity.url}}</td>
+                    <td class="hidden-xs">{{entity.url}}</td>
 
                 </tr>
 

@@ -50,7 +50,7 @@
                 <tr>
                     <th class="" style="padding-right: 0px">
                         <input id="selall" type="checkbox" class="icheckbox_square-blue"></th>
-                    <th class="sorting_asc">ID</th>
+                    <th class="sorting_asc hidden-xs">ID</th>
                     <th class="sorting">角色名称</th>
                     <th class="sorting">角色描述</th>
                 </tr>
@@ -63,7 +63,7 @@
                         <input name="ids" type="checkbox" ng-click="updateSelection($event,entity.id)" >
 
                     </td>
-                    <td>{{entity.id}}</td>
+                    <td class="hidden-xs">{{entity.id}}</td>
                     <td>{{entity.rolename}}</td>
                     <td>{{entity.roledesc}}</td>
 

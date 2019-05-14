@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
@@ -15,7 +17,9 @@
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script src="../js/common.js"></script>
-
+<!-- datatables样式-->
+<link rel="stylesheet" type="text/css" href="../plugins/datatables/dataTables.bootstrap.css"/>
+<!-- end -->
 <script src="../js/base_pagination.js"></script>
 <script src="../js/service/blogService.js"></script>
 <script src="../js/controller/blogController.js"></script>
@@ -40,6 +44,7 @@
 
 <div class="box-body">
 
+
     <!-- 数据表格 -->
     <div class="table-box">
 
@@ -61,30 +66,33 @@
         <!--工具栏/-->
 
         <!--数据列表-->
+
+
+
         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
             <thead>
             <tr>
                 <th class="" style="padding-right:0px">
                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                 </th>
-                <th class="sorting_asc">博客ID</th>
+                <th class="sorting_asc hidden-xs">博客ID</th>
                 <th class="sorting">博客标题</th>
-                <th class="sorting">摘要</th>
-                <th class="sorting">封面图片</th>
-                <th class="sorting">创建时间</th>
-                <th class="sorting">更新时间</th>
+                <th class="sorting hidden-xs">摘要</th>
+                <th class="sorting hidden-xs">封面图片</th>
+                <th class="sorting hidden-xs">创建时间</th>
+                <th class="sorting hidden-xs">更新时间</th>
                 <th class="text-center">操作</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="entity in list">
                 <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
-                <td>{{entity.id}}</td>
+                <td class="hidden-xs" style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.id}}</td>
                 <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.title}}</td>
-                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.summary}}</td>
-                <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.imageUrl}}</td>
-                <td>{{entity.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
-                <td>{{entity.updateTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
+                <td class="hidden-xs" style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.summary}}</td>
+                <td class="hidden-xs" style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.imageUrl}}</td>
+                <td class="hidden-xs">{{entity.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
+                <td class="hidden-xs">{{entity.updateTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
                 <td class="text-center">
                     <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOne(entity.id)" >修改</button>
                     <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#descModal"  ng-click="findOne(entity.id)" >详情</button>
@@ -98,24 +106,23 @@
         <tm-pagination conf="paginationConf"></tm-pagination>
 
 
+
     </div>
     <!-- 数据表格 /-->
-
-
 
 
 </div>
 <!-- /.box-body -->
 <!-- 编辑窗口 -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:1000px;top:35px;">
+    <div class="modal-dialog" style="top:auto;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">博客编辑</h3>
             </div>
             <div class="modal-body" >
-                <table class="table table-bordered table-striped"  width="800px">
+                <table class="table table-bordered table-striped"  width="auto">
                     <!--<input type="hidden" name="createTime" ng-model="emtity.createTime" />-->
                     <tr>
                         <td>标题</td>
@@ -129,7 +136,7 @@
                     <tr>
                         <td>内容</td>
                         <td>
-                            <textarea style="width:800px;height:300px;visibility:hidden;" ng-model="entity.blogDesc" name="desc"></textarea>
+                            <textarea style="width:auto;visibility:hidden;" ng-model="entity.blogDesc" name="desc"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -142,8 +149,9 @@
     </div>
 </div>
 
+<!--详细-->
 <div class="modal fade" id="descModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:1200px;top:auto;">
+    <div class="modal-dialog" style="top:auto;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -161,7 +169,7 @@
 </div>
 
 <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:500px;top:35px;">
+    <div class="modal-dialog" style="top:auto">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

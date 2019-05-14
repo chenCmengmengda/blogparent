@@ -66,24 +66,24 @@
                 <th class="" style="padding-right:0px">
                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                 </th>
-                <th class="sorting_asc">相册ID</th>
+                <th class="sorting_asc hidden-xs" >相册ID</th>
                 <th class="sorting">相册标题</th>
-                <th class="sorting">相册描述</th>
+                <th class="sorting hidden-xs">相册描述</th>
                 <th class="sorting">图片地址</th>
-                <th class="sorting">上传时间</th>
-                <th class="sorting">更新时间</th>
+                <th class="sorting hidden-xs">上传时间</th>
+                <th class="sorting hidden-xs">更新时间</th>
                 <th class="text-center">操作</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="entity in list">
                 <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
-                <td>{{entity.photoId}}</td>
+                <td class="hidden-xs">{{entity.photoId}}</td>
                 <td>{{entity.photoTitle}}</td>
-                <td>{{entity.photoExplain}}</td>
+                <td class="hidden-xs">{{entity.photoExplain}}</td>
                 <td style="max-width: 100px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{entity.photoImages}}</td>
-                <td>{{entity.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
-                <td>{{entity.updateTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
+                <td class="hidden-xs">{{entity.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
+                <td class="hidden-xs">{{entity.updateTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
                 <td class="text-center">
                     <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOne(entity.id)" >修改</button>
                     <button type="button" class="btn bg-olive btn-xs"   ng-click="check(entity.photoImages)" >详情</button>
@@ -145,11 +145,11 @@
 </div>
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:1000px;top:35px;">
+    <div class="modal-dialog" style="width:auto;top:auto;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">博客编辑</h3>
+                <h3 id="myModalLabel">相册编辑</h3>
             </div>
             <div class="modal-body" >
                 <table class="table table-bordered table-striped"  width="800px">

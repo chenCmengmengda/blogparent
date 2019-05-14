@@ -3,13 +3,11 @@ package com.blog.rest.jedis;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import redis.clients.jedis.HostAndPort;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisCluster;
-import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.*;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by 陈_C on 2018/7/17.
@@ -70,11 +68,36 @@ public class JedisTest {
      */
     @Test
     public void testSpringJedisCluster() throws IOException {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*.xml");
+    /*    ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*.xml");
         JedisCluster jedisCluster =  (JedisCluster) applicationContext.getBean("redisClient");
-        String string = jedisCluster.get("key1");
+
+        String string = jedisCluster.get("qwe");
         System.out.println(string);
         jedisCluster.close();
+*/
+    /*
+        int a = 0;
+        JedisPoolConfig i2 = new JedisPoolConfig();
+        i2.setMaxTotal(30);
+        i2.setMinIdle(5);
+        i2.setMaxIdle(10);
+        i2.setMaxWaitMillis(10000);
+        i2.setTestOnBorrow(true);
+        i2.setTestOnReturn(true);
+        Set<HostAndPort> nodes = new HashSet<>();
+        nodes.add(new HostAndPort("119.29.130.199", 7001));
+        nodes.add(new HostAndPort("119.29.130.199", 7002));
+        nodes.add(new HostAndPort("119.29.130.199", 7003));
+        nodes.add(new HostAndPort("119.29.130.199", 7004));
+        nodes.add(new HostAndPort("119.29.130.199", 7005));
+        nodes.add(new HostAndPort("119.29.130.199", 7006));
+        JedisCluster jedis = new JedisCluster(nodes, 6000, 6000, 3, "chencblog_redis",i2);
+
+
+        System.out.println(jedis.get("qwe"));
+
+        jedis.close();
+*/
     }
 
 

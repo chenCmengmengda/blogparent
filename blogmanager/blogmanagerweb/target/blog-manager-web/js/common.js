@@ -52,6 +52,7 @@ Date.prototype.format = function(format){
 var bl=Blog={
     // 编辑器参数
     kingEditorParams : {
+        width:"100%",
         //指定上传文件参数名称
         filePostName  : "uploadFile",
         //指定上传文件请求的url。
