@@ -14,3 +14,4 @@ com\blog\mapper\TbUserMapper.class
 com\blog\mapper\TbBlogMapper.class
 com\blog\mapper\TbBlogCustomMapper.class
 com\blog\mapper\TbBlogDescMapper.class
+com\blog\mapper\TbSysParameterMapper.class

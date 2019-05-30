@@ -34,6 +34,7 @@
 			obj.password=$('#password').val();
 			bl.ajax('/user/login.do',obj,function(data){
                 if(data.status==200){
+                //    alert(data.msg);
                     window.location.href=data.msg;
                 } else if(data.status==403){
                     window.location.href=data.msg;

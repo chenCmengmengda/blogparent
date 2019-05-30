@@ -26,9 +26,11 @@ messageApp.controller('messageController',
         }
 
         $scope.message={};
+        $scope.findId='';
         $scope.findOne=function(messageId){
             $scope.message={};
             $scope.entity={};
+            $scope.findId=messageId;
             messageService.findOne(messageId).success(
                 function(response){
                     if(response.status==200){
@@ -51,7 +53,9 @@ messageApp.controller('messageController',
             messageService.addReply($scope.message).success(
                 function(response){
                     if(response.status==200){
+                        alert("发送成功");
                         $scope.reloadList();//重新加载
+                        $scope.findOne($scope.findId);
                     }
                 }
             );

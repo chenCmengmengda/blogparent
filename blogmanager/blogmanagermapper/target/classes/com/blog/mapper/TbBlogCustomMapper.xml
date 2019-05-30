@@ -13,4 +13,7 @@
         tb_blog a
         LEFT JOIN tb_blog_desc b ON a.id = b.blog_id WHERE a.id=#{id}
     </select>
+    <select id="getNewBlogTitle" resultType="com.blog.pojo.TbBlog">
+        select id,title,create_time createTime from tb_blog order by create_time desc
+    </select>
 </mapper>

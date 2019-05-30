@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>4种超酷Bootstrap图片画廊和lightbox效果模板|DEMO2</title>
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">	
+	<link rel="stylesheet" href="css/baguetteBox.min.css">
+	<link rel="stylesheet" href="css/fluid-gallery.css">
+	<style>
+		.jq22-demo{ text-align: center; margin-top: 30px; }
+		.jq22-demo a{ padding-left: 20px; padding-right: 20px; }
+	</style>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<div class="container gallery-container">
+
+		    <h1>Bootstrap 3 Gallery</h1>
+			<div class="jq22-demo">
+			  <a href="index.html" class="current">Clean Layout</a>
+			  <a href="index2.html">Fluid Layout</a>
+			  <a href="index3.html">Grid Layout</a>
+			  <a href="index4.html">Thumbnails</a>
+			</div>
+		    <p class="page-description text-center">Fluid Layout With Overlay Effect</p>
+		    
+		    <div class="tz-gallery">
+
+		        <div class="row">
+
+		            <div class="col-sm-12 col-md-4">
+		                <a class="lightbox" href="images/bridge.jpg">
+		                    <img src="images/bridge.jpg" alt="Bridge">
+		                </a>
+		            </div>
+		            <div class="col-sm-6 col-md-4">
+		                <a class="lightbox" href="images/park.jpg">
+		                    <img src="images/park.jpg" alt="Park">
+		                </a>
+		            </div>
+		            <div class="col-sm-6 col-md-4">
+		                <a class="lightbox" href="images/tunnel.jpg">
+		                    <img src="images/tunnel.jpg" alt="Tunnel">
+		                </a>
+		            </div>
+		            <div class="col-sm-12 col-md-8">
+		                <a class="lightbox" href="images/traffic.jpg">
+		                    <img src="images/traffic.jpg" alt="Traffic">
+		                </a>
+		            </div>
+		            <div class="col-sm-6 col-md-4">
+		                <a class="lightbox" href="images/coast.jpg">
+		                    <img src="images/coast.jpg" alt="Coast">
+		                </a>
+		            </div> 
+		            <div class="col-sm-6 col-md-4">
+		                <a class="lightbox" href="images/rails.jpg">
+		                    <img src="images/rails.jpg" alt="Rails">
+		                </a>
+		            </div>
+
+		        </div>
+
+		    </div>
+
+		</div>
+
+	</div>
+	
+	<script type="text/javascript" src="js/baguetteBox.min.js"></script>
+	<script type="text/javascript">
+		baguetteBox.run('.tz-gallery');
+	</script>
+</body>
+</html>

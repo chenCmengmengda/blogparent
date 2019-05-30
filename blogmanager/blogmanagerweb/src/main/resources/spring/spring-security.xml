@@ -36,9 +36,12 @@
         <security:form-login
                 login-page="/welcome.html"
                 login-processing-url="/user/login.do"
-                default-target-url="/loginSuccess.do"
-                authentication-failure-url="/loginFailer.do"></security:form-login>
-                <!--authentication-success-forward-url="/pages/main.jsp"-->
+                authentication-failure-url="/loginFailer.do"
+
+                authentication-success-handler-ref="mySuccessHandler"
+                ></security:form-login>
+                <!--authentication-success-forward-url="/pages/main.jsp"
+                default-target-url="/loginSuccess.do"-->
 
 
         <!-- 关闭跨域请求 -->
@@ -63,8 +66,10 @@
     <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
     <!-- 自定义权限不足处理程序 -->
     <bean id="myAccessDeniedHandler" class="com.blog.controller.accessdenied.MyAccessDeniedHandler">
-
     </bean>
+    <!-- 自定义成功处理 -->
+    <bean id="mySuccessHandler" class="com.blog.controller.accessdenied.MySuccessHandler"></bean>
+
     <!-- 提供了入门的方式，在内存中存入用户名和密码
     <security:authentication-manager>
     	<security:authentication-provider>

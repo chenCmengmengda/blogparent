@@ -59,4 +59,12 @@ public class PhotoServiceImpl implements PhotoService {
         photolistMapper.insert(photolist);
         return Result.ok();
     }
+
+    @Override
+    public Result deletePhoto(Long[] ids){
+        for(Long id:ids){
+            photolistMapper.deleteByPrimaryKey(id);
+        }
+        return Result.ok();
+    }
 }

@@ -58,7 +58,66 @@ var bl=Blog={
         //指定上传文件请求的url。
         uploadJson : '/pic/upload.do',
         //上传类型，分别为image、flash、media、file
-        dir : "image"
+        dir : "image",
+
+        //调用kindeditor的afterCreate回调函数对kindeditor功能进行“扩展”，实现图片粘贴上传。
+        afterCreate:function() {
+            var editerDoc = this.edit.doc;//得到编辑器的文档对象
+            var cmd=this.edit.cmd;
+            //监听粘贴事件, 包括右键粘贴和ctrl+v
+            $(editerDoc).bind('paste', null, function (e) {
+                /*获得操作系统剪切板里的项目，e即kindeditor,
+                 *kindeditor创建了originalEvent(源事件)对象，
+                 *并指向了浏览器的事件对象，而chrome浏览器
+                 *需要通过clipboardData(剪贴板数据)对象的items
+                 *获得复制的图片数据。
+                 */
+                var ele = e.originalEvent.clipboardData.items;
+                for (var i = 0; i < ele.length; ++i) {
+                    //判断文件类型
+                    if ( ele[i].kind == 'file' && ele[i].type.indexOf('image/') !== -1 ) {
+                        var file = ele[i].getAsFile();//得到二进制数据
+                        //创建表单对象，建立name=value的表单数据。
+                        var formData = new FormData();
+                        formData.append("uploadFile",file);//name,value
+
+                        //用jquery Ajax 上传二进制数据
+                        $.ajax({
+                            url : '/pic/upload.do',
+                            type : 'POST',
+                            data : formData,
+                            // 告诉jQuery不要去处理发送的数据
+                            processData : false,
+                            // 告诉jQuery不要去设置Content-Type请求头
+                            contentType : false,
+                            dataType:"json",
+                            beforeSend:function(){
+                                //console.log("正在进行，请稍候");
+                            },
+                            success : function(responseStr) {
+                                //上传完之后，生成图片标签回显图片，假定服务器返回url。
+                                var src = responseStr.url;
+                                var imgTag = "<img src='"+src+"' border='0'/>";
+
+                            //    console.info(imgTag);
+                                //kindeditor提供了一个在焦点位置插入HTML的函数，调用此函数即可。
+                                cmd.inserthtml(imgTag);
+
+
+
+                            },
+                            error : function(responseStr) {
+                                console.log("error");
+                            }
+                        });
+
+                    }
+
+                }
+
+
+            });
+        }
     },
     // 格式化时间
     formatDateTime : function(val,row){
@@ -80,6 +139,7 @@ var bl=Blog={
         // 初始化图片上传组件
         this.initPicUpload(data);
         this.initOnePicUpload();
+
     },
     // 初始化图片上传组件
     initPicUpload : function(data){
@@ -166,7 +226,8 @@ var bl=Blog={
                 callback(data);
             }
         });
-    }
+    },
+
 }
 
 function getUrlKey(name){

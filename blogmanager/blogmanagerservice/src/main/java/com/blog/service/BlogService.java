@@ -18,5 +18,6 @@ public interface BlogService {
     Result editBlog(TbBlog blog, String desc) throws Exception;
     TbBlogCustom findOne(long id);
     Result deleteBlog(Long[] ids);
+    Result getNewBlogTitle(Integer rows);
 
 }

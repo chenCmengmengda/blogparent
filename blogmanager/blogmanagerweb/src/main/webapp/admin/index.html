@@ -19,7 +19,11 @@
     <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-  
+
+    <!-- tab插件 -->
+    <link href="../plugins/bootStrap-addTabs/bootstrap.addtabs.css" media="screen" rel="stylesheet" type="text/css"/>
+    <script src="../plugins/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <!-- tab插件结束 -->
     <script src="../plugins/adminLTE/js/app.min.js"></script>
     <script src="../js/common.js"></script>
     <script src="../plugins/angularjs/angular.min.js"></script>
@@ -27,13 +31,21 @@
     <script src="../js/base_pagination.js"></script>
     <script src="../js/service/indexService.js"></script>
     <script src="../js/controller/indexController.js"></script>
-    <script type="text/javascript">   
+
+    <script type="text/javascript">
+        $(function () {
+            $.addtabs.set({"iframe":true,"contentStyle": ''});
+            $.addtabs.add({id:"index",url:"home.html",title:"<i class=\"fa fa-dashboard\"></i> <span>首页</span>"});
+
+        });
+
 		 function SetIFrameHeight(){
 		  	  var iframeid=document.getElementById("iframe"); //iframe id
 		  	  if (document.getElementById){
 		  		iframeid.height =document.documentElement.clientHeight;			   	   
 			  }
 		 }
+
     
 	</script>    
  
@@ -314,7 +326,7 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu"  >
                     <li class="header">菜单</li>
-                    <li id="admin-index"><a href="index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                    <li id="admin-index"><a href="javascript:;" data-addtab="index" data-url="home.html"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
 				    <!-- 菜单 -->
 				    <li class="treeview">
@@ -328,24 +340,24 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login">
-				                <a href="blog_write.html" target="iframe">
+				                <a href="javascript:;" data-addtab="blog_write" data-url="blog_write.html" target="iframe">
 				                    <i class="fa fa-circle-o"></i>写博客
 				                </a>
 				            </li>
 
 				            <li id="admin-login">
-				                <a href="blog_list.html" target="iframe">
+				                <a href="javascript:;" data-addtab="blog_list" data-url="blog_list.html" target="iframe">
 				                    <i class="fa fa-circle-o"></i>已发博客
 				                </a>
 				            </li>
 
 				            <li id="admin-login">
-				                <a href="message.html" target="iframe">
+				                <a href="javascript:;" data-addtab="message" data-url="message.html" target="iframe">
 				                    <i class="fa fa-circle-o"></i>用户留言
 				                </a>
 				            </li>
 				            <li id="admin-login">
-				                <a href="photo_list.html" target="iframe">
+				                <a href="javascript:;" data-addtab="photo_list" data-url="photo_list.html" target="iframe">
 				                    <i class="fa fa-circle-o"></i>博客相册
 				                </a>
 				            </li>
@@ -362,32 +374,37 @@
 				        </a>
 				        <ul class="treeview-menu">
                             <li id="admin-login">
-                                <a href="log_list.html" target="iframe">
+                                <a href="javascript:;" data-addtab="log_list" data-url="log_list.html" target="iframe">
                                     <i class="fa fa-circle-o"></i>系统日志
                                 </a>
                             </li>
                             <li id="admin-login">
-                                <a href="user_list.html" target="iframe">
+                                <a href="javascript:;" data-addtab="sys_parameter" data-url="sys_parameter.html" target="iframe">
+                                    <i class="fa fa-circle-o"></i>系统参数
+                                </a>
+                            </li>
+                            <li id="admin-login">
+                                <a href="javascript:;" href="javascript:;" data-addtab="user_list" data-url="user_list.html" target="iframe">
                                     <i class="fa fa-circle-o"></i>系统用户管理
                                 </a>
                             </li>
                             <li id="admin-login">
-                                <a href="role_list.html" target="iframe">
+                                <a href="javascript:;" href="javascript:;" data-addtab="role_list" data-url="role_list.html" target="iframe">
                                     <i class="fa fa-circle-o"></i>角色管理
                                 </a>
                             </li>
                             <li id="admin-login">
-                                <a href="permission_list.html" target="iframe">
+                                <a href="javascript:;" data-addtab="permission_list" data-url="permission_list.html" target="iframe">
                                     <i class="fa fa-circle-o"></i>资源权限管理
                                 </a>
                             </li>
 							<li id="admin-login">
-				                <a  href="edit_password.html?username={{entity.username}}" target="iframe">
+				                <a href="javascript:;" data-addtab="edit_password" data-url="edit_password.html?username={{entity.username}}"    target="iframe">
 				                    <i class="fa fa-circle-o"></i>修改密码
 				                </a>
 				            </li>							
 							<li id="admin-login">
-				                <a href="help.html" target="iframe">
+				                <a href="javascript:;"  data-addtab="help" data-url="help.html" >
 				                    <i class="fa fa-circle-o"></i>帮助
 				                </a>
 				            </li>
@@ -404,10 +421,24 @@
         </aside>
         <!-- 导航侧栏 /-->
 
+
         <!-- 内容区域 -->
         <div class="content-wrapper">
-			<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()" 
-					frameborder="0" src="home.html"></iframe>
+            <div >
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="tabs1" role="tablist">
+
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+
+                    </div>
+                </div>
+
+            </div>
+			<!--<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()"-->
+					<!--frameborder="0" src="home.html"></iframe>-->
  
         </div>
         <!-- 内容区域 /-->

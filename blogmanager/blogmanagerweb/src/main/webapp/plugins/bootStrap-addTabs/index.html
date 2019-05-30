@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta content="" name="description"/>
+        <meta content="" name="keywords"/>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <title>
+            Bootstrap addtabs
+        </title>
+        <link href="example/theme/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css"/>
+        <link href="./bootstrap.addtabs.css" media="screen" rel="stylesheet" type="text/css"/>
+        <script src="example/theme/js/jquery.min.js">
+        </script>
+        <script src="example/theme/js/bootstrap.min.js">
+        </script>
+        <script src="./bootstrap.addtabs.js">
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $('#closeAll').click(function () {
+                    console.log('1');
+                    $.addtabs.closeAll('#tabs1');
+                })
+            })
+        </script>
+    </head>
+</html>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>
+                Tab add close drop for Bootstrap
+                <small>
+                    bootstrap.addtabs.js
+                </small>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <h4>
+                    About
+                </h4>
+                <hr>
+                    bootstrap.addtabs.js是一个bootstrap的TAB扩展插件。可以使用它自动创建、关闭、折叠、拖动tabs，创建的tabs可以使用ajax/iframe加载，或者直接指定内容。同时，还可以在tabs标签上使用右键关闭、刷新tab。
+                    <br/>
+                    Bootstrap.addtabs.js is a bootstrap of the tabs extension. You can use it to automatically create, close, drop, drag tabs, create tabs can be used to load ajax / iframe, or directly specify the content. At the same time, you can
+                also use the right tab on the tabs tab to close, refresh the tab.
+                    <h4>
+                        Change Log
+                    </h4>
+                    <hr>
+                        <ul class="list-unstyled">
+                            <li>
+                                2017/02/15 规范代码
+                            </li>
+                            <li>
+                                2017/02/09 更改右键菜单，增加右键菜单local设置
+                            </li>
+                            <li>
+                                2016/12/16 修正点击按钮/链接会刷新已打开TAB
+                            </li>
+                            <li>
+                                2016/10/13 新增TAB右键菜单，取消右键关闭，注：不希望关闭的tab，不要设置ID
+                            </li>
+                            <li>
+                                2016/09/20 新增1、直接在TAB上点右键关闭其他TAB，并激活当前tab;2、关闭所有打开TAB的按钮
+                            </li>
+                            <li>
+                                2016/06/23 隐藏关闭按钮，鼠标指向TAB时显示
+                            </li>
+                            <li>
+                                2016/02/04 修改主体JS文件，更灵活，更规范
+                            </li>
+                            <li>
+                                2016/01/25 修改IFrame支持IE，修改一些BUG，增加iframeClass样式表
+                            </li>
+                            <li>
+                                2015/12/19 重新编写了代码，增加一些参数及函数
+                            </li>
+                        </ul>
+                    </hr>
+                </hr>
+            </div>
+            <div class="col-sm-9">
+                <h4>
+                    Example
+                </h4>
+                <hr>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <ul class="list-group">
+                                        <a class="list-group-item" data-addtab="mail" data-url="example/ajax/mailbox.txt">
+                                            mailbox
+                                        </a>
+                                        <a class="list-group-item" data-addtab="mail1" data-ajax="true" data-url="example/ajax/mailbox.txt">
+                                            Use Ajax
+                                        </a>
+                                        <a class="list-group-item" data-addtab="message" data-content="Customize the content" data-url="example/ajax/mailbox.txt">
+                                            <i class="glyphicon glyphicon-bullhorn">
+                                            </i>
+                                            指定内容
+                                        </a>
+                                        <a class="list-group-item" data-addtab="setting" data-title="Customize the title" data-url="example/ajax/mailbox.txt">
+                                            <i class="glyphicon glyphicon-cog">
+                                            </i>
+                                            指定标题
+                                        </a>
+                                        <a class="list-group-item" data-addtab="userMenu1" data-url="example/ajax/mailbox.txt">
+                                            用户菜单1
+                                        </a>
+                                        <a class="list-group-item" data-addtab="userMenu2" data-target="#tabs2" data-url="example/ajax/button.html">
+                                            target2
+                                        </a>
+                                        <a class="list-group-item" data-addtab="sina" data-url="http://sina.com.cn">
+                                            新浪
+                                        </a>
+                                        <a class="list-group-item" data-addtab="baidu" data-url="http://baidu.com">
+                                            百度
+                                        </a>
+                                        <a class="list-group-item" id="closeAll">
+                                            关闭所有
+                                        </a>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div>
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" id="tabs1" role="tablist">
+                                            <li class="active" role="presentation">
+                                                <a aria-controls="home" data-toggle="tab" href="#home" role="tab">
+                                                    Home
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="home" role="tabpanel">
+                                                I'm a homepage.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" id="tabs2" role="tablist">
+                                            <li class="active" role="presentation">
+                                                <a aria-controls="home1" data-toggle="tab" href="#home1" role="tab">
+                                                    Home
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="home1" role="tabpanel">
+                                                I'm a homepage.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>
+                        Options
+                    </h4>
+                    <hr>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                        Name
+                                    </th>
+                                    <th>
+                                        Type
+                                    </th>
+                                    <th>
+                                        Default
+                                    </th>
+                                    <th>
+                                        description
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        content
+                                    </td>
+                                    <td>
+                                        string|html
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        直接指定内容
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        target
+                                    </td>
+                                    <td>
+                                        string|object
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        指定tab objectP
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        close
+                                    </td>
+                                    <td>
+                                        bool
+                                    </td>
+                                    <td>
+                                        true
+                                    </td>
+                                    <td>
+                                        是否可以关闭
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        monitor
+                                    </td>
+                                    <td>
+                                        string
+                                    </td>
+                                    <td>
+                                        body
+                                    </td>
+                                    <td>
+                                        监视的区域
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        iframeUse
+                                    </td>
+                                    <td>
+                                        bool
+                                    </td>
+                                    <td>
+                                        true
+                                    </td>
+                                    <td>
+                                        是否使用iframe，false使用ajax
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        iframeHeight
+                                    </td>
+                                    <td>
+                                        number
+                                    </td>
+                                    <td>
+                                        $(document).height() - 107
+                                    </td>
+                                    <td>
+                                        iframe高度
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        contextmenu
+                                    </td>
+                                    <td>
+                                        bool
+                                    </td>
+                                    <td>
+                                        true
+                                    </td>
+                                    <td>
+                                        是否启用右键菜单
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        callback
+                                    </td>
+                                    <td>
+                                        function(){}
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        关闭后回调函数
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="6">
+                                        local
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        refreshLabel
+                                    </td>
+                                    <td>
+                                        string
+                                    </td>
+                                    <td>
+                                        刷新此标签
+                                    </td>
+                                    <td>
+                                        刷新此标签
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        closeThisLabel
+                                    </td>
+                                    <td>
+                                        string
+                                    </td>
+                                    <td>
+                                        关闭此标签
+                                    </td>
+                                    <td>
+                                        关闭此标签
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        closeOtherLabel
+                                    </td>
+                                    <td>
+                                        string
+                                    </td>
+                                    <td>
+                                        关闭其他标签
+                                    </td>
+                                    <td>
+                                        关闭其他标签
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        closeLeftLabel
+                                    </td>
+                                    <td>
+                                        string
+                                    </td>
+                                    <td>
+                                        关闭左侧标签
+                                    </td>
+                                    <td>
+                                        关闭左侧标签
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        closeRightLabel
+                                    </td>
+                                    <td>
+                                        string
+                                    </td>
+                                    <td>
+                                        关闭右侧标签
+                                    </td>
+                                    <td>
+                                        关闭右侧标签
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </hr>
+                </hr>
+            </div>
+        </div>
+    </div>
+</body>

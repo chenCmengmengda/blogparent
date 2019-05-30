@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/angularjs/angular.min.js"></script>
+    <!-- 分页组件 -->
+    <script src="../plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../plugins/angularjs/pagination.css" >
+
+    <script src="../js/base_pagination.js"></script>
+    <script src="../js/service/sysParameterService.js"></script>
+    <script src="../js/controller/sysParameterController.js"></script>
+</head>
+<body class="hold-transition skin-red sidebar-mini" ng-app="sysParameterApp" ng-controller="sysParameterController" ng-init="init()">
+    <!-- 数据表格 -->
+    <div class="table-box ">
+        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+                <tr class="info">
+                    <th class="sorting">
+                        参数说明
+                    </th>
+                    <th class="sorting">
+                        参数值
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>网站名称</td>
+                    <td><input class="form-control" type="text" ng-model="entity.cmsname"></td>
+                </tr>
+                <tr>
+                    <td>当前版本</td>
+                    <td><input class="form-control" type="text" ng-model="entity.version"></td>
+                </tr>
+                <tr>
+                    <td>开发作者</td>
+                    <td><input class="form-control" type="text" ng-model="entity.author"></td>
+                </tr>
+                <tr>
+                    <td>网站首页</td>
+                    <td><input class="form-control" type="text" ng-model="entity.homepage"></td>
+                </tr>
+                <tr>
+                    <td>服务器环境</td>
+                    <td><input class="form-control" type="text" ng-model="entity.runserver"></td>
+                </tr>
+                <tr>
+                    <td>数据库版本</td>
+                    <td><input class="form-control" type="text" ng-model="entity.databaseversion"></td>
+                </tr>
+                <tr>
+                    <td>版权信息</td>
+                    <td><input class="form-control" type="text" ng-model="entity.powerby"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="box-tools text-center">
+            <button type="submit" class="btn bg-maroon" data-toggle="modal" data-target="#addModal">保存</button>
+            <button type="button" class="btn bg-default" ng-click="entity={}">重置</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:500px;top:35px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 >提示</h3>
+                </div>
+                <div class="modal-body"  >
+                    你真的要保存吗？
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" ng-click="editSysParameter()">确定</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

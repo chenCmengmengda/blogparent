@@ -207,4 +207,19 @@ public class BlogServiceImpl implements BlogService{
         return  Result.ok();
     }
 
+    /**
+     * 查询最新文章
+     * @param rows
+     * @return
+     */
+    @Override
+    public Result getNewBlogTitle(Integer rows){
+        PageHelper.startPage(1,rows);
+        List<TbBlog> list=blogCustomMapper.getNewBlogTitle();
+        return Result.ok(list);
+
+    }
+
+
+
 }

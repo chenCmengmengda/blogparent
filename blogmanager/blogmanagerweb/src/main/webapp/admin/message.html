@@ -93,7 +93,8 @@
 
 </div>
 <!-- 编辑窗口 -->
-<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal " id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
     <div class="modal-dialog" style="top:auto">
         <div class="modal-content">
             <div class="modal-header">
@@ -101,45 +102,88 @@
                 <h3 >留言详情</h3>
             </div>
             <div class="modal-body" >
-                <table class="table table-bordered table-striped" style="table-layout:fixed;" width="auto">
-                    <!--<input type="hidden" name="createTime" ng-model="emtity.createTime" />-->
-                    <tr>
-                        <td>用户名</td>
-                        <td>{{message.username}}  </td>
-                    </tr>
-                    <tr>
-                        <td>邮箱</td>
-                        <td>{{message.email}}</td>
-                    </tr>
-                    <tr>
-                        <td>留言</td>
-                        <td style="word-wrap:break-word;" >
-                            {{message.message}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>留言时间</td>
-                        <td>
-                            {{message.createTime | date: "yyyy-MM-dd hh:mm:ss"}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>站长回复</td>
-                        <td style="word-wrap:break-word;">{{message.myreply.message}}</td>
-                    </tr>
-                    <tr>
-                        <td>回复时间</td>
-                        <td>{{message.myreply.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
-                    </tr>
+                <div class="box box-danger box-solid direct-chat direct-chat-danger">
 
-                </table>
-                    <textarea class="form-control" rows="3" placeholder="回复" ng-model="entity.message"></textarea>
+                    <div class="box-body">
+                        <!-- Conversations are loaded here -->
+                        <div class="direct-chat-messages">
+
+                            <!-- Message. Default to the left -->
+                            <div class="direct-chat-msg">
+                                <div class="direct-chat-info clearfix">
+                                    <span class="direct-chat-name pull-left">{{message.username}}</span>
+                                    <span class="direct-chat-timestamp pull-right">{{message.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</span>
+                                </div><!-- /.direct-chat-info -->
+                                <img class="direct-chat-img" src="../plugins/adminLTE/img/user1-128x128.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                                <div class="direct-chat-text">
+                                    {{message.message}}
+                                </div><!-- /.direct-chat-text -->
+                            </div><!-- /.direct-chat-msg -->
+
+                            <!-- Message to the right -->
+                            <div class="direct-chat-msg right">
+                                <div class="direct-chat-info clearfix">
+                                    <span class="direct-chat-name pull-right">站长回复</span>
+                                    <span class="direct-chat-timestamp pull-left">{{message.myreply.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</span>
+                                </div><!-- /.direct-chat-info -->
+                                <img class="direct-chat-img" src="../img/tx.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                                <div class="direct-chat-text">
+                                    {{message.myreply.message}}
+                                </div><!-- /.direct-chat-text -->
+                            </div><!-- /.direct-chat-msg -->
+                        </div><!--/.direct-chat-messages-->
+
+
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="input-group">
+                            <input type="text" name="message" placeholder="填写回复..." ng-model="entity.message" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger btn-flat" ng-click="addReply(entity)">发送</button>
+                            </span>
+                        </div>
+                    </div><!-- /.box-footer-->
+                </div>
+
+                <!--<table class="table table-bordered table-striped" style="table-layout:fixed;" width="auto">-->
+                    <!--&lt;!&ndash;<input type="hidden" name="createTime" ng-model="entity.createTime" />&ndash;&gt;-->
+                    <!--<tr>-->
+                        <!--<td>用户名</td>-->
+                        <!--<td>{{message.username}}  </td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>邮箱</td>-->
+                        <!--<td>{{message.email}}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>留言</td>-->
+                        <!--<td style="word-wrap:break-word;" >-->
+                            <!--{{message.message}}-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>留言时间</td>-->
+                        <!--<td>-->
+                            <!--{{message.createTime | date: "yyyy-MM-dd hh:mm:ss"}}-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>站长回复</td>-->
+                        <!--<td style="word-wrap:break-word;">{{message.myreply.message}}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>回复时间</td>-->
+                        <!--<td>{{message.myreply.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>-->
+                    <!--</tr>-->
+
+                <!--</table>-->
+                    <!--<textarea class="form-control" rows="3" placeholder="回复" ng-model="entity.message"></textarea>-->
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="addReply(entity)">保存</button>
-                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
-            </div>
+            <!--<div class="modal-footer">-->
+                <!--<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="addReply(entity)">保存</button>-->
+                <!--<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>-->
+            <!--</div>-->
         </div>
     </div>
 </div>

@@ -12,5 +12,7 @@ com\blog\service\PermissionService.class
 com\blog\service\impl\BlogServiceImpl.class
 com\blog\service\impl\RoleServiceImpl.class
 com\blog\service\UserService.class
+com\blog\service\impl\SysParameterServiceImpl.class
+com\blog\service\SysParameterService.class
 com\blog\service\BlogService.class
 com\blog\service\impl\SyslogServiceImpl.class

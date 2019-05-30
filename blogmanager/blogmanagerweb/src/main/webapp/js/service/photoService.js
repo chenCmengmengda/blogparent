@@ -6,4 +6,8 @@ photoApp.service('photoService',function($http){
     this.add=function(entity){
        return $http.post('../photo/add.do',entity);
     }
+
+    this.delete=function(ids){
+       return $http.get('../photo/delete.do?ids='+ids);
+    }
 });

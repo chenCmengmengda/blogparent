@@ -3,6 +3,15 @@
 
 这是一个使用ssm+maven实现的博客。
 
+### 后台系统演示地址
+https://chencmengmengda.github.io/adminLteCMS-static/static/admin/
+
+### 图片展示
+![首页](https://raw.githubusercontent.com/chenCmengmengda/adminLteCMS-static/master/img-folder/main.png)
+![登录](https://raw.githubusercontent.com/chenCmengmengda/adminLteCMS-static/master/img-folder/login.png)
+![相册](https://raw.githubusercontent.com/chenCmengmengda/adminLteCMS-static/master/img-folder/photoList.png)
+![留言](https://raw.githubusercontent.com/chenCmengmengda/adminLteCMS-static/master/img-folder/message.png)
+
 ### 目前已实现的模块： 
 用户管理
 

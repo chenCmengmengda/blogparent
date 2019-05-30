@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+    <title>Bootstrap addtabs</title>
+
+    <link rel="stylesheet" href="theme/css/bootstrap.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../bootstrap.addtabs.css" type="text/css" media="screen" />
+
+    <script src="theme/js/jquery.min.js"></script>
+    <script src="theme/js/bootstrap.min.js"></script>
+    <script src="../bootstrap.addtabs.js"></script>
+
+
+    <script type="text/javascript">
+        $(function() {
+            $.addtabs({
+                iframeHeight: 320
+            });
+        })
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Tab add close drop for Bootstrap
+            <small>bootstrap.addtabs.js</small>
+        </h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <h4>About</h4>
+                <hr> bootstrap.addtabs.js是一个bootstrap的TAB扩展插件。可以使用它自动创建、关闭、折叠、拖动tabs，创建的tabs可以使用ajax/iframe加载，或者直接指定内容。同时，还可以在tabs标签上使用右键关闭、刷新tab。
+                <br/> Bootstrap.addtabs.js is a bootstrap of the tabs extension. You can use it to automatically create, close, drop, drag tabs, create tabs can be used to load ajax / iframe, or directly specify the content. At the same time, you can
+                also use the right tab on the tabs tab to close, refresh the tab.
+                <h4>Change Log</h4>
+                <hr>
+                <ul class="list-unstyled">
+                    <li>2017/02/15 规范代码</li>
+                    <li>2017/02/09 更改右键菜单，增加右键菜单local设置</li>
+                    <li>2016/12/16 修正点击按钮/链接会刷新已打开TAB</li>
+                    <li>2016/10/13 新增TAB右键菜单，取消右键关闭，注：不希望关闭的tab，不要设置ID</li>
+                    <li>2016/09/20 新增1、直接在TAB上点右键关闭其他TAB，并激活当前tab;2、关闭所有打开TAB的按钮</li>
+                    <li>2016/06/23 隐藏关闭按钮，鼠标指向TAB时显示</li>
+                    <li>2016/02/04 修改主体JS文件，更灵活，更规范</li>
+                    <li>2016/01/25 修改IFrame支持IE，修改一些BUG，增加iframeClass样式表</li>
+                    <li>2015/12/19 重新编写了代码，增加一些参数及函数</li>
+                </ul>
+            </div>
+
+            <div class="col-sm-9">
+                <h4>Example</h4>
+                <hr>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <ul class="list-group">
+                                    <a class="list-group-item" data-addtab="mail" data-url="./ajax/mailbox.txt">mailbox</a>
+                                    <a class="list-group-item" data-addtab="mail1" data-url="./ajax/mailbox.txt" data-ajax="true">Use Ajax</a>
+                                    <a class="list-group-item" data-addtab="message" data-url="./ajax/mailbox.txt" data-content="Customize the content">
+                                        <i class="glyphicon glyphicon-bullhorn"></i>指定内容
+                                    </a>
+                                    <a class="list-group-item" data-addtab="setting" data-url="./ajax/mailbox.txt" data-title="Customize the title">
+                                        <i class="glyphicon glyphicon-cog"></i>指定标题
+                                    </a>
+                                    <a class="list-group-item" data-addtab="userMenu1" data-url="./ajax/mailbox.txt">
+                                    用户菜单1
+                                </a>
+                                    <a class="list-group-item" data-addtab="userMenu2" data-url="./ajax/button.html">
+                                    用户菜单2
+                                </a>
+                                    <a class="list-group-item" data-addtab="sina" data-url="http://sina.com.cn">
+                                    新浪
+                                </a>
+                                    <a class="list-group-item" data-addtab="baidu" data-url="http://baidu.com">
+                                    百度
+                                </a>
+                                    <a class="list-group-item" onclick="Addtabs.closeAll();">
+                                    关闭所有
+                                </a>
+                                </ul>
+                            </div>
+                            <div class="col-sm-9">
+                                <div id="tabs">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="home">I'm a homepage.</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                一般使用方法 Basic
+                <div class="well">
+                    HTML:<br/>
+                    <pre>&lt;button class="btn btn-default" data-addtab="mail" data-url="./ajax/mailbox.txt"&gt;mailbox&lt;/button&gt;</pre> JS:
+                    <pre>$('#tabs-1').addtabs();</pre>
+                </div>
+
+                使用Ajax Use Ajax
+                <div class="well">
+                    HTML:
+                    <pre>&lt;button class="btn btn-default" data-addtab="mail" data-url="./ajax/mailbox.txt" data-ajax="true"&gt;
+    mailbox
+&lt;/button&gt;</pre> JS:
+                    <pre>$('#tabs-1').addtabs();</pre>
+                </div>
+
+                不允许关闭 Not allowed to close
+                <div class="well">
+                    HTML:<br/>
+                    <pre>&lt;button class="btn btn-default" data-addtab="mail" data-url="./ajax/mailbox.txt"&gt;mailbox&lt;/button&gt;</pre> JS:
+                    <pre>$('#tabs-1').addtabs({'close':false});</pre>
+                </div>
+
+                指定标题 Customize the title
+                <div class="well">
+                    HTML:
+                    <pre>&lt;button class="btn btn-default" data-addtab="mail" data-url="./ajax/mailbox.txt" data-title="Customize the title"&gt;
+    ...
+&lt;/button&gt;</pre> JS:
+                    <pre>$('#tabs-1').addtabs();</pre>
+                </div>
+
+                指定内容 Customize the content
+                <div class="well">
+                    HTML:
+                    <pre>&lt;button class="btn btn-default" data-addtab="mail" data-url="./ajax/mailbox.txt" data-content="Customize the content"&gt;
+    ...
+&lt;/button&gt;</pre> JS:
+                    <pre>$('#tabs-1').addtabs();</pre> Note:
+                    <pre>如果设置了指定内容，data-url属性将不起作用。</pre>
+                </div>
+
+                不使用右键菜单 Do not use the contextmenu
+                <div class="well">
+                    HTML:<br/>
+                    <pre>&lt;button class="btn btn-default" data-addtab="mail" data-url="./ajax/mailbox.txt"&gt;mailbox&lt;/button&gt;</pre> JS:
+                    <pre>$('#tabs-1').addtabs({'contextmenu':false});</pre>
+                </div>
+
+                <h4>Options</h4>
+                <hr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Name</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">content</td>
+                            <td>string|html</td>
+                            <td></td>
+                            <td>直接指定内容</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">close</td>
+                            <td>bool</td>
+                            <td>true</td>
+                            <td>是否可以关闭</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">monitor</td>
+                            <td>string</td>
+                            <td>body</td>
+                            <td>监视的区域</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">iframeUse</td>
+                            <td>bool</td>
+                            <td>true</td>
+                            <td>是否使用iframe，false使用ajax</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">iframeHeight</td>
+                            <td>number</td>
+                            <td>$(document).height() - 107</td>
+                            <td>iframe高度</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">contextmenu</td>
+                            <td>bool</td>
+                            <td>true</td>
+                            <td>是否启用右键菜单</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">callback</td>
+                            <td>function(){}</td>
+                            <td></td>
+                            <td>关闭后回调函数</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="6">local</td>
+                        </tr>
+                        <tr>
+                            <td>refreshLabel</td>
+                            <td>string</td>
+                            <td>刷新此标签</td>
+                            <td>刷新此标签</td>
+                        </tr>
+                        <tr>
+                            <td>closeThisLabel</td>
+                            <td>string</td>
+                            <td>关闭此标签</td>
+                            <td>关闭此标签</td>
+                        </tr>
+                        <tr>
+                            <td>closeOtherLabel</td>
+                            <td>string</td>
+                            <td>关闭其他标签</td>
+                            <td>关闭其他标签</td>
+                        </tr>
+                        <tr>
+                            <td>closeLeftLabel</td>
+                            <td>string</td>
+                            <td>关闭左侧标签</td>
+                            <td>关闭左侧标签</td>
+                        </tr>
+                        <tr>
+                            <td>closeRightLabel</td>
+                            <td>string</td>
+                            <td>关闭右侧标签</td>
+                            <td>关闭右侧标签</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

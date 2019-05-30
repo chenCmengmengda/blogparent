@@ -1,5 +1,6 @@
 package com.blog.mapper;
 
+import com.blog.pojo.TbBlog;
 import com.blog.pojo.TbBlogCustom;
 
 import java.util.List;
@@ -10,4 +11,5 @@ import java.util.List;
  */
 public interface TbBlogCustomMapper {
     List<TbBlogCustom> getBlogListById(Long id);
+    List<TbBlog> getNewBlogTitle();
 }

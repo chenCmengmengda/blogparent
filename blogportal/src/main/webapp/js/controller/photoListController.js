@@ -7,7 +7,7 @@ var photoList=new Vue({
         cur: 1,
         all: 8,
         msg: '',
-        analysisRank:[],
+
 
     },
     components:{
@@ -26,16 +26,19 @@ var photoList=new Vue({
                 _this.all=response.data.pages;
                 console.log(_this.photoList);
 
+
             }).catch(function (err) {
                 console.log(err);
             });
+            /*
             setTimeout(function(){
                 if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
                     (function(){
                         window.scrollReveal = new scrollReveal({reset: true});
                     })();
                 };
-                },100);
+                },100);*/
+
         },
 
 
@@ -44,6 +47,18 @@ var photoList=new Vue({
         this.findPage(this.cur,8);
 
     },
+    watch:{
+        photoList:function () {
+            var _this=this;
+            _this.$nextTick(function(){
 
+                if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+                    (function(){
+                        window.scrollReveal = new scrollReveal({reset: true});
+                    })();
+                };
+            });
+        }
+    }
 
 });

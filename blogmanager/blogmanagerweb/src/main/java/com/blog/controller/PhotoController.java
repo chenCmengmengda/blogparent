@@ -30,4 +30,11 @@ public class PhotoController {
         return photoService.addPhoto(photolist);
     }
 
+    @RequestMapping("/delete.do")
+    @ResponseBody
+    public Result deletePhoto(Long[] ids){
+
+        return photoService.deletePhoto(ids);
+    }
+
 }

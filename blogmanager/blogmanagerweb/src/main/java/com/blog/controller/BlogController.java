@@ -95,4 +95,10 @@ public class BlogController {
         return blogService.deleteBlog(ids);
     }
 
+    @RequestMapping("/getNewBlogTitle.do")
+    @ResponseBody
+    public Result getNewBlogTitle(Integer rows){
+        return blogService.getNewBlogTitle(rows);
+    }
+
 }
