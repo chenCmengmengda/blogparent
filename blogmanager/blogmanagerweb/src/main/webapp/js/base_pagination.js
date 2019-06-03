@@ -15,3 +15,4 @@ var findPermission=angular.module('findPermission',['ngtreetable']);
 var messageApp=angular.module('message',['pagination']);
 var homeApp=angular.module('homeApp',[]);
 var sysParameterApp=angular.module('sysParameterApp',[]);
+var blogCatApp=angular.module('blogCatApp',['pagination']);

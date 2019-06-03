@@ -37,8 +37,11 @@ app.controller('blogController' ,function($scope,blogService){
     $scope.findOne=function(id){
         blogService.findOne(id).success(
             function (response){
-                $scope.entity=response;
-                blogEditEditor.html($scope.entity.blogDesc);
+                if(response.status==200) {
+                    $scope.entity = response.data;
+
+                    blogEditEditor.html($scope.entity.blogDesc);
+                }
             }
         );
     }
@@ -82,6 +85,42 @@ app.controller('blogController' ,function($scope,blogService){
 
 
 
+    $scope.blogAdd=function(){
+            $scope.entity.imageUrl=$("input[name='imageUrl']").val();
+           $scope.entity.blogDesc=blogAddEditor.html();
+           $scope.entity.blogCatId=$scope.blogCat.blogCatId;
+   //     console.log($scope.entity);
+        if($scope.entity==null || $scope.entity.blogDesc==''){
+            alert("内容不能为空");
+            return;
+        }
+
+        blogService.blogAdd($scope.entity).success(
+            function(response){
+                if(response.status==200){
+                    alert("保存成功");
+                    $scope.reloadList();
+                } else{
+                    alert("写博客失败");
+                }
+            }
+        );
+
+        //     blogService;
+    }
+
+
+    $scope.findBlogCat=function(page,rows){
+        blogService.getBlogCatList(page,rows).success(
+            function(response){
+
+                $scope.blogCatList=response.rows;//给列表变量赋值
+            }
+        );
+    }
+
+
+
 
 }).filter(
     'to_trusted', ['$sce', function ($sce) {
@@ -100,13 +139,20 @@ app.filter(
 )
 */
 blogWriteApp.controller('blogWrite',function($scope,blogWriteService){
+
+    $scope.init=function(){
+        $scope.findBlogCat(1,10);
+    }
+
     $scope.blogAdd=function(){
-        $scope.entity.imageUrl=$("input[name='imageUrl']").val();
-        $scope.entity.blogDesc=blogAddEditor.html();
+    //    $scope.entity.imageUrl=$("input[name='imageUrl']").val();
+     //   $scope.entity.blogDesc=blogAddEditor.html();
+        console.log($scope.entity);
         if($scope.entity==null || $scope.entity.blogDesc==''){
             alert("内容不能为空");
             return;
         }
+
         blogWriteService.blogAdd($scope.entity).success(
             function(response){
                 if(response.status==200){
@@ -118,5 +164,15 @@ blogWriteApp.controller('blogWrite',function($scope,blogWriteService){
         );
 
    //     blogService;
+    }
+
+
+    $scope.findBlogCat=function(page,rows){
+        blogWriteService.getBlogCatList(page,rows).success(
+            function(response){
+
+                $scope.blogCatList=response.rows;//给列表变量赋值
+            }
+        );
     }
 });

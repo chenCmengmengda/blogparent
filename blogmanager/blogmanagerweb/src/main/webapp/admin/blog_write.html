@@ -35,32 +35,61 @@
 
 </script>
 
-<div style="padding:10px 10px 10px 10px" ng-app="blogWrite" ng-controller="blogWrite">
-    <form id="blogAddForm" class="blogForm" method="post">
-        <table cellpadding="5">
-            <tr>
-                <td>文章标题:</td>
-                <td><input class="form-control" type="text" name="title" data-options="required:true" ng-model="entity.title"></td>
-            </tr>
-            <tr>
-                <td>封面上传:</td>
-                <td>
-                    <button  class="btn btn-success onePicUpload"  placeholder="相册标题" >上传图片 </button>
-                    <input type="hidden" name="imageUrl" ng-model="entity.imageUrl"/>
-                </td>
-            </tr>
-            <tr>
-                <td>博客正文:</td>
-                <td>
-                    <textarea style="width:100%;height:300px;visibility:hidden;" name="desc" ng-model="entity.desc"></textarea>
-                </td>
-            </tr>
-        </table>
-    </form>
+<body style="padding:10px 10px 10px 10px" ng-app="blogWrite" ng-controller="blogWrite" ng-init="init()">
+    <div class="row">
+        <div class="col-md-9 col-xs-12">
+
+
+            <form id="blogAddForm" class="blogForm " method="post">
+                <table style="width:100%">
+                    <tr>
+                        <td>文章标题:</td>
+                        <td><input class="form-control" type="text" name="title" data-options="required:true" ng-model="entity.title"></td>
+                    </tr>
+                    <tr>
+                        <td>封面上传:</td>
+                        <td>
+                            <button  class="btn btn-success onePicUpload"  placeholder="相册标题" >上传图片 </button>
+                            <input type="hidden" name="imageUrl" ng-model="entity.imageUrl"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>博客正文:</td>
+                        <td>
+                            <textarea style="width:100%;height:300px;visibility:hidden;" name="desc" ng-model="entity.desc"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="box ">
+                <div class="box-header">
+                    <h3 class="box-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文章分类</font></font></h3>
+
+
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <div class="form-group" >
+                        <div class="radio" ng-repeat="entity in blogCatList">
+                            <label>
+                                <input type="radio" name="optionsRadios" ng-model="$parent.entity.blogCatId" value="{{entity.id}}" >
+                                {{entity.name}}
+                            </label>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div style="padding:5px">
         <a  class="btn btn-success" ng-click="blogAdd()">提交</a>
         <a href="javascript:void(0)" class="btn btn-success" >重置</a>
     </div>
 
-</div>
+</body>
+
 

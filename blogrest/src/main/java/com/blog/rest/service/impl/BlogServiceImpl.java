@@ -1,12 +1,12 @@
 package com.blog.rest.service.impl;
 
+import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.ListDataResult;
 import com.blog.common.pojo.Result;
+import com.blog.mapper.TbBlogCatCustomMapper;
 import com.blog.mapper.TbBlogMapper;
-import com.blog.pojo.TbBlog;
-import com.blog.pojo.TbBlogExample;
+import com.blog.pojo.*;
 import com.blog.mapper.TbBlogCustomMapper;
-import com.blog.pojo.TbBlogCustom;
 import com.blog.rest.dao.JedisClient;
 import com.blog.rest.service.BlogService;
 import com.github.pagehelper.PageHelper;
@@ -32,18 +32,87 @@ public class BlogServiceImpl implements BlogService{
     @Autowired
     private TbBlogCustomMapper blogCustomMapper;
     @Autowired
+    private TbBlogCatCustomMapper blogCatCustomMapper;
+    @Autowired
     private JedisClient jedisClient;
     @Value("${REDIS_BLOG_LIKE_KEY}")
     private String REDIS_BLOG_LIKE_KEY;
 
+    /**
+     * 获取博客列表
+     * @param page
+     * @param rows
+     * @return
+     */
     @Override
     public ListDataResult getBlogList(Integer page, Integer rows){
         //查询博客列表
         TbBlogExample example=new TbBlogExample();
+        //根据时间查询
+        example.setOrderByClause("create_time DESC");
         //分页处理
         PageHelper.startPage(page,rows);
-        List<TbBlog> list=blogMapper.selectByExampleWithBLOBs(example);
+        List<TbBlogWithBLOBs> list=blogMapper.selectByExampleWithBLOBs(example);
+
+        ListDataResult result=new ListDataResult();
+        result.setPage(page);
+        result.setRows(list);
+        //取总博客数
+        PageInfo<TbBlogWithBLOBs> pageInfo=new PageInfo<>(list);
+        result.setTotal(pageInfo.getTotal());
+        result.setPages(pageInfo.getPages());
+        System.out.println(pageInfo.getTotal()+":"+pageInfo.getPages());
+        return result;
+    }
+
+    @Override
+    public Result getBlogListById(Long id){
+        TbBlogWithBLOBs blog=blogMapper.selectByPrimaryKey(id);
+        return Result.ok(blog);
+    }
+
+    /**
+     * 设置点赞
+     * @param blogId
+     * @return
+     */
+    @Override
+    public Result setBlogLike(Long blogId) {
+        jedisClient.incr(REDIS_BLOG_LIKE_KEY+":"+blogId);
+
+        return Result.ok();
+    }
+
+    /**
+     * 获取点赞
+     * @param blogId
+     * @return
+     */
+    @Override
+    public Result getBlogLike(Long blogId) {
+        String blogLike=jedisClient.get(REDIS_BLOG_LIKE_KEY+":"+blogId);
+        if(blogLike==null){
+            jedisClient.set(REDIS_BLOG_LIKE_KEY+":"+blogId,"0");
+            blogLike="0";
+        }
+        return Result.ok(blogLike);
+    }
+
+    @Override
+    public Result getBlogCatCount(){
+        List<TbBlogCatCustom> list=blogCatCustomMapper.getBlogCatCount();
+        return Result.ok(list);
+    }
+
+    @Override
+    public ListDataResult getBlogListByCatId(Long catId, Integer page, Integer rows){
+        TbBlogExample example=new TbBlogExample();
+        example.setOrderByClause("create_time DESC");
+        example.createCriteria().andBlogCatIdEqualTo(catId);
+        PageHelper.startPage(page,rows);
+        List<TbBlogWithBLOBs> list=blogMapper.selectByExampleWithBLOBs(example);
         //根据日期排序
+        /*
         Collections.sort(list,new Comparator<TbBlog>(){
             @Override
             public int compare(TbBlog o1, TbBlog o2) {
@@ -62,37 +131,16 @@ public class BlogServiceImpl implements BlogService{
 
             }
         });
+        */
         ListDataResult result=new ListDataResult();
         result.setPage(page);
         result.setRows(list);
         //取总博客数
-        PageInfo<TbBlog> pageInfo=new PageInfo<>(list);
+        PageInfo<TbBlogWithBLOBs> pageInfo=new PageInfo<>(list);
         result.setTotal(pageInfo.getTotal());
         result.setPages(pageInfo.getPages());
-        System.out.println(pageInfo.getTotal()+":"+pageInfo.getPages());
+
         return result;
-    }
 
-    @Override
-    public List<TbBlogCustom> getBlogListById(Long id){
-        List<TbBlogCustom> list=blogCustomMapper.getBlogListById(id);
-        return list;
-    }
-
-    @Override
-    public Result setBlogLike(Long blogId) {
-        jedisClient.incr(REDIS_BLOG_LIKE_KEY+":"+blogId);
-
-        return Result.ok();
-    }
-
-    @Override
-    public Result getBlogLike(Long blogId) {
-        String blogLike=jedisClient.get(REDIS_BLOG_LIKE_KEY+":"+blogId);
-        if(blogLike==null){
-            jedisClient.set(REDIS_BLOG_LIKE_KEY+":"+blogId,"0");
-            blogLike="0";
-        }
-        return Result.ok(blogLike);
     }
 }

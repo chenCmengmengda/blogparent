@@ -3,6 +3,7 @@ package com.blog.service.impl;
 import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.common.util.IDUtils;
+import com.blog.mapper.TbPermissionMapperCustom;
 import com.blog.mapper.TbUserMapperCustom;
 import com.blog.mapper.TbUserMapper;
 import com.blog.mapper.TbUserRoleMapper;
@@ -11,6 +12,7 @@ import com.blog.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +40,8 @@ public class UserServiceImpl implements UserService{
     TbUserMapperCustom userMapperCustom;
     @Autowired
     TbUserRoleMapper userRoleMapper;
+    @Autowired
+    TbPermissionMapperCustom permissionMapperCustom;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -148,6 +152,7 @@ public class UserServiceImpl implements UserService{
             criteria.andNicknameEqualTo(username);
             user = userMapper.selectByExample(example).get(0);
             userCustom=userMapperCustom.findUserRolePermissionById(user.getId());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -159,6 +164,8 @@ public class UserServiceImpl implements UserService{
 
     //作用就是返回一个List集合，集合中装入的是角色描述
     public List<SimpleGrantedAuthority> getAuthority(List<TbRoleCustom> roleList) {
+
+
 
         List<SimpleGrantedAuthority> list = new ArrayList<>();
         for(TbRoleCustom roleCustom:roleList) {

@@ -4,6 +4,7 @@ import com.blog.common.pojo.ListDataResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbBlogCustom;
 import com.blog.rest.service.BlogService;
+import com.sun.org.apache.regexp.internal.RESyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,10 +32,10 @@ public class BlogController {
 
     @RequestMapping("/content/{id}")
     @ResponseBody
-    public List<TbBlogCustom> getBlogList(@PathVariable Long id) {
+    public Result getBlogListById(@PathVariable Long id) {
         System.out.println(id);
-        List<TbBlogCustom> list=blogService.getBlogListById(id);
-        return list;
+        return blogService.getBlogListById(id);
+
     }
 
     @RequestMapping("/addBlogLike")
@@ -50,5 +51,20 @@ public class BlogController {
         Result result=blogService.getBlogLike(id);
         return result;
     }
+
+    @RequestMapping("/getBlogCatCount")
+    @ResponseBody
+    public Result getBlogCatCount(){
+        Result result=blogService.getBlogCatCount();
+        return result;
+    }
+
+    @RequestMapping("/getBlogListByCatId")
+    @ResponseBody
+    public ListDataResult getBlogListByCatId(Long catId, Integer page, Integer rows){
+        return blogService.getBlogListByCatId(catId,page,rows);
+    }
+
+
 
 }

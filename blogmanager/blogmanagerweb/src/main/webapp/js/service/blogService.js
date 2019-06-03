@@ -17,10 +17,22 @@ app.service('blogService',function($http){
         return $http.get('../blog/delete.do?ids='+selectIds);
     }
 
+    this.blogAdd=function(entity){
+        return $http.post('../blog/add.do',entity);
+    }
+
+    this.getBlogCatList=function(page,rows){
+        return $http.get('../blog/getBlogCatList.do?page='+page+'&rows='+rows);
+    }
+
 });
 
 blogWriteApp.service('blogWriteService',function($http){
    this.blogAdd=function(entity){
        return $http.post('../blog/add.do',entity);
    }
+
+    this.getBlogCatList=function(page,rows){
+        return $http.get('../blog/getBlogCatList.do?page='+page+'&rows='+rows);
+    }
 });

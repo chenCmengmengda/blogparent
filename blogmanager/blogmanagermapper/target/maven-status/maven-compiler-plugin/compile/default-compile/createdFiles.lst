@@ -1,9 +1,11 @@
 com\blog\mapper\TbPermissionMapper.class
 com\blog\mapper\TbMessageMapperCustom.class
 com\blog\mapper\TbMyreplyMapper.class
+com\blog\mapper\TbBlogCatCustomMapper.class
 com\blog\mapper\TbMessageMapper.class
 com\blog\mapper\TbRoleMapper.class
 com\blog\mapper\TbUserMapperCustom.class
+com\blog\mapper\TbBlogCatMapper.class
 com\blog\mapper\TbRoleMapperCustom.class
 com\blog\mapper\TbPhotolistMapper.class
 com\blog\mapper\TbUserRoleMapper.class

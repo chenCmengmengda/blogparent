@@ -7,9 +7,11 @@
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="blog_cat_id" jdbcType="BIGINT" property="blogCatId" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.blog.pojo.TbBlog">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.blog.pojo.TbBlogWithBLOBs">
     <result column="summary" jdbcType="LONGVARCHAR" property="summary" />
+    <result column="blog_desc" jdbcType="LONGVARCHAR" property="blogDesc" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,10 +72,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, image_url, create_time, update_time
+    id, title, image_url, create_time, update_time, blog_cat_id
   </sql>
   <sql id="Blob_Column_List">
-    summary
+    summary, blog_desc
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.blog.pojo.TbBlogExample" resultMap="ResultMapWithBLOBs">
     select
@@ -123,15 +125,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blog.pojo.TbBlog">
+  <insert id="insert" parameterType="com.blog.pojo.TbBlogWithBLOBs">
     insert into tb_blog (id, title, image_url, 
-      create_time, update_time, summary
-      )
+      create_time, update_time, blog_cat_id, 
+      summary, blog_desc)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{summary,jdbcType=LONGVARCHAR}
-      )
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{blogCatId,jdbcType=BIGINT}, 
+      #{summary,jdbcType=LONGVARCHAR}, #{blogDesc,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.blog.pojo.TbBlog">
+  <insert id="insertSelective" parameterType="com.blog.pojo.TbBlogWithBLOBs">
     insert into tb_blog
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -149,8 +151,14 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="blogCatId != null">
+        blog_cat_id,
+      </if>
       <if test="summary != null">
         summary,
+      </if>
+      <if test="blogDesc != null">
+        blog_desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -169,8 +177,14 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="blogCatId != null">
+        #{blogCatId,jdbcType=BIGINT},
+      </if>
       <if test="summary != null">
         #{summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="blogDesc != null">
+        #{blogDesc,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,8 +212,14 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.blogCatId != null">
+        blog_cat_id = #{record.blogCatId,jdbcType=BIGINT},
+      </if>
       <if test="record.summary != null">
         summary = #{record.summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.blogDesc != null">
+        blog_desc = #{record.blogDesc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -213,7 +233,9 @@
       image_url = #{record.imageUrl,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      summary = #{record.summary,jdbcType=LONGVARCHAR}
+      blog_cat_id = #{record.blogCatId,jdbcType=BIGINT},
+      summary = #{record.summary,jdbcType=LONGVARCHAR},
+      blog_desc = #{record.blogDesc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -224,12 +246,13 @@
       title = #{record.title,jdbcType=VARCHAR},
       image_url = #{record.imageUrl,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      blog_cat_id = #{record.blogCatId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.blog.pojo.TbBlog">
+  <update id="updateByPrimaryKeySelective" parameterType="com.blog.pojo.TbBlogWithBLOBs">
     update tb_blog
     <set>
       <if test="title != null">
@@ -244,19 +267,27 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="blogCatId != null">
+        blog_cat_id = #{blogCatId,jdbcType=BIGINT},
+      </if>
       <if test="summary != null">
         summary = #{summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="blogDesc != null">
+        blog_desc = #{blogDesc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blog.pojo.TbBlog">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blog.pojo.TbBlogWithBLOBs">
     update tb_blog
     set title = #{title,jdbcType=VARCHAR},
       image_url = #{imageUrl,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      summary = #{summary,jdbcType=LONGVARCHAR}
+      blog_cat_id = #{blogCatId,jdbcType=BIGINT},
+      summary = #{summary,jdbcType=LONGVARCHAR},
+      blog_desc = #{blogDesc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.blog.pojo.TbBlog">
@@ -264,7 +295,8 @@
     set title = #{title,jdbcType=VARCHAR},
       image_url = #{imageUrl,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      blog_cat_id = #{blogCatId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

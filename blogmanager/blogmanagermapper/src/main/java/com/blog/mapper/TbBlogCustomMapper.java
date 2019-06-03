@@ -12,4 +12,5 @@ import java.util.List;
 public interface TbBlogCustomMapper {
     List<TbBlogCustom> getBlogListById(Long id);
     List<TbBlog> getNewBlogTitle();
+    List<TbBlog> getBlogListByCatId(Long catId);
 }

@@ -13,7 +13,7 @@ public class TbBlog {
 
     private Date updateTime;
 
-    private String summary;
+    private Long blogCatId;
 
     public Long getId() {
         return id;
@@ -55,11 +55,11 @@ public class TbBlog {
         this.updateTime = updateTime;
     }
 
-    public String getSummary() {
-        return summary;
+    public Long getBlogCatId() {
+        return blogCatId;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary == null ? null : summary.trim();
+    public void setBlogCatId(Long blogCatId) {
+        this.blogCatId = blogCatId;
     }
 }

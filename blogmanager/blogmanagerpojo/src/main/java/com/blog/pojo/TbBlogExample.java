@@ -424,6 +424,66 @@ public class TbBlogExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andBlogCatIdIsNull() {
+            addCriterion("blog_cat_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdIsNotNull() {
+            addCriterion("blog_cat_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdEqualTo(Long value) {
+            addCriterion("blog_cat_id =", value, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdNotEqualTo(Long value) {
+            addCriterion("blog_cat_id <>", value, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdGreaterThan(Long value) {
+            addCriterion("blog_cat_id >", value, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("blog_cat_id >=", value, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdLessThan(Long value) {
+            addCriterion("blog_cat_id <", value, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdLessThanOrEqualTo(Long value) {
+            addCriterion("blog_cat_id <=", value, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdIn(List<Long> values) {
+            addCriterion("blog_cat_id in", values, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdNotIn(List<Long> values) {
+            addCriterion("blog_cat_id not in", values, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdBetween(Long value1, Long value2) {
+            addCriterion("blog_cat_id between", value1, value2, "blogCatId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogCatIdNotBetween(Long value1, Long value2) {
+            addCriterion("blog_cat_id not between", value1, value2, "blogCatId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

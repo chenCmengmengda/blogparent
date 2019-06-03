@@ -3,13 +3,11 @@ package com.blog.service.impl;
 import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.common.util.IDUtils;
+import com.blog.mapper.TbBlogCatMapper;
 import com.blog.mapper.TbBlogCustomMapper;
 import com.blog.mapper.TbBlogDescMapper;
 import com.blog.mapper.TbBlogMapper;
-import com.blog.pojo.TbBlog;
-import com.blog.pojo.TbBlogCustom;
-import com.blog.pojo.TbBlogDesc;
-import com.blog.pojo.TbBlogExample;
+import com.blog.pojo.*;
 import com.blog.service.BlogService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -32,14 +30,16 @@ public class BlogServiceImpl implements BlogService{
     TbBlogDescMapper blogDescMapper;
     @Autowired
     TbBlogCustomMapper blogCustomMapper;
+    @Autowired
+    TbBlogCatMapper blogCatMapper;
 
     @Override
-    public Result createBlog(TbBlog blog, String desc) throws Exception {
+    public Result createBlog(TbBlogWithBLOBs blog) throws Exception {
         //blog补全
         Long blogId= IDUtils.genItemId();
         blog.setId(blogId);
         //添加摘要,取前20个
-        String str=removeTag(desc);
+        String str=removeTag(blog.getBlogDesc());
         String summary=null;
         int summartLen=20;
         if(str.length()<summartLen){
@@ -55,11 +55,11 @@ public class BlogServiceImpl implements BlogService{
         //插入数据库
         blogMapper.insert(blog);
         //添加博客内容
-        Result result=createBlogDesc(blogId,desc);
+ /*       Result result=createBlogDesc(blogId,desc);
         if(result.getStatus()!=200){
             throw new Exception();
         }
-
+*/
         return Result.ok();
     }
 
@@ -120,12 +120,12 @@ public class BlogServiceImpl implements BlogService{
         TbBlogExample example=new TbBlogExample();
         //分页处理
         PageHelper.startPage(page,rows);
-        List<TbBlog> list=blogMapper.selectByExampleWithBLOBs(example);
+        List<TbBlogWithBLOBs> list=blogMapper.selectByExampleWithBLOBs(example);
         //创建一个返回值对象
         EUDataGridResult result=new EUDataGridResult();
         result.setRows(list);
         //取记录总条数
-        PageInfo<TbBlog> pageInfo=new PageInfo<>(list);
+        PageInfo<TbBlogWithBLOBs> pageInfo=new PageInfo<>(list);
         result.setTotal(pageInfo.getTotal());
         return result;
     }
@@ -138,15 +138,15 @@ public class BlogServiceImpl implements BlogService{
     /**
      * 编辑博客
      * @param blog
-     * @param desc
+     * @param
      * @return
      * @throws Exception
      */
     @Override
-    public Result editBlog(TbBlog blog, String desc) throws Exception {
+    public Result editBlog(TbBlogWithBLOBs blog) throws Exception {
         //blog补全
         //添加摘要,取前20个
-        String str=removeTag(desc);
+        String str=removeTag(blog.getBlogDesc());
         String summary=null;
         int summartLen=20;
         if(str.length()<summartLen){
@@ -161,11 +161,11 @@ public class BlogServiceImpl implements BlogService{
         //插入数据库
         blogMapper.updateByPrimaryKeyWithBLOBs(blog);
         //添加博客内容
-        Result result=editBlogDesc(blog.getId(),desc);
+     /*   Result result=editBlogDesc(blog.getId(),desc);
         if(result.getStatus()!=200){
             throw new Exception();
         }
-
+*/
         return Result.ok();
     }
 
@@ -186,9 +186,9 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public TbBlogCustom findOne(long id){
-        List <TbBlogCustom> blogCustom=blogCustomMapper.getBlogListById(id);
-         return blogCustom.get(0);
+    public Result findOne(long id){
+        TbBlogWithBLOBs blog=  blogMapper.selectByPrimaryKey(id);
+         return Result.ok(blog);
     }
 
     /**
@@ -219,6 +219,59 @@ public class BlogServiceImpl implements BlogService{
         return Result.ok(list);
 
     }
+
+    /**
+     * 获取博客类别列表
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public EUDataGridResult getBlogCatList(Integer page, Integer rows) {
+        TbBlogCatExample example=new TbBlogCatExample();
+        //分页处理
+        PageHelper.startPage(page,rows);
+        List<TbBlogCat> list=blogCatMapper.selectByExample(example);
+        //创建一个返回值对象
+        EUDataGridResult result=new EUDataGridResult();
+        result.setRows(list);
+        //取记录总条数
+        PageInfo<TbBlogCat> pageInfo=new PageInfo<>(list);
+        result.setTotal(pageInfo.getTotal());
+        return result;
+    }
+
+    @Override
+    public Result addBlogCat(TbBlogCat blogCat){
+        blogCat.setId(IDUtils.genItemId());
+        Date date=new Date();
+        blogCat.setCreateTime(date);
+        blogCat.setUpdateTime(date);
+        blogCatMapper.insert(blogCat);
+        return Result.ok();
+    }
+
+    @Override
+    public Result editBlogCat(TbBlogCat blogCat){
+        Date date=new Date();
+        blogCat.setUpdateTime(date);
+        blogCatMapper.updateByPrimaryKey(blogCat);
+        return Result.ok();
+    }
+
+    /**
+     * 删除博客类别
+     * @param ids
+     * @return
+     */
+    @Override
+    public Result deleteBlogCat(Long[] ids){
+        for(Long id:ids){
+            blogCatMapper.deleteByPrimaryKey(id);
+        }
+        return Result.ok();
+    }
+
 
 
 

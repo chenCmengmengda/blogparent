@@ -44,11 +44,11 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public List<TbBlogCustom> getBlogListById(Long id){
+    public Result getBlogListById(Long id){
         String json= HttpClientUtil.doGet(REST_BASE_URL+BLOG_DESC_URL+id);
         System.out.println(json);
-        List<TbBlogCustom> list= JsonUtils.jsonToList(json,TbBlogCustom.class);
-        return list;
+        Result result= JsonUtils.jsonToPojo(json,Result.class);
+        return result;
     }
 
     @Override
@@ -63,6 +63,21 @@ public class BlogServiceImpl implements BlogService{
         String json= HttpClientUtil.doGet(REST_BASE_URL+BLOG_GET_LIKE_URL+"?id="+blogId);
         System.out.println(json);
         Result result=JsonUtils.jsonToPojo(json,Result.class);
+        return result;
+    }
+
+    @Override
+    public Result getBlogCatCount(){
+        String json= HttpClientUtil.doGet(REST_BASE_URL+"/blog/getBlogCatCount");
+        System.out.println(json);
+        Result result=JsonUtils.jsonToPojo(json,Result.class);
+        return result;
+    }
+
+    @Override
+    public ListDataResult getBlogListByCatId(Long catId,Integer page,Integer rows){
+        String json= HttpClientUtil.doGet(REST_BASE_URL+"/blog/getBlogListByCatId"+"?catId="+catId+"&page="+page+"&rows="+rows);
+        ListDataResult result= JsonUtils.jsonToPojo(json,ListDataResult.class);
         return result;
     }
 }

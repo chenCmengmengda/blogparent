@@ -9,6 +9,7 @@ com\blog\controller\accessdenied\MyAccessDeniedHandler.class
 com\blog\interceptor\LoginInterceptor.class
 com\blog\controller\SyslogController.class
 com\blog\controller\SysParameterController.class
+com\blog\controller\accessdenied\AppFilterInvocationSecurityMetadataSource.class
 com\blog\controller\PhotoController.class
 com\blog\controller\accessdenied\MySuccessHandler.class
 com\blog\controller\UserController.class

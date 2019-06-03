@@ -13,7 +13,9 @@ import java.util.List;
  */
 public interface BlogService {
     ListDataResult getBlogList(Integer page, Integer rows);
-    List<TbBlogCustom> getBlogListById(Long id);
+    Result getBlogListById(Long id);
     Result setBlogLike(Long blogId);
     Result getBlogLike(Long blogId);
+    Result getBlogCatCount();
+    ListDataResult getBlogListByCatId(Long catId,Integer page,Integer rows);
 }

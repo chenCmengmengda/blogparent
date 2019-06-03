@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.TbBlogCatCustomMapper">
+    <select id="getBlogCatCount" resultType="com.blog.pojo.TbBlogCatCustom">
+      SELECT tb_blog_cat.id,tb_blog_cat.`name`, COUNT(*) blogCatCount FROM
+        tb_blog LEFT JOIN tb_blog_cat ON tb_blog.blog_cat_id=tb_blog_cat.id
+        where tb_blog.blog_cat_id=tb_blog_cat.id
+        GROUP BY tb_blog.blog_cat_id
+    </select>
+</mapper>

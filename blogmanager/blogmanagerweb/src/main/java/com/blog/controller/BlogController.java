@@ -3,7 +3,9 @@ package com.blog.controller;
 import com.blog.common.pojo.EUDataGridResult;
 import com.blog.common.pojo.Result;
 import com.blog.pojo.TbBlog;
+import com.blog.pojo.TbBlogCat;
 import com.blog.pojo.TbBlogCustom;
+import com.blog.pojo.TbBlogWithBLOBs;
 import com.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,11 +34,10 @@ public class BlogController {
 */
     @RequestMapping("/add.do")
     @ResponseBody
-    public Result createBlog(@RequestBody TbBlogCustom blogCustom) throws Exception{
-        TbBlog blog=new TbBlog();
-        blog.setTitle(blogCustom.getTitle());
-        blog.setImageUrl(blogCustom.getImageUrl());
-        Result result=blogService.createBlog(blog,blogCustom.getBlogDesc());
+    public Result createBlog(@RequestBody TbBlogWithBLOBs blog) throws Exception{
+
+
+        Result result=blogService.createBlog(blog);
 
         return result;
     }
@@ -71,20 +72,16 @@ public class BlogController {
 */
     @RequestMapping("/edit.do")
     @ResponseBody
-    public Result editBlog(@RequestBody TbBlogCustom blogCustom) throws Exception{
-        TbBlog blog=new TbBlog();
-        blog.setTitle(blogCustom.getTitle());
-        blog.setId(blogCustom.getId());
-        blog.setImageUrl(blogCustom.getImageUrl());
-        blog.setCreateTime(blogCustom.getCreateTime());
+    public Result editBlog(@RequestBody TbBlogWithBLOBs blog) throws Exception{
+
         
-        Result result=blogService.editBlog(blog,blogCustom.getBlogDesc());
+        Result result=blogService.editBlog(blog);
         return result;
-}
+    }
 
     @RequestMapping("/findOne.do")
     @ResponseBody
-    public TbBlogCustom findOne(Long id){
+    public Result findOne(Long id){
 
         return blogService.findOne(id);
     }
@@ -101,4 +98,27 @@ public class BlogController {
         return blogService.getNewBlogTitle(rows);
     }
 
+    @RequestMapping("/getBlogCatList.do")
+    @ResponseBody
+    public EUDataGridResult blogCatList(Integer page, Integer rows) {
+        return blogService.getBlogCatList(page,rows);
+    }
+
+    @RequestMapping("/addBlogCat.do")
+    @ResponseBody
+    public Result addBlogCat(@RequestBody TbBlogCat blogCat){
+        return blogService.addBlogCat(blogCat);
+    }
+
+    @RequestMapping("/editBlogCat.do")
+    @ResponseBody
+    public Result editBlogCat(@RequestBody TbBlogCat blogCat){
+        return blogService.editBlogCat(blogCat);
+    }
+
+    @RequestMapping("/deleteBlogCat.do")
+    @ResponseBody
+    public Result deleteBlogCat(Long[] ids){
+        return blogService.deleteBlog(ids);
+    }
 }

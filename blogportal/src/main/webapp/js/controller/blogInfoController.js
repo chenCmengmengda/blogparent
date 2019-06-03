@@ -15,8 +15,11 @@ var vue=new Vue({
             }
             var _this = this;
             axios.get("/blog/"+id).then(function (response) {
-                _this.blogInfo= response.data;
-                console.log(_this.blogInfo);
+                if(response.data.status==200) {
+                    _this.blogInfo = response.data.data;
+                    console.log(_this.blogInfo);
+
+                }
             }).catch(function (err) {
                 console.log(err);
             });

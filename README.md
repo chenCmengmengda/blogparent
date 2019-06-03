@@ -17,13 +17,19 @@ https://chencmengmengda.github.io/adminLteCMS-static/static/admin/
 
 博客编写修改及删除
 
-相册上传
+相册管理
 
 后台登录系统  
 
 前台系统博客列表及内容展示
 
 留言以及回复
+
+权限管理
+
+门户搜索
+
+文章点赞
 
 ### 安装说明：
 1.sql文件在blogparent->src->resources

@@ -8,6 +8,8 @@ public class TbBlogCustom extends TbBlog {
 
     private String blogDesc;
 
+    private String blogCatId;
+
     public String getBlogDesc() {
         return blogDesc;
     }

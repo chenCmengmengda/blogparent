@@ -112,10 +112,10 @@
     <div class="fenlei">
       <h2>文章分类</h2>
       <ul>
-        <li><a href="/">学无止境（33）</a></li>
-        <li><a href="/">日记（19）</a></li>
-        <li><a href="/">慢生活（520）</a></li>
-        <li><a href="/">美文欣赏（40）</a></li>
+        <li v-for="blogCat in blogCatList">
+          <a href="javascript:void(0)" v-on:click="getBlogListByCatId(blogCat.id,1,10)">{{blogCat.name}}（{{blogCat.blogCatCount}}）</a>
+        </li>
+
       </ul>
     </div>
     <div class="tuijian">
@@ -146,7 +146,7 @@
   </aside>
   <main   class="r_box">
     <li v-for="blog in blogList">
-      <i><a href="/"><img v-bind:src="blog.imageUrl"></a></i>
+      <i><a href="/"><img :src="blog.imageUrl"></a></i>
       <h3>
         <a :href="'/view/info.html?id='+blog.id">{{ blog.title }}</a>
         <!--<router-link :to="{ name: 'user'}">-->
@@ -180,11 +180,12 @@
 
         el:"#blogList",
         data: {
-            blogList :[],
-            cur: 1,
-            all: 8,
+            blogList :[],//博客列表
+            cur: 1,//当前页
+            all: 8,//默认总页数
             msg: '',
             query:'',
+            blogCatList:[],//文章分类列表
         },
         components:{
             'vue-nav': Vnav
@@ -204,12 +205,18 @@
                     _this.blogList= response.data.rows;
                     _this.all=response.data.pages;
                     console.log(_this.blogList);
+                    var state = {
+                        val: 'page='+page+'&rows='+rows,
+                        title: 'title-' + 'findPage',
+                        url:'?page='+page+'&rows='+rows
+                    }
+                    window.history.pushState(state, state.title, state.url)
                 }).catch(function (err) {
                     console.log(err);
                 });
             },
             search:function(query,page){
-
+                q=query;
                 var _this = this;
                 axios.get("/search?q="+query+"&page="+page).then(function (response) {
                     _this.blogList= response.data.blogList;
@@ -218,11 +225,38 @@
                 }).catch(function (err) {
                     console.log(err);
                 });
+            },
+            getBlogCatCount:function(){
+                var _this = this;
+                axios.get("/blog/getBlogCatCount").then(function (response) {
+                    if(response.data.status==200) {
+                        _this.blogCatList = response.data.data;
+                        console.log(_this.blogList);
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
+            getBlogListByCatId:function(catId,page,rows){
+                var _this = this;
+                axios.get("/blog/getBlogListByCatId?catId="+catId+"&page="+page
+                    +"&rows=" +rows)
+                    .then(function (response) {
+
+                        _this.blogList= response.data.rows;
+                        _this.all=response.data.pages;
+
+                      console.log(_this.blogList);
+
+                }).catch(function (err) {
+                    console.log(err);
+                });
             }
 
         },
         created(){
             this.findPage(this.cur,10);
+            this.getBlogCatCount();
         }
     });
 </script>

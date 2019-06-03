@@ -12,6 +12,7 @@ com\blog\pojo\TbPhotolistExample$Criterion.class
 com\blog\pojo\TbPhotolistExample.class
 com\blog\pojo\TbSysParameterExample$GeneratedCriteria.class
 com\blog\pojo\TbPhotolist.class
+com\blog\pojo\TbBlogCatExample.class
 com\blog\pojo\TbRoleExample.class
 com\blog\pojo\TbRolePermissionKey.class
 com\blog\pojo\TbRoleCustom.class
@@ -22,6 +23,9 @@ com\blog\pojo\TbBlogExample.class
 com\blog\pojo\TbBlogDescExample.class
 com\blog\pojo\TbUserCustom.class
 com\blog\pojo\TbBlogCustom.class
+com\blog\pojo\TbBlogWithBLOBs.class
+com\blog\pojo\TbBlogCat.class
+com\blog\pojo\TbBlogCatExample$GeneratedCriteria.class
 com\blog\pojo\TbMessage.class
 com\blog\pojo\TbMessageExample$Criterion.class
 com\blog\pojo\TbUserExample.class
@@ -56,9 +60,12 @@ com\blog\pojo\TbRoleExample$Criterion.class
 com\blog\pojo\TbSysParameter.class
 com\blog\pojo\TbMyreplyExample$GeneratedCriteria.class
 com\blog\pojo\TbUserRoleExample$Criterion.class
+com\blog\pojo\TbBlogCatExample$Criteria.class
+com\blog\pojo\TbBlogCatExample$Criterion.class
 com\blog\pojo\TbRolePermissionExample$Criterion.class
 com\blog\pojo\TbUserRoleKey.class
 com\blog\pojo\TbBlogDescExample$Criteria.class
 com\blog\pojo\SyslogExample$GeneratedCriteria.class
 com\blog\pojo\TbUserRoleExample$Criteria.class
+com\blog\pojo\TbBlogCatCustom.class
 com\blog\pojo\TbPhotolistExample$Criteria.class

@@ -30,7 +30,7 @@
         <!-- 配置具体的拦截的规则 pattern="请求路径的规则" access="访问系统的人，必须有ROLE_USER的角色" -->
         <security:intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_USER"/>
         <security:access-denied-handler ref="myAccessDeniedHandler" />
-
+<security:custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="myFilterSecurityInterceptor "></security:custom-filter>
 
         <!-- 定义跳转的具体的页面 -->
         <security:form-login
@@ -69,6 +69,8 @@
     </bean>
     <!-- 自定义成功处理 -->
     <bean id="mySuccessHandler" class="com.blog.controller.accessdenied.MySuccessHandler"></bean>
+    <!-- 过滤器 -->
+    <bean id="myFilterSecurityInterceptor " class="com.blog.service.impl.MyFilterSecurityInterceptor"></bean>
 
     <!-- 提供了入门的方式，在内存中存入用户名和密码
     <security:authentication-manager>

@@ -29,10 +29,20 @@
     $(function(){
         //创建富文本编辑器
         blogEditEditor = Blog.createEditor("#editModal [name=desc]");
+        blogAddEditor = Blog.createEditor("#addModal [name=desc]");
         //初始化类目选择和图片上传器
         Blog.init({fun:function(node){
 
             }});
+
+        // 解决模态框中编辑器无法在文本框输入值的问题
+        $('#addModal').on('shown.bs.modal',function(){
+            $(document).off('focusin.modal');
+        });
+
+        $('#editModal').on('shown.bs.modal',function(){
+            $(document).off('focusin.modal');
+        });
     });
 
 </script>
@@ -52,7 +62,7 @@
         <div class="pull-left">
             <div class="form-group form-inline">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" title="新建" onclick="window.location.href='blog_write.html'"><i class="fa fa-file-o"></i> 新建</button>
+                    <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#addModal" ng-click="findBlogCat(1,10);entity={}"><i class="fa fa-file-o"></i> 新建</button>
                     <button type="button" class="btn btn-default" title="删除" data-toggle="modal" data-target="#delModal"><i class="fa fa-trash-o"></i> 删除</button>
                     <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                 </div>
@@ -94,7 +104,7 @@
                 <td class="hidden-xs">{{entity.createTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
                 <td class="hidden-xs">{{entity.updateTime | date: "yyyy-MM-dd hh:mm:ss"}}</td>
                 <td class="text-center">
-                    <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOne(entity.id)" >修改</button>
+                    <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOne(entity.id);findBlogCat(1,10)" >修改</button>
                     <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#descModal"  ng-click="findOne(entity.id)" >详情</button>
                 </td>
             </tr>
@@ -114,32 +124,130 @@
 </div>
 <!-- /.box-body -->
 <!-- 编辑窗口 -->
+<div class="modal fade" id="addModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:100%;margin:0;top:0">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 >博客添加</h3>
+            </div>
+            <div class="modal-body" style=" height:-webkit-fill-available;height:fill-available;">
+                <div class="row">
+                    <div class="col-md-9 col-xs-12">
+
+
+                        <form id="blogAddForm" class="blogForm " method="post">
+                            <table style="width:100%">
+                                <tr>
+                                    <td>文章标题:</td>
+                                    <td><input class="form-control" type="text" name="title" data-options="required:true" ng-model="entity.title"></td>
+                                </tr>
+                                <tr>
+                                    <td>封面上传:</td>
+                                    <td>
+                                        <button  class="btn btn-success onePicUpload"  placeholder="相册标题" >上传图片 </button>
+                                        <input type="hidden" name="imageUrl" ng-model="entity.imageUrl"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>博客正文:</td>
+                                    <td>
+                                        <textarea style="width:100%;height:300px;visibility:hidden;" name="desc" ng-model="entity.desc"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="box ">
+                            <div class="box-header">
+                                <h3 class="box-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文章分类</font></font></h3>
+
+
+                            </div>
+                            <div class="box-body table-responsive no-padding">
+                                <div class="form-group" >
+                                    <div class="radio" ng-repeat="blogCat in blogCatList">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" ng-model="$parent.blogCat.blogCatId" value="{{blogCat.id}}" >
+                                            {{blogCat.name}}
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="blogAdd()">保存</button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="top:auto;">
+    <div class="modal-dialog" style="width:100%;top:0;margin:0">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">博客编辑</h3>
             </div>
-            <div class="modal-body" >
-                <table class="table table-bordered table-striped"  width="auto">
-                    <!--<input type="hidden" name="createTime" ng-model="emtity.createTime" />-->
-                    <tr>
-                        <td>标题</td>
-                        <td><input  class="form-control" placeholder="博客标题" ng-model="entity.title" >  </td>
-                    </tr>
-                    <td>封面上传:</td>
-                    <td>
-                        <button  class="btn btn-success onePicUpload"  placeholder="相册标题" >上传图片 </button>
-                        <input type="hidden" name="imageUrl" ng-model="entity.imageUrl"/>
-                    </td>
-                    <tr>
-                        <td>内容</td>
-                        <td>
-                            <textarea style="width:auto;visibility:hidden;" ng-model="entity.blogDesc" name="desc"></textarea>
-                        </td>
-                    </tr>
-                </table>
+            <div class="modal-body"  style=" height:-webkit-fill-available;height:fill-available;" >
+                <div class="row">
+                    <div class="col-md-9 col-xs-12">
+
+
+                        <form id="blogAddForm" class="blogForm " method="post">
+                            <table style="width:100%">
+                                <tr>
+                                    <td>文章标题:</td>
+                                    <td><input class="form-control" type="text" name="title" data-options="required:true" ng-model="entity.title"></td>
+                                </tr>
+                                <tr>
+                                    <td>封面上传:</td>
+                                    <td>
+                                        <button  class="btn btn-success onePicUpload"  placeholder="相册标题" >上传图片 </button>
+                                        <input type="hidden" name="imageUrl" ng-model="entity.imageUrl"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>博客正文:</td>
+                                    <td>
+                                        <textarea style="width:100%;height:300px;visibility:hidden;" name="desc" ng-model="entity.desc"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="box ">
+                            <div class="box-header">
+                                <h3 class="box-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文章分类</font></font></h3>
+
+
+                            </div>
+                            <div class="box-body table-responsive no-padding">
+                                <div class="form-group" >
+                                    <div class="radio" ng-repeat="entity in blogCatList">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" ng-model="$parent.entity.blogCatId" value="{{entity.id}}" >
+                                            {{entity.name}}
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="update()">保存</button>

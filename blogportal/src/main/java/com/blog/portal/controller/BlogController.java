@@ -29,11 +29,10 @@ public class BlogController {
 
     @RequestMapping("/{id}")
     @ResponseBody
-    public TbBlogCustom getBlogListById(@PathVariable Long id){
-        List<TbBlogCustom> list=blogService.getBlogListById(id);
+    public Result getBlogListById(@PathVariable Long id){
+        Result result=blogService.getBlogListById(id);
 
-
-        return list.get(0);
+        return result;
     }
 
     @RequestMapping("/list")
@@ -59,6 +58,18 @@ public class BlogController {
         return result;
     }
 
+    @RequestMapping("/getBlogCatCount")
+    @ResponseBody
+    public Result getBlogCatCount(){
+        Result result=blogService.getBlogCatCount();
+        return result;
+    }
+
+    @RequestMapping("/getBlogListByCatId")
+    @ResponseBody
+    public ListDataResult getBlogListByCatId(Long catId, Integer page, Integer rows){
+        return blogService.getBlogListByCatId(catId,page,rows);
+    }
 
 
 }
