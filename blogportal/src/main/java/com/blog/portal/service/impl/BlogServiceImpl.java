@@ -80,4 +80,12 @@ public class BlogServiceImpl implements BlogService{
         ListDataResult result= JsonUtils.jsonToPojo(json,ListDataResult.class);
         return result;
     }
+
+    @Override
+    public Result getNewBlogTitle(Integer rows){
+        String json= HttpClientUtil.doGet(REST_BASE_URL+"/blog/getNewBlogTitle?rows="+rows);
+        System.out.println(json);
+        Result result=JsonUtils.jsonToPojo(json,Result.class);
+        return result;
+    }
 }

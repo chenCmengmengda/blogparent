@@ -60,3 +60,21 @@ nav { width: 100%; position: relative }
 .r_box li i { float: none; margin: 0 auto 20px; width: 100%; max-height: initial }
 .newsview { padding: 0 15px; }
 }
+
+@media only screen and (max-width: 479px) {
+ .searchbox {
+  display: block;
+ }
+}
+
+@media only screen and (max-width: 479px) {
+ .search_open.search_bar .input {
+  width: 300px;
+ }
+}
+
+@media only screen and (max-width: 479px) {
+ .search_open {
+  width: 300px;
+ }
+}

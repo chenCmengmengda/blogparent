@@ -67,8 +67,9 @@ public class BlogServiceImpl implements BlogService{
 
     @Override
     public Result getBlogListById(Long id){
-        TbBlogWithBLOBs blog=blogMapper.selectByPrimaryKey(id);
-        return Result.ok(blog);
+        TbBlogCustom blogCustom=blogCustomMapper.getBlogListById(id);
+    //    TbBlogWithBLOBs blog=blogMapper.selectByPrimaryKey(id);
+        return Result.ok(blogCustom);
     }
 
     /**
@@ -141,6 +142,19 @@ public class BlogServiceImpl implements BlogService{
         result.setPages(pageInfo.getPages());
 
         return result;
+
+    }
+
+    /**
+     * 查询最新文章
+     * @param rows
+     * @return
+     */
+    @Override
+    public Result getNewBlogTitle(Integer rows){
+        PageHelper.startPage(1,rows);
+        List<TbBlog> list=blogCustomMapper.getNewBlogTitle();
+        return Result.ok(list);
 
     }
 }

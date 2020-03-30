@@ -48,7 +48,7 @@ var photoList=new Vue({
 
     },
     watch:{
-        photoList:function () {
+        photoList:function (page,rows) {
             var _this=this;
             _this.$nextTick(function(){
 
@@ -57,6 +57,8 @@ var photoList=new Vue({
                         window.scrollReveal = new scrollReveal({reset: true});
                     })();
                 };
+
+
             });
         }
     }

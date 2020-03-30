@@ -16,4 +16,5 @@ public interface BlogService {
     Result getBlogLike(Long blogId);
     Result getBlogCatCount();
     ListDataResult getBlogListByCatId(Long catId, Integer page, Integer rows);
+    Result getNewBlogTitle(Integer rows);
 }

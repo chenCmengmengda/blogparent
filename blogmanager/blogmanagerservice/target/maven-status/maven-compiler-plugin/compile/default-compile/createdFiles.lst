@@ -5,10 +5,13 @@ com\blog\service\impl\UserServiceImpl.class
 com\blog\service\SyslogService.class
 com\blog\service\impl\MessageServiceImpl.class
 com\blog\service\impl\PhotoServiceImpl.class
+com\blog\service\impl\MyAccessDecisionManager.class
 com\blog\service\RoleService.class
+com\blog\service\impl\MyFilterSecurityInterceptor.class
 com\blog\service\PhotoService.class
 com\blog\service\impl\PictureServiceImpl.class
 com\blog\service\PermissionService.class
+com\blog\service\impl\AppFilterInvocationSecurityMetadataSource.class
 com\blog\service\impl\BlogServiceImpl.class
 com\blog\service\impl\RoleServiceImpl.class
 com\blog\service\UserService.class

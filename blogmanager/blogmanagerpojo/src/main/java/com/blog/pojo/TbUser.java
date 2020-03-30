@@ -1,5 +1,7 @@
 package com.blog.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class TbUser {
@@ -11,6 +13,7 @@ public class TbUser {
 
     private String sex;
 
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date birthday;
 
     private String email;

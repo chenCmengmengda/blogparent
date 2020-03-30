@@ -65,6 +65,12 @@ public class BlogController {
         return blogService.getBlogListByCatId(catId,page,rows);
     }
 
+    @RequestMapping("/getNewBlogTitle")
+    @ResponseBody
+    public Result getNewBlogTitle(Integer rows){
+
+        return blogService.getNewBlogTitle(rows);
+    }
 
 
 }

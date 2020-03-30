@@ -13,6 +13,7 @@ import java.util.Set;
  * Created by 陈_C on 2018/7/17.
  */
 public class JedisTest {
+
     @Test
     public void testJedisSingle() {
         //创建一个jedis的对象。

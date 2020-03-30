@@ -26,12 +26,22 @@
 	<!--<script src="/js/service/loginService.js"></script>-->
 	<!--<script src="/js/controller/loginController.js"></script>-->
 	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
 	<script src="/js/common.js"></script>
 	<script>
+
+		var remember;
 		function login(){
 			var obj=new Object();
 			obj.username=$('#username').val();
 			obj.password=$('#password').val();
+			if(remember!=null && remember!=undefined &&remember!=''){
+                obj['remember-me']=remember;
+
+			}
+
+
+
 			bl.ajax('/user/login.do',obj,function(data){
                 if(data.status==200){
                 //    alert(data.msg);
@@ -42,7 +52,18 @@
                     alert(data.msg);
                 }
 			})
+
 		}
+
+
+
+		//监听回车
+        function enterLogin(event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) {
+                login();
+            }
+        }
 	</script>
 </head>
 
@@ -55,7 +76,7 @@
 			<img src="/img/tx.jpg" width="150" alt="Noisky logo" class="panel-cover__logo logo">
 		</div>
 		<div class="login-logo">
-			<a href="/login.html"><b>个人博客</b>后台管理系统</a>
+			<a href="/login.html"><b>secret、C's</b>个人博客</a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
@@ -64,18 +85,18 @@
 			<form >
 				<div class="form-group has-feedback">
 					<input type="text" name="username" id="username" class="form-control"
-						placeholder="用户名"> <span
+						placeholder="用户名" onkeydown="enterLogin(event)"> <span
 						class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" name="password" id="password" class="form-control"
-						placeholder="密码"> <span
+						placeholder="密码" onkeydown="enterLogin(event)"> <span
 						class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
 					<div class="col-xs-8">
 						<div class="checkbox icheck">
-							<label><input type="checkbox"> 记住 下次自动登录</label>
+							<label><input type="checkbox" id="remember-me" name="remember-me"> 记住 下次自动登录</label>
 						</div>
 					</div>
 					<!-- /.col -->
@@ -113,7 +134,18 @@
 				radioClass : 'iradio_square-blue',
 				increaseArea : '20%' // optional
 			});
+
+            $('input').on('ifChecked', function(event){
+
+                remember='on';
+            })
+
+            $('input').on('ifUnchecked', function(event){
+                remember=null;
+            })
 		});
+
+
 	</script>
 </body>
 

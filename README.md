@@ -6,6 +6,11 @@
 ### 后台系统演示地址
 https://chencmengmengda.github.io/adminLteCMS-static/static/admin/
 
+### 运行说明
+后台：启动manager工程：运行localhost:8080
+
+前台：启动reat、portal工程：运行localhost:8082
+
 ### 图片展示
 ![首页](https://raw.githubusercontent.com/chenCmengmengda/adminLteCMS-static/master/img-folder/main.png)
 ![登录](https://raw.githubusercontent.com/chenCmengmengda/adminLteCMS-static/master/img-folder/login.png)

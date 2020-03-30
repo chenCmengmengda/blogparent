@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blog.mapper.TbBlogCustomMapper">
-    <select id="getBlogListById" parameterType="long" resultType="com.blog.pojo.TbBlogCustom">
-        SELECT a.id,
-        a.title,
-        a.image_url imageUrl,
-        a.summary,
-        a.create_time createTime,
-        a.update_time updateTime,
-        b.blog_desc blogDesc
+    <select id="getBlogListById" parameterType="long" resultMap="getBlogCustomById">
+        SELECT *
         FROM
-        tb_blog a
-        LEFT JOIN tb_blog_desc b ON a.id = b.blog_id WHERE a.id=#{id}
+        tb_blog
+        WHERE id=#{id}
     </select>
+    <resultMap id="getBlogCustomById" type="com.blog.pojo.TbBlogCustom">
+        <id column="id" property="id"></id>
+        <result column="title" property="title"></result>
+        <result column="image_url" property="imageUrl"></result>
+        <result column="summaay" property="summary"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+        <result column="blog_desc" property="blogDesc"></result>
+        <collection column="create_time" property="preBlog" javaType="com.blog.pojo.TbBlog" select="com.blog.mapper.TbBlogCustomMapper.getPreBlogByTime"></collection>
+        <collection column="create_time" property="nextBlog" javaType="com.blog.pojo.TbBlog" select="com.blog.mapper.TbBlogCustomMapper.getNextBlogByTime"></collection>
+
+    </resultMap>
     <select id="getNewBlogTitle" resultType="com.blog.pojo.TbBlog">
         select id,title,create_time createTime from tb_blog order by create_time desc
     </select>
@@ -20,5 +26,11 @@
         select id,title,summary,create_time createTime,update_time updateTime,
         blog_desc blogDesc,blog_cat_id blogCatId
         from tb_blog where blog_cat_id=#{catId} order by create_time desc
+    </select>
+    <select id="getPreBlogByTime" parameterType="java.util.Date" resultType="com.blog.pojo.TbBlog">
+        select id,title from tb_blog where create_time &gt; #{createTime} ORDER BY create_time DESC LIMIT 1
+    </select>
+    <select id="getNextBlogByTime" parameterType="java.util.Date" resultType="com.blog.pojo.TbBlog">
+        select id,title from tb_blog where create_time &lt; #{createTime} ORDER BY create_time DESC LIMIT 1
     </select>
 </mapper>

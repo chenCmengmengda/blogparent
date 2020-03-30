@@ -24,7 +24,7 @@
 
     $(function () {
 
-        $('#datetimepicker').datetimepicker({
+        $('.datetimepicker').datetimepicker({
             format: 'yyyy-mm-dd',
             weekStart: 1,
             todayBtn:  1,
@@ -139,7 +139,7 @@
                         <td><input  class="form-control" type="password" placeholder="密码" ng-model="entity.password" ></td>
                     </tr>
                     <tr>
-                        <td>确认密码</td>
+                        <td>性别</td>
                         <td>
                             <select class="form-control" ng-model="entity.sex">
                                 <option>男</option>
@@ -150,7 +150,7 @@
                     <tr>
                         <td>生日</td>
                         <td>
-                            <div class='input-group date' id='datetimepicker'>
+                            <div class='input-group date datetimepicker' id='datetimepicker'>
                                 <input type='text' class="form-control" ng-model="entity.birthday" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -177,7 +177,7 @@
 </div>
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" >
+    <div class="modal-dialog" style="top:auto">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -188,12 +188,39 @@
                     <!--<input type="hidden" name="createTime" ng-model="emtity.createTime" />-->
                     <tr>
                         <td>用户名</td>
-                        <td><input  class="form-control" placeholder="用户名" ng-model="entity.title" >  </td>
+                        <td><input  class="form-control" placeholder="用户名" ng-model="entity.nickname" >  </td>
                     </tr>
                     <tr>
                         <td>密码</td>
+                        <td><input  class="form-control" type="password" placeholder="密码" ng-model="entity.password" ></td>
+                    </tr>
+                    <tr>
+                        <td>性别</td>
                         <td>
+                            <select class="form-control" ng-model="entity.sex">
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>生日</td>
+                        <td>
+                            <div class='input-group date datetimepicker' id='datetimepicker'>
+                                <input type='text' class="form-control" ng-model="entity.birthday" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>邮箱</td>
+                        <td><input  class="form-control" type="email" placeholder="邮箱" ng-model="entity.email" ></td>
+                    </tr>
+                    <tr>
+                        <td>电话</td>
+                        <td><input  class="form-control" placeholder="电话" ng-model="entity.phone" ></td>
                     </tr>
                 </table>
             </div>

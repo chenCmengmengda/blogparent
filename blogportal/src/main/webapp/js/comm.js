@@ -15,6 +15,19 @@ for(i=1;i<As.length;i++){if(window.location.href.indexOf(As[i].href)>=0)
 obj=As[i];}
 obj.id='selected';
 
+    /**
+     * search
+     * @type {number}
+     */
+    $('.search_ico').click(function () {
+        $('.search_bar').toggleClass('search_open');
+        if ($('#keyboard').val().length > 2) {
+            $('#keyboard').val('');
+            $('#searchform').submit();
+        } else {
+            return false;
+        }
+    });
 	
   
 	var new_scroll_position = 0;
@@ -41,7 +54,7 @@ obj.id='selected';
 	});
 	
 	
-	//»Øµ½¶¥²¿
+	//ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
     // browser window scroll (in pixels) after which the "back to top" link is shown
     var offset = 300,
         //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
@@ -67,7 +80,7 @@ obj.id='selected';
         );
     });
 	
-	//²àÀ¸¹Ì¶¨
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½
 		   
 	//aside
     var Sticky = new hcSticky('aside', {
