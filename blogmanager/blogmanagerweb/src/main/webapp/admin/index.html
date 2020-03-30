@@ -42,13 +42,13 @@
 		 function SetIFrameHeight(){
 		  	  var iframeid=document.getElementById("iframe"); //iframe id
 		  	  if (document.getElementById){
-		  		iframeid.height =document.documentElement.clientHeight;			   	   
+		  		iframeid.height =document.documentElement.clientHeight;
 			  }
 		 }
 
-    
-	</script>    
- 
+
+	</script>
+
 </head>
 
 <body class="hold-transition skin-green sidebar-mini" ng-app="indexApp" ng-controller="indexController" ng-init="index()">
@@ -286,7 +286,7 @@
                                         <small>最后登录 11:20AM</small>
                                     </p>
                                 </li>
-                                
+
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
@@ -319,7 +319,7 @@
                         <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                     </div>
                 </div>
-              
+
                 <!-- /.search form -->
 
 
@@ -331,7 +331,7 @@
 				    <!-- 菜单 -->
 				    <li class="treeview">
 				        <a href="#">
-				            <i class="fa fa-folder"></i> 
+				            <i class="fa fa-folder"></i>
 				            <span>博客管理</span>
 				            <span class="pull-right-container">
 				       			<i class="fa fa-angle-left pull-right"></i>
@@ -340,33 +340,33 @@
 				        <ul class="treeview-menu">
 
 				            <li id="admin-login">
-				                <a href="#" data-addtab="blog_list" data-url="blog_list.html" target="iframe">
+				                <a href="#" data-addtab="blog_list" data-url="blog_list.html" >
 				                    <i class="fa fa-circle-o"></i>文章管理
 				                </a>
 				            </li>
 
                             <li >
-                                <a href="javascript:void(0)" data-addtab="blog_cat_list" data-url="blog_cat_list.html" target="iframe">
+                                <a href="javascript:void(0)" data-addtab="blog_cat_list" data-url="blog_cat_list.html" >
                                     <i class="fa fa-circle-o"></i>博客类别管理
                                 </a>
                             </li>
 
 				            <li id="admin-login">
-				                <a href="javascript:void(0)" data-addtab="message" data-url="message.html" target="iframe">
+				                <a href="javascript:void(0)" data-addtab="message" data-url="message.html" >
 				                    <i class="fa fa-circle-o"></i>用户留言
 				                </a>
 				            </li>
 				            <li id="admin-login">
-				                <a href="javascript:void(0)" data-addtab="photo_list" data-url="photo_list.html" target="iframe">
+				                <a href="javascript:void(0)" data-addtab="photo_list" data-url="photo_list.html" >
 				                    <i class="fa fa-circle-o"></i>博客相册
 				                </a>
 				            </li>
 
-				        </ul>                        
+				        </ul>
 				    </li>
 					<li class="treeview">
 				        <a href="#">
-				            <i class="fa fa-folder"></i> 
+				            <i class="fa fa-folder"></i>
 				            <span>系统管理</span>
 				            <span class="pull-right-container">
 				       			<i class="fa fa-angle-left pull-right"></i>
@@ -374,45 +374,45 @@
 				        </a>
 				        <ul class="treeview-menu">
                             <li id="admin-login">
-                                <a href="javascript:void(0)" data-addtab="log_list" data-url="log_list.html" target="iframe">
+                                <a href="javascript:void(0)" data-addtab="log_list" data-url="log_list.html" >
                                     <i class="fa fa-circle-o"></i>系统日志
                                 </a>
                             </li>
                             <li id="admin-login">
-                                <a href="javascript:void(0)" data-addtab="sys_parameter" data-url="sys_parameter.html" target="iframe">
+                                <a href="javascript:void(0)" data-addtab="sys_parameter" data-url="sys_parameter.html" >
                                     <i class="fa fa-circle-o"></i>系统参数
                                 </a>
                             </li>
                             <li id="admin-login">
-                                <a href="javascript:void(0)"  data-addtab="user_list" data-url="user_list.html" target="iframe">
+                                <a href="javascript:void(0)"  data-addtab="user_list" data-url="user_list.html" >
                                     <i class="fa fa-circle-o"></i>系统用户管理
                                 </a>
                             </li>
                             <li id="admin-login">
-                                <a href="javascript:void(0)"  data-addtab="role_list" data-url="role_list.html" target="iframe">
+                                <a href="javascript:void(0)"  data-addtab="role_list" data-url="role_list.html" >
                                     <i class="fa fa-circle-o"></i>角色管理
                                 </a>
                             </li>
                             <li id="admin-login">
-                                <a href="javascript:void(0)" data-addtab="permission_list" data-url="permission_list.html" target="iframe">
+                                <a href="javascript:void(0)" data-addtab="permission_list" data-url="permission_list.html" >
                                     <i class="fa fa-circle-o"></i>资源权限管理
                                 </a>
                             </li>
 							<li id="admin-login">
-				                <a href="javascript:void(0)" data-addtab="edit_password" data-url="edit_password.html?username={{entity.username}}"    target="iframe">
+				                <a href="javascript:void(0)" data-addtab="edit_password" data-url="edit_password.html?username={{entity.username}}"    >
 				                    <i class="fa fa-circle-o"></i>修改密码
 				                </a>
-				            </li>							
+				            </li>
 							<li id="admin-login">
 				                <a href="javascript:void(0)"  data-addtab="help" data-url="help.html" >
 				                    <i class="fa fa-circle-o"></i>帮助
 				                </a>
 				            </li>
-							
-				        </ul>                        
+
+				        </ul>
 				    </li>
-					
-					
+
+
 				    <!-- 菜单 /-->
 
                 </ul>
@@ -439,7 +439,7 @@
             </div>
 			<!--<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()"-->
 					<!--frameborder="0" src="home.html"></iframe>-->
- 
+
         </div>
         <!-- 内容区域 /-->
 
