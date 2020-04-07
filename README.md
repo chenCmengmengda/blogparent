@@ -9,6 +9,8 @@ https://chencmengmengda.github.io/adminLteCMS-static/static/admin/
 ### 运行说明
 后台：启动manager工程：运行localhost:8080
 
+后台登录：secretC    111111
+
 前台：启动reat、portal工程：运行localhost:8082
 
 ### 图片展示

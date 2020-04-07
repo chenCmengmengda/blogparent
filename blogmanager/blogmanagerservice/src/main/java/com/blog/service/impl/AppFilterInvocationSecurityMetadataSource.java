@@ -42,7 +42,7 @@ public class AppFilterInvocationSecurityMetadataSource implements FilterInvocati
             resUrl = iter.next();
             matcher = new AntPathRequestMatcher(resUrl);
 
-            if(matcher.matches(request)) {
+            if(matcher.matches(request)) {//返回角色集合
                 return map.get(resUrl);
             }
         }
